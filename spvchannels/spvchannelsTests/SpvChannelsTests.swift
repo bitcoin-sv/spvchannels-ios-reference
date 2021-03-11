@@ -1,5 +1,5 @@
 //
-//  spvchannelsTests.swift
+//  SpvChannelsTests.swift
 //  spvchannelsTests
 //  Created by Equaleyes Solutions
 //
@@ -7,7 +7,7 @@
 import XCTest
 @testable import spvchannels
 
-class spvchannelsTests: XCTestCase {
+class SpvChannelsTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

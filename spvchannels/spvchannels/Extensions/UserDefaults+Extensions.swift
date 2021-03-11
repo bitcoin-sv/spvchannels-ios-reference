@@ -7,7 +7,7 @@
 import Foundation
 
 extension UserDefaults {
-    
+
     enum Keys: String {
         case name = "input_storage"
         case url = "url"
@@ -17,13 +17,13 @@ extension UserDefaults {
         case channelId = "channel_id"
         case token = "token"
     }
-    
+
     // MARK: -
     static private func getValue<T>(for key: UserDefaults.Keys) -> T? {
         guard let value = UserDefaults.standard.object(forKey: key.rawValue) as? T else { return nil }
         return value
     }
-        
+
     static private func setValue<T>(value: T?, for key: UserDefaults.Keys) {
         if value == nil {
             UserDefaults.standard.removeObject(forKey: key.rawValue)
@@ -59,7 +59,7 @@ extension UserDefaults {
         get { Self.getValue(for: .name) }
         set { Self.setValue(value: newValue, for: .name) }
     }
-    
+
     var url: String? {
         get { Self.getValue(for: .url) }
         set { Self.setValue(value: newValue, for: .url) }
@@ -69,12 +69,12 @@ extension UserDefaults {
         get { Self.getValue(for: .account) }
         set { Self.setValue(value: newValue, for: .account) }
     }
-    
+
     var username: String? {
         get { Self.getValue(for: .username) }
         set { Self.setValue(value: newValue, for: .username) }
     }
-    
+
     var password: String? {
         get { Self.getValue(for: .password) }
         set { Self.setValue(value: newValue, for: .password) }
@@ -84,10 +84,10 @@ extension UserDefaults {
         get { Self.getValue(for: .channelId) }
         set { Self.setValue(value: newValue, for: .channelId) }
     }
-    
+
     var token: String? {
         get { Self.getValue(for: .token) }
         set { Self.setValue(value: newValue, for: .token) }
     }
-    
+
 }
