@@ -1,0 +1,20 @@
+PODS:
+  - Sodium (0.9.1)
+  - SwiftLint (0.42.0)
+
+DEPENDENCIES:
+  - Sodium
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - Sodium
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  Sodium: 23d11554ecd556196d313cf6130d406dfe7ac6da
+  SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
+
+PODFILE CHECKSUM: 0185d211ec7921f2b8557873c8ee64a949f2bfe8
+
+COCOAPODS: 1.10.1
