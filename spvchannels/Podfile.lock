@@ -1,20 +1,24 @@
 PODS:
+  - Alamofire (4.9.0)
   - Sodium (0.9.1)
-  - SwiftLint (0.42.0)
+  - SwiftLint (0.35.0)
 
 DEPENDENCIES:
+  - Alamofire (<= 4.9.0)
   - Sodium
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Sodium
     - SwiftLint
 
 SPEC CHECKSUMS:
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   Sodium: 23d11554ecd556196d313cf6130d406dfe7ac6da
-  SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
+  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: 0185d211ec7921f2b8557873c8ee64a949f2bfe8
+PODFILE CHECKSUM: 2d633312923a27d05b7c305b60c7ef7efcc216d0
 
 COCOAPODS: 1.10.1
