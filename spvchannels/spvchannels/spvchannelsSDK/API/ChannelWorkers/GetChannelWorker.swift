@@ -49,7 +49,7 @@ class GetChannelWorker: SpvApiWorker {
 
     override func processResponse(response: HttpResponse) {
         let str = response.responseString
-        if let result = ChannelInfo.parse(from: str, type: ChannelInfo.self) {
+        if let result: ChannelInfo = .parse(from: str) {
             callback?(.success(result))
         } else {
             if let error = response.error {

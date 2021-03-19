@@ -51,7 +51,7 @@ class GetChannelTokenWorker: SpvApiWorker {
 
     override func processResponse(response: HttpResponse) {
         let str = response.responseString
-        if let result = ChannelToken.parse(from: str, type: ChannelToken.self) {
+        if let result: ChannelToken = .parse(from: str) {
             callback?(.success(result))
         } else {
             if let error = response.error {

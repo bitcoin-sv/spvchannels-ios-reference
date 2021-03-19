@@ -10,7 +10,7 @@ extension Scenes {
     static let Channels = ChannelsViewController.self
 }
 
-class ChannelsViewController: UIViewController, Instantiatable, Coordinatable {
+class ChannelsViewController: UIViewController, Coordinatable {
 
     var coordinator: SceneCoordinator?
     var channelAction = SpvClientAPI.Endpoint.getAllChannels {

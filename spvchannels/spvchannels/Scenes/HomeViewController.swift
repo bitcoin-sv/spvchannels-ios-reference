@@ -10,7 +10,7 @@ extension Scenes {
     static let Home = HomeViewController.self
 }
 
-class HomeViewController: UIViewController, Instantiatable, Coordinatable {
+class HomeViewController: UIViewController, Coordinatable {
 
     var coordinator: SceneCoordinator?
 

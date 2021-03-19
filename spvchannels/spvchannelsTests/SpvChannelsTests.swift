@@ -51,7 +51,7 @@ extension MockClientApi: SpvChannelsApiProtocol {
         if shouldReturnError {
             completion(.failure(.noContent))
         } else {
-            if let result = ChannelsList.parse(from: MockClientApiValues.getAllChannelsMock, type: ChannelsList.self) {
+            if let result: ChannelsList = .parse(from: MockClientApiValues.getAllChannelsMock) {
                 completion(.success(result.channels))
             } else {
                 completion(.failure(.noContent))
@@ -64,7 +64,7 @@ extension MockClientApi: SpvChannelsApiProtocol {
         if shouldReturnError {
             completion(.failure(.noContent))
         } else {
-            if let result = ChannelInfo.parse(from: MockClientApiValues.getChannelMock, type: ChannelInfo.self) {
+            if let result: ChannelInfo = .parse(from: MockClientApiValues.getChannelMock) {
                 completion(.success(result))
             }
         }
@@ -75,7 +75,7 @@ extension MockClientApi: SpvChannelsApiProtocol {
         if shouldReturnError {
             completion(.failure(.noContent))
         } else {
-            if let result = ChannelToken.parse(from: MockClientApiValues.getChannelTokenMock, type: ChannelToken.self) {
+            if let result: ChannelToken = .parse(from: MockClientApiValues.getChannelTokenMock) {
                 completion(.success(result))
             }
         }
@@ -86,7 +86,7 @@ extension MockClientApi: SpvChannelsApiProtocol {
         if shouldReturnError {
             completion(.failure(.noContent))
         } else {
-            if let result = ChannelInfo.parse(from: MockClientApiValues.createChannelMock, type: ChannelInfo.self) {
+            if let result: ChannelInfo = .parse(from: MockClientApiValues.createChannelMock) {
                 completion(.success(result))
             } else {
                 completion(.failure(.noContent))
@@ -119,8 +119,7 @@ extension MockClientApi: SpvChannelsApiProtocol {
         if shouldReturnError {
             completion(.failure(.noContent))
         } else {
-            if let result = ChannelToken.parse(from: MockClientApiValues.createChannelTokenMock,
-                                               type: ChannelToken.self) {
+            if let result: ChannelToken = .parse(from: MockClientApiValues.createChannelTokenMock) {
                 completion(.success(result))
             }
         }
@@ -131,8 +130,7 @@ extension MockClientApi: SpvChannelsApiProtocol {
         if shouldReturnError {
             completion(.failure(.noContent))
         } else {
-            if let result = [ChannelToken].parse(from: MockClientApiValues.getAllChannelTokensMock,
-                                              type: [ChannelToken].self) {
+            if let result: [ChannelToken] = .parse(from: MockClientApiValues.getAllChannelTokensMock) {
                 completion(.success(result))
             }
         }

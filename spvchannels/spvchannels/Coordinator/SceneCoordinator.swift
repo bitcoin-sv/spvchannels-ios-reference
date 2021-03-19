@@ -6,7 +6,7 @@
 
 import UIKit
 
-typealias NavigatableVC = Coordinatable & Instantiatable & UIViewController
+typealias NavigatableVC = Coordinatable & UIViewController
 
 class Scenes {}
 
@@ -20,7 +20,7 @@ class SceneCoordinator: Coordinator {
     }
 
     func start() {
-        open(Scenes.Home) { _ in true}
+        open(Scenes.Home) { _ in true }
     }
 
     func open<T: NavigatableVC>(_ viewController: T.Type,
@@ -41,10 +41,7 @@ class SceneCoordinator: Coordinator {
     }
 
     private func makeViewController<T: NavigatableVC>() -> T? {
-        guard let viewController = T.instantiate() else {
-            return nil
-        }
-
+        let viewController = T.init()
         viewController.coordinator = self
         return viewController
     }

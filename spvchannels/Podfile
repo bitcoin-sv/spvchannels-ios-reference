@@ -6,7 +6,7 @@ target 'spvchannels' do
   use_frameworks!
 
   # Pods for spvchannels
-  pod 'Alamofire', '<= 4.9.0'
+  pod 'Alamofire', '4.9.1'
   pod 'SwiftLint'
   pod 'Sodium'
 
