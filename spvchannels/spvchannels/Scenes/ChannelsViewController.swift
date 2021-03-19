@@ -13,7 +13,7 @@ extension Scenes {
 class ChannelsViewController: UIViewController, Coordinatable {
 
     var coordinator: SceneCoordinator?
-    var channelAction = SpvClientAPI.Endpoint.getAllChannels {
+    var channelAction = SpvClientApi.Endpoint.getAllChannels {
         didSet {
             setupActionButton()
         }
@@ -99,7 +99,7 @@ class ChannelsViewController: UIViewController, Coordinatable {
 
     private func presentActionsSheet() {
         let actionsSheet = UIAlertController()
-        SpvClientAPI.Endpoint.allCases.forEach { action in
+        SpvClientApi.Endpoint.allCases.forEach { action in
             actionsSheet.addAction(.init(title: action.actionTitle,
                                          style: .default, handler: { [weak self] _ in
                                             guard let self = self else { return }
@@ -134,7 +134,6 @@ class ChannelsViewController: UIViewController, Coordinatable {
         let accountId = "123"
         coordinator?.spvChannels?.networkService
             .getAllChannels(accountId: accountId) { result in
-            DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
                     self.displayTextField.text = toJson(data)
@@ -142,7 +141,6 @@ class ChannelsViewController: UIViewController, Coordinatable {
                     self.displayTextField.text = error.description
                 }
             }
-        }
     }
 
     private func getChannel() {
@@ -150,7 +148,6 @@ class ChannelsViewController: UIViewController, Coordinatable {
         let channelId = "234"
         coordinator?.spvChannels?.networkService
             .getChannel(accountId: accountId, channelId: channelId) { result in
-            DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
                     self.displayTextField.text = toJson(data)
@@ -158,14 +155,12 @@ class ChannelsViewController: UIViewController, Coordinatable {
                     self.displayTextField.text = error.description
                 }
             }
-        }
     }
 
     private func createChannel() {
         let accountId = "123"
         coordinator?.spvChannels?.networkService
             .createChannel(accountId: accountId) { result in
-            DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
                     self.displayTextField.text = toJson(data)
@@ -173,7 +168,6 @@ class ChannelsViewController: UIViewController, Coordinatable {
                     self.displayTextField.text = error.description
                 }
             }
-        }
     }
 
     private func amendChannel() {
@@ -182,13 +176,11 @@ class ChannelsViewController: UIViewController, Coordinatable {
         let permissions = ChannelPermissions(publicRead: true, publicWrite: true, locked: false)
         coordinator?.spvChannels?.networkService
             .amendChannel(accountId: accountId, channelId: channelId, permissions: permissions) { result in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success:
-                        self.displayTextField.text = "SUCCESS"
-                    case .failure(let error):
-                        self.displayTextField.text = error.description
-                    }
+                switch result {
+                case .success:
+                    self.displayTextField.text = "SUCCESS"
+                case .failure(let error):
+                    self.displayTextField.text = error.description
                 }
             }
     }
@@ -214,7 +206,6 @@ class ChannelsViewController: UIViewController, Coordinatable {
         let channelId = "234"
         coordinator?.spvChannels?.networkService
             .getAllChannelTokens(accountId: accountId, channelId: channelId) { result in
-            DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
                     self.displayTextField.text = toJson(data)
@@ -222,7 +213,6 @@ class ChannelsViewController: UIViewController, Coordinatable {
                     self.displayTextField.text = error.description
                 }
             }
-        }
     }
 
     private func getChannelToken() {
@@ -231,7 +221,6 @@ class ChannelsViewController: UIViewController, Coordinatable {
         let tokenId = "abcde"
         coordinator?.spvChannels?.networkService
             .getChannelToken(accountId: accountId, channelId: channelId, tokenId: tokenId) { result in
-            DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
                     self.displayTextField.text = toJson(data)
@@ -239,7 +228,6 @@ class ChannelsViewController: UIViewController, Coordinatable {
                     self.displayTextField.text = error.description
                 }
             }
-        }
     }
 
     private func createChannelToken() {
@@ -248,7 +236,6 @@ class ChannelsViewController: UIViewController, Coordinatable {
         let tokenRequest = CreateTokenRequest(canRead: true, canWrite: true, description: "description")
         coordinator?.spvChannels?.networkService
             .createChannelToken(accountId: accountId, channelId: channelId, tokenRequest: tokenRequest) { result in
-            DispatchQueue.main.async {
                 switch result {
                 case .success(let data):
                     self.displayTextField.text = toJson(data)
@@ -256,7 +243,6 @@ class ChannelsViewController: UIViewController, Coordinatable {
                     self.displayTextField.text = error.description
                 }
             }
-        }
     }
 
     private func revokeChannelToken() {
@@ -265,7 +251,6 @@ class ChannelsViewController: UIViewController, Coordinatable {
         let channelToken = "abcde"
         coordinator?.spvChannels?.networkService
             .revokeChannelToken(accountId: accountId, channelId: channelId, tokenId: channelToken) { result in
-            DispatchQueue.main.async {
                 switch result {
                 case .success:
                     self.displayTextField.text = "SUCCESS"
@@ -273,7 +258,6 @@ class ChannelsViewController: UIViewController, Coordinatable {
                     self.displayTextField.text = error.description
                 }
             }
-        }
     }
 
 }

@@ -6,7 +6,7 @@
 
 import Foundation
 
-class SpvClientAPI {
+class SpvClientApi {
 
     var baseUrl: String
     var credentials: SpvCredentials
@@ -79,11 +79,10 @@ class SpvClientAPI {
         }
 
         func buildUrl(params: [String: String] = [:], queries: [String: String] = [:]) -> URL? {
-            var urlStr = self.urlString
-            let requiredKeys = self.urlKeys.sorted()
-            guard requiredKeys == params.keys.sorted() else { return nil }
-            params.forEach { urlStr = urlStr.replacingOccurrences(of: "{\($0)}", with: $1) }
-            guard let url = URL(string: urlStr) else { return nil }
+            var urlString = self.urlString
+            guard urlKeys.sorted() == params.keys.sorted() else { return nil }
+            params.forEach { urlString = urlString.replacingOccurrences(of: "{\($0)}", with: $1) }
+            guard let url = URL(string: urlString) else { return nil }
             return queries.isEmpty ? url : url.withQueries(queries)
         }
     }
@@ -100,13 +99,15 @@ func toJson<Value>(_ item: Value) -> String where Value: Encodable {
     }
 }
 
-extension SpvClientAPI: SpvChannelsApiProtocol {
+extension SpvClientApi: SpvChannelsApiProtocol {
 
     func getAllChannels(accountId: String,
                         completion: @escaping ChannelsInfoResult) {
         let worker = GetAllChannelsWorker(baseUrl: baseUrl, credentials: credentials)
         worker.execute(accountId: accountId) { result in
-            completion(result)
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
     }
 
@@ -114,7 +115,9 @@ extension SpvClientAPI: SpvChannelsApiProtocol {
                     completion: @escaping ChannelInfoResult) {
         let worker = GetChannelWorker(baseUrl: baseUrl, credentials: credentials)
         worker.execute(accountId: accountId, channelId: channelId) { result in
-            completion(result)
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
     }
 
@@ -122,7 +125,9 @@ extension SpvClientAPI: SpvChannelsApiProtocol {
                        completion: @escaping ChannelInfoResult) {
         let worker = CreateChannelWorker(baseUrl: baseUrl, credentials: credentials)
         worker.execute(accountId: accountId) { result in
-            completion(result)
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
     }
 
@@ -130,7 +135,9 @@ extension SpvClientAPI: SpvChannelsApiProtocol {
                        completion: @escaping VoidResult) {
         let worker = DeleteChannelWorker(baseUrl: baseUrl, credentials: credentials)
         worker.execute(accountId: accountId, channelId: channelId) { result in
-            completion(result)
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
     }
 
@@ -138,7 +145,9 @@ extension SpvClientAPI: SpvChannelsApiProtocol {
                              completion: @escaping TokensInfoResult) {
         let worker = GetAllChannelTokensWorker(baseUrl: baseUrl, credentials: credentials)
         worker.execute(accountId: accountId, channelId: channelId) { result in
-            completion(result)
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
     }
 
@@ -146,7 +155,9 @@ extension SpvClientAPI: SpvChannelsApiProtocol {
                       completion: @escaping VoidResult) {
         let worker = AmendChannelWorker(baseUrl: baseUrl, credentials: credentials)
         worker.execute(accountId: accountId, channelId: channelId, permissions: permissions) { result in
-            completion(result)
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
     }
 
@@ -154,7 +165,9 @@ extension SpvClientAPI: SpvChannelsApiProtocol {
                             completion: @escaping TokenInfoResult) {
         let worker = CreateChannelTokenWorker(baseUrl: baseUrl, credentials: credentials)
         worker.execute(accountId: accountId, channelId: channelId, tokenRequest: tokenRequest) { result in
-            completion(result)
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
     }
 
@@ -162,7 +175,9 @@ extension SpvClientAPI: SpvChannelsApiProtocol {
                          completion: @escaping TokenInfoResult) {
         let worker = GetChannelTokenWorker(baseUrl: baseUrl, credentials: credentials)
         worker.execute(accountId: accountId, channelId: channelId, tokenId: tokenId) { result in
-            completion(result)
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
     }
 
@@ -170,7 +185,9 @@ extension SpvClientAPI: SpvChannelsApiProtocol {
                             completion: @escaping VoidResult) {
         let worker = RevokeChannelTokenWorker(baseUrl: baseUrl, credentials: credentials)
         worker.execute(accountId: accountId, channelId: channelId, tokenId: tokenId) { result in
-            completion(result)
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
     }
 

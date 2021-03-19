@@ -29,7 +29,7 @@
 		A15E071E25FEBCE1000AB996 /* ChannelToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E071D25FEBCE1000AB996 /* ChannelToken.swift */; };
 		A15E077D26006B29000AB996 /* SpvChannels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E077C26006B29000AB996 /* SpvChannels.swift */; };
 		A15E079126008BCD000AB996 /* SpvChannelsApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E079026008BCD000AB996 /* SpvChannelsApiProtocol.swift */; };
-		A15E079626008C60000AB996 /* SpvClientAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E079526008C60000AB996 /* SpvClientAPI.swift */; };
+		A15E079626008C60000AB996 /* SpvClientApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E079526008C60000AB996 /* SpvClientApi.swift */; };
 		A15E07A42600B78D000AB996 /* CreateTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E07A32600B78D000AB996 /* CreateTokenRequest.swift */; };
 		A15E07A92600B96C000AB996 /* SpvError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E07A82600B96C000AB996 /* SpvError.swift */; };
 		A15E080A26014D88000AB996 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E080626014D88000AB996 /* SceneCoordinator.swift */; };
@@ -102,7 +102,7 @@
 		A15E071D25FEBCE1000AB996 /* ChannelToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelToken.swift; sourceTree = "<group>"; };
 		A15E077C26006B29000AB996 /* SpvChannels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannels.swift; sourceTree = "<group>"; };
 		A15E079026008BCD000AB996 /* SpvChannelsApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelsApiProtocol.swift; sourceTree = "<group>"; };
-		A15E079526008C60000AB996 /* SpvClientAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvClientAPI.swift; sourceTree = "<group>"; };
+		A15E079526008C60000AB996 /* SpvClientApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvClientApi.swift; sourceTree = "<group>"; };
 		A15E07A32600B78D000AB996 /* CreateTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTokenRequest.swift; sourceTree = "<group>"; };
 		A15E07A82600B96C000AB996 /* SpvError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvError.swift; sourceTree = "<group>"; };
 		A15E080626014D88000AB996 /* SceneCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
@@ -288,7 +288,7 @@
 				A164398E2601E600001FBDAE /* Network */,
 				EDAAF57B26022237002699A3 /* ChannelWorkers */,
 				A15E079026008BCD000AB996 /* SpvChannelsApiProtocol.swift */,
-				A15E079526008C60000AB996 /* SpvClientAPI.swift */,
+				A15E079526008C60000AB996 /* SpvClientApi.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -623,7 +623,7 @@
 				A15E071425FEBCC7000AB996 /* ChannelPermissions.swift in Sources */,
 				A14924CE26031E7A00D39FE5 /* RevokeChannelTokenWorker.swift in Sources */,
 				A15E070F25FEBCB5000AB996 /* ChannelInfo.swift in Sources */,
-				A15E079626008C60000AB996 /* SpvClientAPI.swift in Sources */,
+				A15E079626008C60000AB996 /* SpvClientApi.swift in Sources */,
 				A15E07A92600B96C000AB996 /* SpvError.swift in Sources */,
 				A14924E02603271100D39FE5 /* CreateChannelTokenWorker.swift in Sources */,
 				A15E080A26014D88000AB996 /* SceneCoordinator.swift in Sources */,

@@ -29,7 +29,6 @@ class SpvApiWorker {
     }
 
     func processResponse(response: HttpResponse) { }
-
     func apiCallDidFinish(response: HttpResponse) { }
     func getUrl() -> String { return "" }
     func getMethod() -> HttpMethod { return .get }

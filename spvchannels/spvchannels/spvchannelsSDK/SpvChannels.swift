@@ -17,7 +17,7 @@ class SpvChannels {
     }
 
     convenience init(baseUrl: String, credentials: SpvCredentials) {
-        let networkService = SpvClientAPI(baseUrl: baseUrl, credentials: credentials)
+        let networkService = SpvClientApi(baseUrl: baseUrl, credentials: credentials)
         self.init(baseUrl: baseUrl, credentials: credentials, networkService: networkService)
     }
 

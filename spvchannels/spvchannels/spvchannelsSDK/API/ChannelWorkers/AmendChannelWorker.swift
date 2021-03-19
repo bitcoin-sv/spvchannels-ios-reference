@@ -32,7 +32,7 @@ class AmendChannelWorker: SpvApiWorker {
 
     override func getUrl() -> String {
         let params = ["accountId": accountId, "channelId": channelId]
-        guard let partUrl = SpvClientAPI.Endpoint.amendChannel
+        guard let partUrl = SpvClientApi.Endpoint.amendChannel
                 .buildUrl(params: params, queries: [:]) else { return "" }
         return baseUrl.appending(partUrl.absoluteString)
     }

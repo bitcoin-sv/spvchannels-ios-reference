@@ -32,7 +32,7 @@ class GetChannelTokenWorker: SpvApiWorker {
 
     override func getUrl() -> String {
         let params = ["accountId": accountId, "channelId": channelId, "tokenId": tokenId]
-        guard let partUrl = SpvClientAPI.Endpoint.getChannelToken
+        guard let partUrl = SpvClientApi.Endpoint.getChannelToken
                 .buildUrl(params: params, queries: [:]) else { return "" }
         return baseUrl.appending(partUrl.absoluteString)
     }

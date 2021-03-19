@@ -32,7 +32,7 @@ class RevokeChannelTokenWorker: SpvApiWorker {
 
     override func getUrl() -> String {
         let params = ["accountId": accountId, "channelId": channelId, "tokenId": tokenId]
-        guard let partUrl = SpvClientAPI.Endpoint.revokeChannelToken
+        guard let partUrl = SpvClientApi.Endpoint.revokeChannelToken
                 .buildUrl(params: params, queries: [:]) else { return "" }
         return baseUrl.appending(partUrl.absoluteString)
     }

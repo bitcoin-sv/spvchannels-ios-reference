@@ -30,7 +30,7 @@ class DeleteChannelWorker: SpvApiWorker {
 
     override func getUrl() -> String {
         let params = ["accountId": accountId, "channelId": channelId]
-        guard let partUrl = SpvClientAPI.Endpoint.deleteChannel
+        guard let partUrl = SpvClientApi.Endpoint.deleteChannel
                 .buildUrl(params: params, queries: [:]) else { return "" }
         return baseUrl.appending(partUrl.absoluteString)
     }
