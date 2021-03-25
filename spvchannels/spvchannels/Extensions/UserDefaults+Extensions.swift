@@ -11,7 +11,7 @@ extension UserDefaults {
     enum Keys: String {
         case baseUrl = "base_url"
         case accountId = "account_id"
-        case userName = "username"
+        case username = "username"
         case password = "password"
     }
 
@@ -62,9 +62,9 @@ extension UserDefaults {
         set { Self.setValue(value: newValue, for: .accountId) }
     }
 
-    var userName: String? {
-        get { Self.getValue(for: .userName) }
-        set { Self.setValue(value: newValue, for: .userName) }
+    var username: String? {
+        get { Self.getValue(for: .username) }
+        set { Self.setValue(value: newValue, for: .username) }
     }
 
     var password: String? {

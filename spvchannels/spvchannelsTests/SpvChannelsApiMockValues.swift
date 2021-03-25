@@ -9,7 +9,7 @@ struct MockClientApiValues {
     {
       "channels": [
         {
-          "id": "string",
+          "id": "testChannelId",
           "href": "string",
           "public_read": true,
           "public_write": true,

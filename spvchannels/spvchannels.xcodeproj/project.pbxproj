@@ -9,13 +9,35 @@
 /* Begin PBXBuildFile section */
 		46C02471565BAEA343316597 /* Pods_spvchannels_spvchannelsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15FB54033666E43249825BDB /* Pods_spvchannels_spvchannelsUITests.framework */; };
 		8C0158C5E39E70DD5868EAE9 /* Pods_spvchannelsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4900F7C2ECAB0EF984C0569 /* Pods_spvchannelsTests.framework */; };
-		A14924B62603179F00D39FE5 /* CreateChannelWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14924B52603179F00D39FE5 /* CreateChannelWorker.swift */; };
-		A14924C126031A4200D39FE5 /* DeleteChannelWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14924C026031A4200D39FE5 /* DeleteChannelWorker.swift */; };
-		A14924C626031C2E00D39FE5 /* GetAllChannelTokensWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14924C526031C2E00D39FE5 /* GetAllChannelTokensWorker.swift */; };
-		A14924CE26031E7A00D39FE5 /* RevokeChannelTokenWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14924CD26031E7A00D39FE5 /* RevokeChannelTokenWorker.swift */; };
-		A14924D626031FC300D39FE5 /* GetChannelTokenWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14924D526031FC300D39FE5 /* GetChannelTokenWorker.swift */; };
-		A14924DB2603239700D39FE5 /* AmendChannelWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14924DA2603239700D39FE5 /* AmendChannelWorker.swift */; };
-		A14924E02603271100D39FE5 /* CreateChannelTokenWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14924DF2603271100D39FE5 /* CreateChannelTokenWorker.swift */; };
+		A13583572608A24100B9BA6C /* HomeVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583562608A24100B9BA6C /* HomeVIP.swift */; };
+		A135835C2608A24E00B9BA6C /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135835B2608A24E00B9BA6C /* HomeModels.swift */; };
+		A135836A2608A2D500B9BA6C /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583692608A2D500B9BA6C /* HomeInteractor.swift */; };
+		A135836F2608A2DB00B9BA6C /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135836E2608A2DB00B9BA6C /* HomePresenter.swift */; };
+		A13583952608A8FB00B9BA6C /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583942608A8FB00B9BA6C /* HomeRouter.swift */; };
+		A13583A02608A98700B9BA6C /* Instantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135839F2608A98700B9BA6C /* Instantiatable.swift */; };
+		A13583D92608C95E00B9BA6C /* FirebaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583D82608C95E00B9BA6C /* FirebaseConfig.swift */; };
+		A13583DE2608C97800B9BA6C /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583DD2608C97700B9BA6C /* TokenStorage.swift */; };
+		A13583E3260903D200B9BA6C /* SpvChannelApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583E2260903D200B9BA6C /* SpvChannelApi.swift */; };
+		A13583E82609041C00B9BA6C /* SpvEncryptionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583E72609041C00B9BA6C /* SpvEncryptionProtocol.swift */; };
+		A13583ED2609048000B9BA6C /* SpvNoOpEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583EC2609048000B9BA6C /* SpvNoOpEncryption.swift */; };
+		A13583FB260905B900B9BA6C /* SpvMessagingApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583FA260905B900B9BA6C /* SpvMessagingApi.swift */; };
+		A13584002609078D00B9BA6C /* ChannelsVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583FF2609078D00B9BA6C /* ChannelsVIP.swift */; };
+		A1358405260907A000B9BA6C /* ChannelsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1358404260907A000B9BA6C /* ChannelsRouter.swift */; };
+		A135840A260907AD00B9BA6C /* ChannelsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1358409260907AD00B9BA6C /* ChannelsModels.swift */; };
+		A135840F260907C000B9BA6C /* ChannelsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135840E260907C000B9BA6C /* ChannelsInteractor.swift */; };
+		A1358414260907CD00B9BA6C /* ChannelsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1358413260907CD00B9BA6C /* ChannelsPresenter.swift */; };
+		A13584532609C7BC00B9BA6C /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13584522609C7BC00B9BA6C /* RoundedTextField.swift */; };
+		A135846D2609CA4200B9BA6C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135846C2609CA4200B9BA6C /* RoundedButton.swift */; };
+		A13584812609DE8500B9BA6C /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13584802609DE8500B9BA6C /* Codable+Extensions.swift */; };
+		A13584AC2609EC8B00B9BA6C /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13584AB2609EC8B00B9BA6C /* UILabel+Extensions.swift */; };
+		A13584CB260A0CF200B9BA6C /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13584CA260A0CF200B9BA6C /* UIStackView+Extensions.swift */; };
+		A13584E2260A17B700B9BA6C /* UISwitch+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13584E1260A17B700B9BA6C /* UISwitch+Extensions.swift */; };
+		A1358551260A416D00B9BA6C /* MessagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1358550260A416D00B9BA6C /* MessagingViewController.swift */; };
+		A1358556260A457900B9BA6C /* MessagingVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1358555260A457900B9BA6C /* MessagingVIP.swift */; };
+		A135855B260A45A900B9BA6C /* MessagingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135855A260A45A900B9BA6C /* MessagingModels.swift */; };
+		A1358560260A45BD00B9BA6C /* MessagingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135855F260A45BD00B9BA6C /* MessagingInteractor.swift */; };
+		A1358565260A461200B9BA6C /* MessagingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1358564260A461200B9BA6C /* MessagingPresenter.swift */; };
+		A135856A260A462200B9BA6C /* MessagingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1358569260A462200B9BA6C /* MessagingRouter.swift */; };
 		A15E064F25FA0B06000AB996 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E064E25FA0B06000AB996 /* AppDelegate.swift */; };
 		A15E065325FA0B06000AB996 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E065225FA0B06000AB996 /* HomeViewController.swift */; };
 		A15E065825FA0B07000AB996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A15E065725FA0B07000AB996 /* Assets.xcassets */; };
@@ -27,29 +49,25 @@
 		A15E071425FEBCC7000AB996 /* ChannelPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E071325FEBCC7000AB996 /* ChannelPermissions.swift */; };
 		A15E071925FEBCD6000AB996 /* Retention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E071825FEBCD6000AB996 /* Retention.swift */; };
 		A15E071E25FEBCE1000AB996 /* ChannelToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E071D25FEBCE1000AB996 /* ChannelToken.swift */; };
-		A15E077D26006B29000AB996 /* SpvChannels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E077C26006B29000AB996 /* SpvChannels.swift */; };
+		A15E077D26006B29000AB996 /* SpvChannelsSdk.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E077C26006B29000AB996 /* SpvChannelsSdk.swift */; };
 		A15E079126008BCD000AB996 /* SpvChannelsApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E079026008BCD000AB996 /* SpvChannelsApiProtocol.swift */; };
-		A15E079626008C60000AB996 /* SpvClientApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E079526008C60000AB996 /* SpvClientApi.swift */; };
 		A15E07A42600B78D000AB996 /* CreateTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E07A32600B78D000AB996 /* CreateTokenRequest.swift */; };
-		A15E07A92600B96C000AB996 /* SpvError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E07A82600B96C000AB996 /* SpvError.swift */; };
 		A15E080A26014D88000AB996 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E080626014D88000AB996 /* SceneCoordinator.swift */; };
 		A15E080C26014D88000AB996 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E080826014D88000AB996 /* Coordinator.swift */; };
 		A15E080D26014D88000AB996 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E080926014D88000AB996 /* Coordinatable.swift */; };
 		A15E085626015BF2000AB996 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E085526015BF2000AB996 /* UIView+Extensions.swift */; };
-		A16439852601D921001FBDAE /* SpvApiWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16439842601D921001FBDAE /* SpvApiWorker.swift */; };
-		A16439BC2601F05F001FBDAE /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16439B82601F05F001FBDAE /* HttpRequest.swift */; };
-		A16439BD2601F05F001FBDAE /* SpvHttpRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16439B92601F05F001FBDAE /* SpvHttpRequestManager.swift */; };
-		A16439BE2601F05F001FBDAE /* SpvHttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16439BA2601F05F001FBDAE /* SpvHttpRequest.swift */; };
-		A16439BF2601F05F001FBDAE /* HttpRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16439BB2601F05F001FBDAE /* HttpRequestManager.swift */; };
+		A1CBD813260BE4D6005C4091 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD812260BE4D6005C4091 /* RequestProtocol.swift */; };
+		A1CBD818260BE5A6005C4091 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD817260BE5A6005C4091 /* APIError.swift */; };
+		A1CBD865260BEF31005C4091 /* SpvChannelsApiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD864260BEF31005C4091 /* SpvChannelsApiEnvironment.swift */; };
+		A1CBD86A260BEF6D005C4091 /* APINetworkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD869260BEF6D005C4091 /* APINetworkSession.swift */; };
+		A1CBD86F260BEFA6005C4091 /* APIRequestDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD86E260BEFA6005C4091 /* APIRequestDispatcher.swift */; };
+		A1CBD874260BEFE0005C4091 /* APIOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD873260BEFE0005C4091 /* APIOperation.swift */; };
+		A1CBD89E260C4A5D005C4091 /* SpvChannelEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD89D260C4A5D005C4091 /* SpvChannelEndpoint.swift */; };
+		A1CBD8C8260C7D78005C4091 /* CreateChannelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD8C7260C7D78005C4091 /* CreateChannelRequest.swift */; };
 		A1F807F52601F8C900AAA5F7 /* Decodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F807F42601F8C900AAA5F7 /* Decodable+Extensions.swift */; };
 		A1F807FA2601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */; };
-		A1F8082C2602038000AAA5F7 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8082B2602038000AAA5F7 /* ErrorManager.swift */; };
 		A1F808A22602125400AAA5F7 /* SpvChannelsApiMockValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */; };
-		A1F808A726021C2E00AAA5F7 /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F808A626021C2E00AAA5F7 /* URL+Extensions.swift */; };
-		A1F808F726028ACA00AAA5F7 /* GetAllChannelsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F808F626028ACA00AAA5F7 /* GetAllChannelsWorker.swift */; };
-		A1F809472602A2A900AAA5F7 /* SpvCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F809462602A2A800AAA5F7 /* SpvCredentials.swift */; };
 		BA47BCA7B99EB21C75E5BC9C /* Pods_spvchannels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF658C8495FCAF839B022BD /* Pods_spvchannels.framework */; };
-		EDAAF57D26022250002699A3 /* GetChannelWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAF57C26022250002699A3 /* GetChannelWorker.swift */; };
 		EDAAF59426024523002699A3 /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDAAF59326024523002699A3 /* ChannelsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,13 +93,35 @@
 		6283E8550B2B7EED4FA3C3EC /* Pods-spvchannels-spvchannelsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spvchannels-spvchannelsUITests.release.xcconfig"; path = "Target Support Files/Pods-spvchannels-spvchannelsUITests/Pods-spvchannels-spvchannelsUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6C8E25F8B569078167A7CE3D /* Pods-spvchannels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spvchannels.release.xcconfig"; path = "Target Support Files/Pods-spvchannels/Pods-spvchannels.release.xcconfig"; sourceTree = "<group>"; };
 		81B982D08AA964F4C561B807 /* Pods-spvchannelsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spvchannelsTests.debug.xcconfig"; path = "Target Support Files/Pods-spvchannelsTests/Pods-spvchannelsTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A14924B52603179F00D39FE5 /* CreateChannelWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelWorker.swift; sourceTree = "<group>"; };
-		A14924C026031A4200D39FE5 /* DeleteChannelWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteChannelWorker.swift; sourceTree = "<group>"; };
-		A14924C526031C2E00D39FE5 /* GetAllChannelTokensWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllChannelTokensWorker.swift; sourceTree = "<group>"; };
-		A14924CD26031E7A00D39FE5 /* RevokeChannelTokenWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevokeChannelTokenWorker.swift; sourceTree = "<group>"; };
-		A14924D526031FC300D39FE5 /* GetChannelTokenWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelTokenWorker.swift; sourceTree = "<group>"; };
-		A14924DA2603239700D39FE5 /* AmendChannelWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmendChannelWorker.swift; sourceTree = "<group>"; };
-		A14924DF2603271100D39FE5 /* CreateChannelTokenWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelTokenWorker.swift; sourceTree = "<group>"; };
+		A13583562608A24100B9BA6C /* HomeVIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVIP.swift; sourceTree = "<group>"; };
+		A135835B2608A24E00B9BA6C /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
+		A13583692608A2D500B9BA6C /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		A135836E2608A2DB00B9BA6C /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		A13583942608A8FB00B9BA6C /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		A135839F2608A98700B9BA6C /* Instantiatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instantiatable.swift; sourceTree = "<group>"; };
+		A13583D82608C95E00B9BA6C /* FirebaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConfig.swift; sourceTree = "<group>"; };
+		A13583DD2608C97700B9BA6C /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
+		A13583E2260903D200B9BA6C /* SpvChannelApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelApi.swift; sourceTree = "<group>"; };
+		A13583E72609041C00B9BA6C /* SpvEncryptionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvEncryptionProtocol.swift; sourceTree = "<group>"; };
+		A13583EC2609048000B9BA6C /* SpvNoOpEncryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvNoOpEncryption.swift; sourceTree = "<group>"; };
+		A13583FA260905B900B9BA6C /* SpvMessagingApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvMessagingApi.swift; sourceTree = "<group>"; };
+		A13583FF2609078D00B9BA6C /* ChannelsVIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsVIP.swift; sourceTree = "<group>"; };
+		A1358404260907A000B9BA6C /* ChannelsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsRouter.swift; sourceTree = "<group>"; };
+		A1358409260907AD00B9BA6C /* ChannelsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsModels.swift; sourceTree = "<group>"; };
+		A135840E260907C000B9BA6C /* ChannelsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsInteractor.swift; sourceTree = "<group>"; };
+		A1358413260907CD00B9BA6C /* ChannelsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsPresenter.swift; sourceTree = "<group>"; };
+		A13584522609C7BC00B9BA6C /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
+		A135846C2609CA4200B9BA6C /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		A13584802609DE8500B9BA6C /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
+		A13584AB2609EC8B00B9BA6C /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		A13584CA260A0CF200B9BA6C /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
+		A13584E1260A17B700B9BA6C /* UISwitch+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISwitch+Extensions.swift"; sourceTree = "<group>"; };
+		A1358550260A416D00B9BA6C /* MessagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingViewController.swift; sourceTree = "<group>"; };
+		A1358555260A457900B9BA6C /* MessagingVIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingVIP.swift; sourceTree = "<group>"; };
+		A135855A260A45A900B9BA6C /* MessagingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingModels.swift; sourceTree = "<group>"; };
+		A135855F260A45BD00B9BA6C /* MessagingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingInteractor.swift; sourceTree = "<group>"; };
+		A1358564260A461200B9BA6C /* MessagingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingPresenter.swift; sourceTree = "<group>"; };
+		A1358569260A462200B9BA6C /* MessagingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingRouter.swift; sourceTree = "<group>"; };
 		A15E064B25FA0B06000AB996 /* spvchannels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spvchannels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15E064E25FA0B06000AB996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A15E065225FA0B06000AB996 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -100,31 +140,27 @@
 		A15E071325FEBCC7000AB996 /* ChannelPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelPermissions.swift; sourceTree = "<group>"; };
 		A15E071825FEBCD6000AB996 /* Retention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Retention.swift; sourceTree = "<group>"; };
 		A15E071D25FEBCE1000AB996 /* ChannelToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelToken.swift; sourceTree = "<group>"; };
-		A15E077C26006B29000AB996 /* SpvChannels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannels.swift; sourceTree = "<group>"; };
+		A15E077C26006B29000AB996 /* SpvChannelsSdk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelsSdk.swift; sourceTree = "<group>"; };
 		A15E079026008BCD000AB996 /* SpvChannelsApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelsApiProtocol.swift; sourceTree = "<group>"; };
-		A15E079526008C60000AB996 /* SpvClientApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvClientApi.swift; sourceTree = "<group>"; };
 		A15E07A32600B78D000AB996 /* CreateTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTokenRequest.swift; sourceTree = "<group>"; };
-		A15E07A82600B96C000AB996 /* SpvError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvError.swift; sourceTree = "<group>"; };
 		A15E080626014D88000AB996 /* SceneCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		A15E080826014D88000AB996 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		A15E080926014D88000AB996 /* Coordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		A15E085526015BF2000AB996 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		A16439842601D921001FBDAE /* SpvApiWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvApiWorker.swift; sourceTree = "<group>"; };
-		A16439B82601F05F001FBDAE /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
-		A16439B92601F05F001FBDAE /* SpvHttpRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpvHttpRequestManager.swift; sourceTree = "<group>"; };
-		A16439BA2601F05F001FBDAE /* SpvHttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpvHttpRequest.swift; sourceTree = "<group>"; };
-		A16439BB2601F05F001FBDAE /* HttpRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestManager.swift; sourceTree = "<group>"; };
+		A1CBD812260BE4D6005C4091 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
+		A1CBD817260BE5A6005C4091 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		A1CBD864260BEF31005C4091 /* SpvChannelsApiEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelsApiEnvironment.swift; sourceTree = "<group>"; };
+		A1CBD869260BEF6D005C4091 /* APINetworkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINetworkSession.swift; sourceTree = "<group>"; };
+		A1CBD86E260BEFA6005C4091 /* APIRequestDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestDispatcher.swift; sourceTree = "<group>"; };
+		A1CBD873260BEFE0005C4091 /* APIOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIOperation.swift; sourceTree = "<group>"; };
+		A1CBD89D260C4A5D005C4091 /* SpvChannelEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelEndpoint.swift; sourceTree = "<group>"; };
+		A1CBD8C7260C7D78005C4091 /* CreateChannelRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannelRequest.swift; sourceTree = "<group>"; };
 		A1F807F42601F8C900AAA5F7 /* Decodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Extensions.swift"; sourceTree = "<group>"; };
 		A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelsApiMockValues.swift; sourceTree = "<group>"; };
-		A1F8082B2602038000AAA5F7 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
-		A1F808A626021C2E00AAA5F7 /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
-		A1F808F626028ACA00AAA5F7 /* GetAllChannelsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllChannelsWorker.swift; sourceTree = "<group>"; };
-		A1F809462602A2A800AAA5F7 /* SpvCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvCredentials.swift; sourceTree = "<group>"; };
 		AA2D584D3379CB4E86D67CEC /* Pods-spvchannels-spvchannelsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spvchannels-spvchannelsUITests.debug.xcconfig"; path = "Target Support Files/Pods-spvchannels-spvchannelsUITests/Pods-spvchannels-spvchannelsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C3BD7FB58D72224927245C78 /* Pods-spvchannels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spvchannels.debug.xcconfig"; path = "Target Support Files/Pods-spvchannels/Pods-spvchannels.debug.xcconfig"; sourceTree = "<group>"; };
 		DBF658C8495FCAF839B022BD /* Pods_spvchannels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_spvchannels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4900F7C2ECAB0EF984C0569 /* Pods_spvchannelsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_spvchannelsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EDAAF57C26022250002699A3 /* GetChannelWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChannelWorker.swift; sourceTree = "<group>"; };
 		EDAAF59326024523002699A3 /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
 		F0E0CA84BE15CC4044B034A5 /* Pods-spvchannelsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spvchannelsTests.release.xcconfig"; path = "Target Support Files/Pods-spvchannelsTests/Pods-spvchannelsTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +203,63 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A135830026089B5900B9BA6C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A13583562608A24100B9BA6C /* HomeVIP.swift */,
+				A135835B2608A24E00B9BA6C /* HomeModels.swift */,
+				A15E065225FA0B06000AB996 /* HomeViewController.swift */,
+				A13583692608A2D500B9BA6C /* HomeInteractor.swift */,
+				A135836E2608A2DB00B9BA6C /* HomePresenter.swift */,
+				A13583942608A8FB00B9BA6C /* HomeRouter.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		A135830126089B6900B9BA6C /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				A13583FF2609078D00B9BA6C /* ChannelsVIP.swift */,
+				A1358409260907AD00B9BA6C /* ChannelsModels.swift */,
+				EDAAF59326024523002699A3 /* ChannelsViewController.swift */,
+				A135840E260907C000B9BA6C /* ChannelsInteractor.swift */,
+				A1358413260907CD00B9BA6C /* ChannelsPresenter.swift */,
+				A1358404260907A000B9BA6C /* ChannelsRouter.swift */,
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
+		A13583D72608C94900B9BA6C /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				A13583D82608C95E00B9BA6C /* FirebaseConfig.swift */,
+				A13583DD2608C97700B9BA6C /* TokenStorage.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		A13584512609C7A900B9BA6C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A13584522609C7BC00B9BA6C /* RoundedTextField.swift */,
+				A135846C2609CA4200B9BA6C /* RoundedButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A135854F260A416200B9BA6C /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				A1358550260A416D00B9BA6C /* MessagingViewController.swift */,
+				A1358555260A457900B9BA6C /* MessagingVIP.swift */,
+				A135855A260A45A900B9BA6C /* MessagingModels.swift */,
+				A135855F260A45BD00B9BA6C /* MessagingInteractor.swift */,
+				A1358564260A461200B9BA6C /* MessagingPresenter.swift */,
+				A1358569260A462200B9BA6C /* MessagingRouter.swift */,
+			);
+			path = Messaging;
+			sourceTree = "<group>";
+		};
 		A15E064225FA0B06000AB996 = {
 			isa = PBXGroup;
 			children = (
@@ -192,8 +285,8 @@
 		A15E064D25FA0B06000AB996 /* spvchannels */ = {
 			isa = PBXGroup;
 			children = (
+				A13584512609C7A900B9BA6C /* Views */,
 				A15E080526014D77000AB996 /* Coordinator */,
-				A15E070225FEBC51000AB996 /* spvchannelsSDK */,
 				A15E069D25FAB688000AB996 /* Extensions */,
 				A15E084426015249000AB996 /* Scenes */,
 				A15E064E25FA0B06000AB996 /* AppDelegate.swift */,
@@ -201,6 +294,7 @@
 				A15E065925FA0B07000AB996 /* LaunchScreen.storyboard */,
 				A15E068725FA0BDC000AB996 /* spvchannels.entitlements */,
 				A15E065C25FA0B07000AB996 /* Info.plist */,
+				A15E070225FEBC51000AB996 /* spvchannelsSdk */,
 			);
 			path = spvchannels;
 			sourceTree = "<group>";
@@ -227,30 +321,35 @@
 		A15E069D25FAB688000AB996 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A13584AB2609EC8B00B9BA6C /* UILabel+Extensions.swift */,
+				A13584CA260A0CF200B9BA6C /* UIStackView+Extensions.swift */,
+				A13584E1260A17B700B9BA6C /* UISwitch+Extensions.swift */,
 				A15E069E25FAB6B0000AB996 /* UserDefaults+Extensions.swift */,
 				A15E085526015BF2000AB996 /* UIView+Extensions.swift */,
 				A1F807F42601F8C900AAA5F7 /* Decodable+Extensions.swift */,
-				A1F808A626021C2E00AAA5F7 /* URL+Extensions.swift */,
+				A13584802609DE8500B9BA6C /* Codable+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		A15E070225FEBC51000AB996 /* spvchannelsSDK */ = {
+		A15E070225FEBC51000AB996 /* spvchannelsSdk */ = {
 			isa = PBXGroup;
 			children = (
-				A15E077C26006B29000AB996 /* SpvChannels.swift */,
-				A1F809462602A2A800AAA5F7 /* SpvCredentials.swift */,
+				A15E077C26006B29000AB996 /* SpvChannelsSdk.swift */,
 				A15E078126006BCA000AB996 /* API */,
 				A15E077326006A9A000AB996 /* Channels */,
 				A15E077726006AB5000AB996 /* Messages */,
+				A1CBD82D260BEB58005C4091 /* Encryption */,
+				A13583D72608C94900B9BA6C /* Firebase */,
 			);
-			path = spvchannelsSDK;
+			path = spvchannelsSdk;
 			sourceTree = "<group>";
 		};
 		A15E070325FEBC84000AB996 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				A15E07A32600B78D000AB996 /* CreateTokenRequest.swift */,
+				A1CBD8C7260C7D78005C4091 /* CreateChannelRequest.swift */,
 				A15E071D25FEBCE1000AB996 /* ChannelToken.swift */,
 				A15E070E25FEBCB5000AB996 /* ChannelInfo.swift */,
 				A15E071325FEBCC7000AB996 /* ChannelPermissions.swift */,
@@ -262,6 +361,10 @@
 		A15E077326006A9A000AB996 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
+				A13583E2260903D200B9BA6C /* SpvChannelApi.swift */,
+				A15E079026008BCD000AB996 /* SpvChannelsApiProtocol.swift */,
+				A1CBD89D260C4A5D005C4091 /* SpvChannelEndpoint.swift */,
+				A1CBD864260BEF31005C4091 /* SpvChannelsApiEnvironment.swift */,
 				A15E070325FEBC84000AB996 /* Models */,
 			);
 			path = Channels;
@@ -270,6 +373,7 @@
 		A15E077726006AB5000AB996 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				A13583FA260905B900B9BA6C /* SpvMessagingApi.swift */,
 				A15E077826006ABD000AB996 /* Models */,
 			);
 			path = Messages;
@@ -286,9 +390,6 @@
 			isa = PBXGroup;
 			children = (
 				A164398E2601E600001FBDAE /* Network */,
-				EDAAF57B26022237002699A3 /* ChannelWorkers */,
-				A15E079026008BCD000AB996 /* SpvChannelsApiProtocol.swift */,
-				A15E079526008C60000AB996 /* SpvClientApi.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -297,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				A15E080926014D88000AB996 /* Coordinatable.swift */,
+				A135839F2608A98700B9BA6C /* Instantiatable.swift */,
 				A15E080826014D88000AB996 /* Coordinator.swift */,
 				A15E080626014D88000AB996 /* SceneCoordinator.swift */,
 			);
@@ -306,8 +408,9 @@
 		A15E084426015249000AB996 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				A15E065225FA0B06000AB996 /* HomeViewController.swift */,
-				EDAAF59326024523002699A3 /* ChannelsViewController.swift */,
+				A135854F260A416200B9BA6C /* Messaging */,
+				A135830126089B6900B9BA6C /* Channels */,
+				A135830026089B5900B9BA6C /* Home */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -315,15 +418,22 @@
 		A164398E2601E600001FBDAE /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				A16439B82601F05F001FBDAE /* HttpRequest.swift */,
-				A16439BB2601F05F001FBDAE /* HttpRequestManager.swift */,
-				A16439BA2601F05F001FBDAE /* SpvHttpRequest.swift */,
-				A16439B92601F05F001FBDAE /* SpvHttpRequestManager.swift */,
-				A15E07A82600B96C000AB996 /* SpvError.swift */,
-				A1F8082B2602038000AAA5F7 /* ErrorManager.swift */,
-				A16439842601D921001FBDAE /* SpvApiWorker.swift */,
+				A1CBD812260BE4D6005C4091 /* RequestProtocol.swift */,
+				A1CBD817260BE5A6005C4091 /* APIError.swift */,
+				A1CBD869260BEF6D005C4091 /* APINetworkSession.swift */,
+				A1CBD86E260BEFA6005C4091 /* APIRequestDispatcher.swift */,
+				A1CBD873260BEFE0005C4091 /* APIOperation.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		A1CBD82D260BEB58005C4091 /* Encryption */ = {
+			isa = PBXGroup;
+			children = (
+				A13583E72609041C00B9BA6C /* SpvEncryptionProtocol.swift */,
+				A13583EC2609048000B9BA6C /* SpvNoOpEncryption.swift */,
+			);
+			path = Encryption;
 			sourceTree = "<group>";
 		};
 		AD22886A1A66A71F4483B7B5 /* Pods */ = {
@@ -337,22 +447,6 @@
 				F0E0CA84BE15CC4044B034A5 /* Pods-spvchannelsTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		EDAAF57B26022237002699A3 /* ChannelWorkers */ = {
-			isa = PBXGroup;
-			children = (
-				A1F808F626028ACA00AAA5F7 /* GetAllChannelsWorker.swift */,
-				EDAAF57C26022250002699A3 /* GetChannelWorker.swift */,
-				A14924B52603179F00D39FE5 /* CreateChannelWorker.swift */,
-				A14924DA2603239700D39FE5 /* AmendChannelWorker.swift */,
-				A14924C026031A4200D39FE5 /* DeleteChannelWorker.swift */,
-				A14924C526031C2E00D39FE5 /* GetAllChannelTokensWorker.swift */,
-				A14924D526031FC300D39FE5 /* GetChannelTokenWorker.swift */,
-				A14924DF2603271100D39FE5 /* CreateChannelTokenWorker.swift */,
-				A14924CD26031E7A00D39FE5 /* RevokeChannelTokenWorker.swift */,
-			);
-			path = ChannelWorkers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -610,41 +704,59 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A16439BE2601F05F001FBDAE /* SpvHttpRequest.swift in Sources */,
 				EDAAF59426024523002699A3 /* ChannelsViewController.swift in Sources */,
-				A14924D626031FC300D39FE5 /* GetChannelTokenWorker.swift in Sources */,
+				A13584532609C7BC00B9BA6C /* RoundedTextField.swift in Sources */,
+				A13583572608A24100B9BA6C /* HomeVIP.swift in Sources */,
+				A13583E3260903D200B9BA6C /* SpvChannelApi.swift in Sources */,
+				A135846D2609CA4200B9BA6C /* RoundedButton.swift in Sources */,
 				A15E080C26014D88000AB996 /* Coordinator.swift in Sources */,
-				A16439BC2601F05F001FBDAE /* HttpRequest.swift in Sources */,
-				A1F808F726028ACA00AAA5F7 /* GetAllChannelsWorker.swift in Sources */,
-				A16439852601D921001FBDAE /* SpvApiWorker.swift in Sources */,
-				A16439BD2601F05F001FBDAE /* SpvHttpRequestManager.swift in Sources */,
-				A14924DB2603239700D39FE5 /* AmendChannelWorker.swift in Sources */,
-				A16439BF2601F05F001FBDAE /* HttpRequestManager.swift in Sources */,
+				A1358414260907CD00B9BA6C /* ChannelsPresenter.swift in Sources */,
+				A1CBD874260BEFE0005C4091 /* APIOperation.swift in Sources */,
+				A135840F260907C000B9BA6C /* ChannelsInteractor.swift in Sources */,
+				A135835C2608A24E00B9BA6C /* HomeModels.swift in Sources */,
 				A15E071425FEBCC7000AB996 /* ChannelPermissions.swift in Sources */,
-				A14924CE26031E7A00D39FE5 /* RevokeChannelTokenWorker.swift in Sources */,
 				A15E070F25FEBCB5000AB996 /* ChannelInfo.swift in Sources */,
-				A15E079626008C60000AB996 /* SpvClientApi.swift in Sources */,
-				A15E07A92600B96C000AB996 /* SpvError.swift in Sources */,
-				A14924E02603271100D39FE5 /* CreateChannelTokenWorker.swift in Sources */,
+				A13583FB260905B900B9BA6C /* SpvMessagingApi.swift in Sources */,
+				A13584812609DE8500B9BA6C /* Codable+Extensions.swift in Sources */,
+				A1358565260A461200B9BA6C /* MessagingPresenter.swift in Sources */,
+				A1358405260907A000B9BA6C /* ChannelsRouter.swift in Sources */,
 				A15E080A26014D88000AB996 /* SceneCoordinator.swift in Sources */,
-				A14924C126031A4200D39FE5 /* DeleteChannelWorker.swift in Sources */,
+				A13584CB260A0CF200B9BA6C /* UIStackView+Extensions.swift in Sources */,
 				A1F808A22602125400AAA5F7 /* SpvChannelsApiMockValues.swift in Sources */,
+				A135840A260907AD00B9BA6C /* ChannelsModels.swift in Sources */,
+				A13584002609078D00B9BA6C /* ChannelsVIP.swift in Sources */,
 				A15E065325FA0B06000AB996 /* HomeViewController.swift in Sources */,
-				A15E077D26006B29000AB996 /* SpvChannels.swift in Sources */,
-				A1F8082C2602038000AAA5F7 /* ErrorManager.swift in Sources */,
+				A15E077D26006B29000AB996 /* SpvChannelsSdk.swift in Sources */,
+				A13583DE2608C97800B9BA6C /* TokenStorage.swift in Sources */,
+				A135836F2608A2DB00B9BA6C /* HomePresenter.swift in Sources */,
+				A1CBD89E260C4A5D005C4091 /* SpvChannelEndpoint.swift in Sources */,
+				A1CBD865260BEF31005C4091 /* SpvChannelsApiEnvironment.swift in Sources */,
+				A13583952608A8FB00B9BA6C /* HomeRouter.swift in Sources */,
+				A13583ED2609048000B9BA6C /* SpvNoOpEncryption.swift in Sources */,
+				A1CBD818260BE5A6005C4091 /* APIError.swift in Sources */,
+				A1358551260A416D00B9BA6C /* MessagingViewController.swift in Sources */,
+				A13584E2260A17B700B9BA6C /* UISwitch+Extensions.swift in Sources */,
+				A13583A02608A98700B9BA6C /* Instantiatable.swift in Sources */,
+				A1CBD8C8260C7D78005C4091 /* CreateChannelRequest.swift in Sources */,
 				A15E080D26014D88000AB996 /* Coordinatable.swift in Sources */,
+				A1CBD813260BE4D6005C4091 /* RequestProtocol.swift in Sources */,
 				A15E071925FEBCD6000AB996 /* Retention.swift in Sources */,
+				A1358560260A45BD00B9BA6C /* MessagingInteractor.swift in Sources */,
+				A1CBD86F260BEFA6005C4091 /* APIRequestDispatcher.swift in Sources */,
 				A15E064F25FA0B06000AB996 /* AppDelegate.swift in Sources */,
 				A15E085626015BF2000AB996 /* UIView+Extensions.swift in Sources */,
-				A1F809472602A2A900AAA5F7 /* SpvCredentials.swift in Sources */,
+				A1CBD86A260BEF6D005C4091 /* APINetworkSession.swift in Sources */,
 				A15E069F25FAB6B0000AB996 /* UserDefaults+Extensions.swift in Sources */,
 				A1F807F52601F8C900AAA5F7 /* Decodable+Extensions.swift in Sources */,
-				A1F808A726021C2E00AAA5F7 /* URL+Extensions.swift in Sources */,
-				A14924B62603179F00D39FE5 /* CreateChannelWorker.swift in Sources */,
-				EDAAF57D26022250002699A3 /* GetChannelWorker.swift in Sources */,
+				A135855B260A45A900B9BA6C /* MessagingModels.swift in Sources */,
+				A1358556260A457900B9BA6C /* MessagingVIP.swift in Sources */,
+				A13584AC2609EC8B00B9BA6C /* UILabel+Extensions.swift in Sources */,
+				A135856A260A462200B9BA6C /* MessagingRouter.swift in Sources */,
+				A13583E82609041C00B9BA6C /* SpvEncryptionProtocol.swift in Sources */,
+				A135836A2608A2D500B9BA6C /* HomeInteractor.swift in Sources */,
+				A13583D92608C95E00B9BA6C /* FirebaseConfig.swift in Sources */,
 				A15E079126008BCD000AB996 /* SpvChannelsApiProtocol.swift in Sources */,
 				A15E071E25FEBCE1000AB996 /* ChannelToken.swift in Sources */,
-				A14924C626031C2E00D39FE5 /* GetAllChannelTokensWorker.swift in Sources */,
 				A15E07A42600B78D000AB996 /* CreateTokenRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,9 +6,9 @@ target 'spvchannels' do
   use_frameworks!
 
   # Pods for spvchannels
-  pod 'Alamofire', '4.9.1'
   pod 'SwiftLint'
   pod 'Sodium'
+  pod 'FirebaseMessaging'
 
   target 'spvchannelsTests' do
     inherit! :search_paths
