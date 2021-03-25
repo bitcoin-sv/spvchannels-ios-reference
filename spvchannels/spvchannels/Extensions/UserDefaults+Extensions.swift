@@ -9,13 +9,10 @@ import Foundation
 extension UserDefaults {
 
     enum Keys: String {
-        case name = "input_storage"
-        case url = "url"
-        case account = "account"
+        case baseUrl = "base_url"
+        case accountId = "account_id"
         case username = "username"
         case password = "password"
-        case channelId = "channel_id"
-        case token = "token"
     }
 
     // MARK: -
@@ -55,19 +52,14 @@ extension UserDefaults {
     }
 
     // MARK: -
-    var name: String? {
-        get { Self.getValue(for: .name) }
-        set { Self.setValue(value: newValue, for: .name) }
+    var baseUrl: String? {
+        get { Self.getValue(for: .baseUrl) }
+        set { Self.setValue(value: newValue, for: .baseUrl) }
     }
 
-    var url: String? {
-        get { Self.getValue(for: .url) }
-        set { Self.setValue(value: newValue, for: .url) }
-    }
-
-    var account: String? {
-        get { Self.getValue(for: .account) }
-        set { Self.setValue(value: newValue, for: .account) }
+    var accountId: String? {
+        get { Self.getValue(for: .accountId) }
+        set { Self.setValue(value: newValue, for: .accountId) }
     }
 
     var username: String? {
@@ -78,16 +70,6 @@ extension UserDefaults {
     var password: String? {
         get { Self.getValue(for: .password) }
         set { Self.setValue(value: newValue, for: .password) }
-    }
-
-    var channelId: String? {
-        get { Self.getValue(for: .channelId) }
-        set { Self.setValue(value: newValue, for: .channelId) }
-    }
-
-    var token: String? {
-        get { Self.getValue(for: .token) }
-        set { Self.setValue(value: newValue, for: .token) }
     }
 
 }
