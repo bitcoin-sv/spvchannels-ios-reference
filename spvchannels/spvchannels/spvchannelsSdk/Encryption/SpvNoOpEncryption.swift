@@ -12,7 +12,7 @@ struct SpvNoOpEncryption: SpvEncryptionProtocol {
         input
     }
 
-    func dencrypt(input: Data) -> Data {
+    func decrypt(input: Data) -> Data {
         input
     }
 

@@ -23,9 +23,9 @@ class SpvChannelApi {
 extension SpvChannelApi: SpvChannelsApiProtocol {
     func getAllChannels(completion: @escaping ChannelsInfoResult) {
         let channelsRequest = ChannelsEndpoint.getAllChannels
-        let oper = APIOperation(channelsRequest)
+        let operation = APIOperation(channelsRequest)
 
-        oper.execute(in: requestDispatcher) { result in
+        operation.execute(in: requestDispatcher) { result in
             switch result {
             case .data(let data, _):
                 if let data = data,
@@ -35,7 +35,7 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
                     completion(.failure(APIError.parseError("JSON error")))
                 }
             case .error(let error, _):
-                oper.cancel()
+                operation.cancel()
                 completion(.failure(error ?? APIError.unknown))
             }
         }
@@ -43,9 +43,9 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
 
     func getChannel(channelId: String, completion: @escaping ChannelInfoResult) {
         let channelsRequest = ChannelsEndpoint.getChannel(channelId: channelId)
-        let oper = APIOperation(channelsRequest)
+        let operation = APIOperation(channelsRequest)
 
-        oper.execute(in: requestDispatcher) { result in
+        operation.execute(in: requestDispatcher) { result in
             switch result {
             case .data(let data, _):
                 if let data = data,
@@ -55,7 +55,7 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
                     completion(.failure(APIError.parseError("JSON error")))
                 }
             case .error(let error, _):
-                oper.cancel()
+                operation.cancel()
                 completion(.failure(error ?? APIError.unknown))
             }
         }
@@ -63,14 +63,14 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
 
     func deleteChannel(channelId: String, completion: @escaping VoidResult) {
         let channelsRequest = ChannelsEndpoint.deleteChannel(channelId: channelId)
-        let oper = APIOperation(channelsRequest)
+        let operation = APIOperation(channelsRequest)
 
-        oper.execute(in: requestDispatcher) { result in
+        operation.execute(in: requestDispatcher) { result in
             switch result {
             case .data:
                 completion(.success(()))
             case .error(let error, _):
-                oper.cancel()
+                operation.cancel()
                 completion(.failure(error ?? APIError.unknown))
             }
         }
@@ -81,9 +81,9 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
         var parameters: [String: Any] = createRequest.asDictionary
         parameters["retention"] = retention.asDictionary
         let channelsRequest = ChannelsEndpoint.createChannel(parameters: parameters)
-        let oper = APIOperation(channelsRequest)
+        let operation = APIOperation(channelsRequest)
 
-        oper.execute(in: requestDispatcher) { result in
+        operation.execute(in: requestDispatcher) { result in
             switch result {
             case .data(let data, _):
                 if let data = data,
@@ -93,7 +93,7 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
                     completion(.failure(APIError.parseError("JSON error")))
                 }
             case .error(let error, _):
-                oper.cancel()
+                operation.cancel()
                 completion(.failure(error ?? APIError.unknown))
             }
         }
@@ -101,8 +101,8 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
 
     func getAllChannelTokens(channelId: String, completion: @escaping TokensInfoResult) {
         let channelsRequest = ChannelsEndpoint.getAllChannelTokens(channelId: channelId)
-        let oper = APIOperation(channelsRequest)
-        oper.execute(in: requestDispatcher) { result in
+        let operation = APIOperation(channelsRequest)
+        operation.execute(in: requestDispatcher) { result in
             switch result {
             case .data(let data, _):
                 if let data = data,
@@ -112,7 +112,7 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
                     completion(.failure(APIError.parseError("JSON error")))
                 }
             case .error(let error, _):
-                oper.cancel()
+                operation.cancel()
                 completion(.failure(error ?? APIError.unknown))
             }
         }
@@ -120,8 +120,8 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
 
     func getChannelToken(channelId: String, tokenId: String, completion: @escaping TokenInfoResult) {
         let channelsRequest = ChannelsEndpoint.getChannelToken(channelId: channelId, tokenId: tokenId)
-        let oper = APIOperation(channelsRequest)
-        oper.execute(in: requestDispatcher) { result in
+        let operation = APIOperation(channelsRequest)
+        operation.execute(in: requestDispatcher) { result in
             switch result {
             case .data(let data, _):
                 if let data = data,
@@ -131,7 +131,7 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
                     completion(.failure(APIError.parseError("JSON error")))
                 }
             case .error(let error, _):
-                oper.cancel()
+                operation.cancel()
                 completion(.failure(error ?? APIError.unknown))
             }
         }
@@ -141,9 +141,9 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
                       completion: @escaping ChannelPermissionsResult) {
         let parameters: [String: Any] = permissions.asDictionary
         let channelsRequest = ChannelsEndpoint.amendChannel(channelId: channelId, parameters: parameters)
-        let oper = APIOperation(channelsRequest)
+        let operation = APIOperation(channelsRequest)
 
-        oper.execute(in: requestDispatcher) { result in
+        operation.execute(in: requestDispatcher) { result in
             switch result {
             case .data(let data, _):
                 if let data = data,
@@ -153,7 +153,7 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
                     completion(.failure(APIError.parseError("JSON error")))
                 }
             case .error(let error, _):
-                oper.cancel()
+                operation.cancel()
                 completion(.failure(error ?? APIError.unknown))
             }
         }
@@ -163,9 +163,9 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
                             completion: @escaping TokenInfoResult) {
         let parameters: [String: Any] = tokenRequest.asDictionary
         let channelsRequest = ChannelsEndpoint.createChannelToken(channelId: channelId, parameters: parameters)
-        let oper = APIOperation(channelsRequest)
+        let operation = APIOperation(channelsRequest)
 
-        oper.execute(in: requestDispatcher) { result in
+        operation.execute(in: requestDispatcher) { result in
             switch result {
             case .data(let data, _):
                 if let data = data,
@@ -175,7 +175,7 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
                     completion(.failure(APIError.parseError("JSON error")))
                 }
             case .error(let error, _):
-                oper.cancel()
+                operation.cancel()
                 completion(.failure(error ?? APIError.unknown))
             }
         }
@@ -183,13 +183,13 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
 
     func revokeChannelToken(channelId: String, tokenId: String, completion: @escaping VoidResult) {
         let channelsRequest = ChannelsEndpoint.revokeChannelToken(channelId: channelId, tokenId: tokenId)
-        let oper = APIOperation(channelsRequest)
-        oper.execute(in: requestDispatcher) { result in
+        let operation = APIOperation(channelsRequest)
+        operation.execute(in: requestDispatcher) { result in
             switch result {
             case .data:
                 completion(.success(()))
             case .error(let error, _):
-                oper.cancel()
+                operation.cancel()
                 completion(.failure(error ?? APIError.unknown))
             }
         }

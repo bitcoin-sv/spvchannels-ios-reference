@@ -8,5 +8,5 @@ import Foundation
 
 protocol SpvEncryptionProtocol {
     func encrypt(input: Data) -> Data
-    func dencrypt(input: Data) -> Data
+    func decrypt(input: Data) -> Data
 }
