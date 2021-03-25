@@ -61,14 +61,14 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
         }
     }
 
-    func deleteChannel(channelId: String, completion: @escaping VoidResult) {
+    func deleteChannel(channelId: String, completion: @escaping StringResult) {
         let channelsRequest = ChannelsEndpoint.deleteChannel(channelId: channelId)
         let operation = APIOperation(channelsRequest)
 
         operation.execute(in: requestDispatcher) { result in
             switch result {
             case .data:
-                completion(.success(()))
+                completion(.success("OK"))
             case .error(let error, _):
                 operation.cancel()
                 completion(.failure(error ?? APIError.unknown))
@@ -181,13 +181,13 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
         }
     }
 
-    func revokeChannelToken(channelId: String, tokenId: String, completion: @escaping VoidResult) {
+    func revokeChannelToken(channelId: String, tokenId: String, completion: @escaping StringResult) {
         let channelsRequest = ChannelsEndpoint.revokeChannelToken(channelId: channelId, tokenId: tokenId)
         let operation = APIOperation(channelsRequest)
         operation.execute(in: requestDispatcher) { result in
             switch result {
             case .data:
-                completion(.success(()))
+                completion(.success("OK"))
             case .error(let error, _):
                 operation.cancel()
                 completion(.failure(error ?? APIError.unknown))

@@ -47,43 +47,22 @@ final class ChannelsInteractor: ChannelsInteractorType {
     // MARK: - API calls
     private func getAllChannels() {
         guard let spvChannelApi = spvChannelApi else { return }
-        spvChannelApi.getAllChannels { result in
-            var resultStr: String
-            switch result {
-            case .success(let channels):
-                resultStr = channels.jsonString()
-            case .failure(let error):
-                resultStr = "ERROR: " + APIError.getErrorDescription(from: error)
-            }
-            self.presenter?.presentActionResults(actionResponse: .init(result: resultStr))
+        spvChannelApi.getAllChannels { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }
 
     private func getChannel(channelId: String) {
         guard let spvChannelApi = spvChannelApi else { return }
-        spvChannelApi.getChannel(channelId: channelId) { result in
-            var resultStr: String
-            switch result {
-            case .success(let channel):
-                resultStr = channel.jsonString()
-            case .failure(let error):
-                resultStr = "ERROR: " + APIError.getErrorDescription(from: error)
-            }
-            self.presenter?.presentActionResults(actionResponse: .init(result: resultStr))
+        spvChannelApi.getChannel(channelId: channelId) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }
 
     private func deleteChannel(channelId: String) {
         guard let spvChannelApi = spvChannelApi else { return }
-        spvChannelApi.deleteChannel(channelId: channelId) { result in
-            var resultStr: String
-            switch result {
-            case .success:
-                resultStr = "OK"
-            case .failure(let error):
-                resultStr = "ERROR: " + APIError.getErrorDescription(from: error)
-            }
-            self.presenter?.presentActionResults(actionResponse: .init(result: resultStr))
+        spvChannelApi.deleteChannel(channelId: channelId) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }
 
@@ -103,15 +82,8 @@ final class ChannelsInteractor: ChannelsInteractorType {
         let createChannelRequest = CreateChannelRequest(publicRead: publicRead,
                                                         publicWrite: publicWrite,
                                                         sequenced: sequenced)
-        spvChannelApi.createChannel(createRequest: createChannelRequest, retention: retention) { result in
-            var resultStr: String
-            switch result {
-            case .success(let channel):
-                resultStr = channel.jsonString()
-            case .failure(let error):
-                resultStr = "ERROR: " + APIError.getErrorDescription(from: error)
-            }
-            self.presenter?.presentActionResults(actionResponse: .init(result: resultStr))
+        spvChannelApi.createChannel(createRequest: createChannelRequest, retention: retention) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }
 
@@ -121,72 +93,37 @@ final class ChannelsInteractor: ChannelsInteractorType {
                                     tokenDescription: String) {
         guard let spvChannelApi = spvChannelApi else { return }
         let tokenRequest = CreateTokenRequest(canRead: canRead, canWrite: canWrite, description: tokenDescription)
-        spvChannelApi.createChannelToken(channelId: channelId, tokenRequest: tokenRequest) { result in
-            var resultStr: String
-            switch result {
-            case .success(let channel):
-                resultStr = channel.jsonString()
-            case .failure(let error):
-                resultStr = "ERROR: " + APIError.getErrorDescription(from: error)
-            }
-            self.presenter?.presentActionResults(actionResponse: .init(result: resultStr))
+        spvChannelApi.createChannelToken(channelId: channelId, tokenRequest: tokenRequest) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }
 
     private func getAllChannelTokens(channelId: String) {
         guard let spvChannelApi = spvChannelApi else { return }
-        spvChannelApi.getChannel(channelId: channelId) { result in
-            var resultStr: String
-            switch result {
-            case .success(let channel):
-                resultStr = channel.jsonString()
-            case .failure(let error):
-                resultStr = "ERROR: " + APIError.getErrorDescription(from: error)
-            }
-            self.presenter?.presentActionResults(actionResponse: .init(result: resultStr))
+        spvChannelApi.getChannel(channelId: channelId) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }
 
     private func amendChannel(channelId: String, publicRead: Bool, publicWrite: Bool, locked: Bool) {
         guard let spvChannelApi = spvChannelApi else { return }
         let permissions = ChannelPermissions(publicRead: publicRead, publicWrite: publicWrite, locked: locked)
-        spvChannelApi.amendChannel(channelId: channelId, permissions: permissions) { result in
-            var resultStr: String
-            switch result {
-            case .success(let channelPermissions):
-                resultStr = channelPermissions.jsonString()
-            case .failure(let error):
-                resultStr = "ERROR: " + APIError.getErrorDescription(from: error)
-            }
-            self.presenter?.presentActionResults(actionResponse: .init(result: resultStr))
+        spvChannelApi.amendChannel(channelId: channelId, permissions: permissions) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }
 
     private func getChannelToken(channelId: String, tokenId: String) {
         guard let spvChannelApi = spvChannelApi else { return }
-        spvChannelApi.getChannelToken(channelId: channelId, tokenId: tokenId) { result in
-            var resultStr: String
-            switch result {
-            case .success(let channel):
-                resultStr = channel.jsonString()
-            case .failure(let error):
-                resultStr = "ERROR: " + APIError.getErrorDescription(from: error)
-            }
-            self.presenter?.presentActionResults(actionResponse: .init(result: resultStr))
+        spvChannelApi.getChannelToken(channelId: channelId, tokenId: tokenId) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }
 
     private func revokeChannelToken(channelId: String, tokenId: String) {
         guard let spvChannelApi = spvChannelApi else { return }
-        spvChannelApi.revokeChannelToken(channelId: channelId, tokenId: tokenId) { result in
-            var resultStr: String
-            switch result {
-            case .success:
-                resultStr = "OK"
-            case .failure(let error):
-                resultStr = "ERROR: " + APIError.getErrorDescription(from: error)
-            }
-            self.presenter?.presentActionResults(actionResponse: .init(result: resultStr))
+        spvChannelApi.revokeChannelToken(channelId: channelId, tokenId: tokenId) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }
 }

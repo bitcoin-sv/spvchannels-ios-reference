@@ -15,7 +15,7 @@ protocol ChannelsViewActions {
 }
 
 protocol ChannelsActionResponses {
-    func presentActionResults(actionResponse: ChannelsModels.PerformApiAction.ActionResponse)
+    func presentActionResults<T: Encodable>(actionResponse: ChannelsModels.PerformApiAction.ActionResponse<T>)
     func presentError(errorMessage: String)
 }
 

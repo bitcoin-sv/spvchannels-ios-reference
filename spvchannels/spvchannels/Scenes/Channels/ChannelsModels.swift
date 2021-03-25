@@ -59,8 +59,8 @@ enum ChannelsModels {
             let maxAge: String
             let autoPrune: Bool
         }
-        struct ActionResponse {
-            let result: String
+        struct ActionResponse<T: Encodable> {
+            let result: Result<T, Error>
         }
         struct ResponseDisplay {
             let result: String

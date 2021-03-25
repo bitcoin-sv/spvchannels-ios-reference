@@ -11,7 +11,7 @@ protocol SpvChannelsApiProtocol {
     // MARK: Channels API
     typealias ChannelsInfoResult = (Result<ChannelsList, Error>) -> Void
     typealias ChannelInfoResult = (Result<ChannelInfo, Error>) -> Void
-    typealias VoidResult = (Result<Void, Error>) -> Void
+    typealias StringResult = (Result<String, Error>) -> Void
     typealias TokensInfoResult = (Result<[ChannelToken], Error>) -> Void
     typealias TokenInfoResult = (Result<ChannelToken, Error>) -> Void
     typealias ChannelPermissionsResult = (Result<ChannelPermissions, Error>) -> Void
@@ -24,7 +24,7 @@ protocol SpvChannelsApiProtocol {
     func getChannel(channelId: String,
                     completion: @escaping ChannelInfoResult)
     func deleteChannel(channelId: String,
-                       completion: @escaping VoidResult)
+                       completion: @escaping StringResult)
     func getAllChannelTokens(channelId: String,
                              completion: @escaping TokensInfoResult)
     func getChannelToken(channelId: String, tokenId: String,
@@ -32,5 +32,5 @@ protocol SpvChannelsApiProtocol {
     func createChannelToken(channelId: String, tokenRequest: CreateTokenRequest,
                             completion: @escaping TokenInfoResult)
     func revokeChannelToken(channelId: String, tokenId: String,
-                            completion: @escaping VoidResult)
+                            completion: @escaping StringResult)
 }
