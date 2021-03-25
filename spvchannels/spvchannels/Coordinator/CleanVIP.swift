@@ -1,5 +1,5 @@
 //
-//  Instantiatable.swift
+//  CleanVIP.swift
 //  spvchannels
 //  Created by Equaleyes Solutions
 //

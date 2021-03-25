@@ -6,11 +6,7 @@
 
 import UIKit
 
-class ChannelsViewController: UIViewController, Instantiatable, Coordinatable, ChannelsResponseDisplays {
-
-    static func instantiate() -> Self? {
-        Self()
-    }
+class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, ChannelsResponseDisplays {
 
     weak var coordinator: SceneCoordinator? {
         didSet {
@@ -49,7 +45,7 @@ class ChannelsViewController: UIViewController, Instantiatable, Coordinatable, C
     }()
 
     private lazy var goButton: RoundedButton = {
-        let button = RoundedButton(title: "GO", action: #selector(goAction), target: self, tag: 1)
+        let button = RoundedButton(title: "GO", action: #selector(goButtonTapped), target: self, tag: 1)
         button.constraintWidth(width: view.bounds.width / 4)
         return button
     }()
@@ -174,7 +170,7 @@ class ChannelsViewController: UIViewController, Instantiatable, Coordinatable, C
     }
 
     // MARK: - ViewActions
-    @objc func goAction(_ sender: UIButton) {
+    @objc func goButtonTapped(_ sender: UIButton) {
         let publicRead = publicReadSwitch.isOn
         let publicWrite = publicWriteSwitch.isOn
         let locked = lockedSwitch.isOn

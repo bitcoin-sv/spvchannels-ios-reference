@@ -6,11 +6,7 @@
 
 import UIKit
 
-final class HomeViewController: UIViewController, Coordinatable, Instantiatable, HomeResponseDisplays {
-
-    static func instantiate() -> Self? {
-        Self()
-    }
+final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeResponseDisplays {
 
     weak var coordinator: SceneCoordinator? {
         didSet {

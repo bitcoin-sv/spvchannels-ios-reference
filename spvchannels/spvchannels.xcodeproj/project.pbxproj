@@ -14,7 +14,7 @@
 		A135836A2608A2D500B9BA6C /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583692608A2D500B9BA6C /* HomeInteractor.swift */; };
 		A135836F2608A2DB00B9BA6C /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135836E2608A2DB00B9BA6C /* HomePresenter.swift */; };
 		A13583952608A8FB00B9BA6C /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583942608A8FB00B9BA6C /* HomeRouter.swift */; };
-		A13583A02608A98700B9BA6C /* Instantiatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135839F2608A98700B9BA6C /* Instantiatable.swift */; };
+		A13583A02608A98700B9BA6C /* CleanVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135839F2608A98700B9BA6C /* CleanVIP.swift */; };
 		A13583D92608C95E00B9BA6C /* FirebaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583D82608C95E00B9BA6C /* FirebaseConfig.swift */; };
 		A13583DE2608C97800B9BA6C /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583DD2608C97700B9BA6C /* TokenStorage.swift */; };
 		A13583E3260903D200B9BA6C /* SpvChannelApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583E2260903D200B9BA6C /* SpvChannelApi.swift */; };
@@ -98,7 +98,7 @@
 		A13583692608A2D500B9BA6C /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		A135836E2608A2DB00B9BA6C /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		A13583942608A8FB00B9BA6C /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
-		A135839F2608A98700B9BA6C /* Instantiatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instantiatable.swift; sourceTree = "<group>"; };
+		A135839F2608A98700B9BA6C /* CleanVIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanVIP.swift; sourceTree = "<group>"; };
 		A13583D82608C95E00B9BA6C /* FirebaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConfig.swift; sourceTree = "<group>"; };
 		A13583DD2608C97700B9BA6C /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
 		A13583E2260903D200B9BA6C /* SpvChannelApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelApi.swift; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				A15E080926014D88000AB996 /* Coordinatable.swift */,
-				A135839F2608A98700B9BA6C /* Instantiatable.swift */,
+				A135839F2608A98700B9BA6C /* CleanVIP.swift */,
 				A15E080826014D88000AB996 /* Coordinator.swift */,
 				A15E080626014D88000AB996 /* SceneCoordinator.swift */,
 			);
@@ -736,7 +736,7 @@
 				A1CBD818260BE5A6005C4091 /* APIError.swift in Sources */,
 				A1358551260A416D00B9BA6C /* MessagingViewController.swift in Sources */,
 				A13584E2260A17B700B9BA6C /* UISwitch+Extensions.swift in Sources */,
-				A13583A02608A98700B9BA6C /* Instantiatable.swift in Sources */,
+				A13583A02608A98700B9BA6C /* CleanVIP.swift in Sources */,
 				A1CBD8C8260C7D78005C4091 /* CreateChannelRequest.swift in Sources */,
 				A15E080D26014D88000AB996 /* Coordinatable.swift in Sources */,
 				A1CBD813260BE4D6005C4091 /* RequestProtocol.swift in Sources */,

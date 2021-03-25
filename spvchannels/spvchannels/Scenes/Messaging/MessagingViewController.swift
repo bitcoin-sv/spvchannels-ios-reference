@@ -29,11 +29,7 @@ enum MessagesAPI: CaseIterable {
     }
 }
 
-class MessagingViewController: UIViewController, Instantiatable, Coordinatable, MessagingResponseDisplays {
-
-    static func instantiate() -> Self? {
-        Self()
-    }
+class MessagingViewController: UIViewController, CleanVIP, Coordinatable, MessagingResponseDisplays {
 
     weak var coordinator: SceneCoordinator? {
         didSet {
@@ -81,7 +77,7 @@ class MessagingViewController: UIViewController, Instantiatable, Coordinatable, 
     ])
 
     private lazy var goButton: RoundedButton = {
-        let button = RoundedButton(title: "GO", action: #selector(goAction), target: self, tag: 1)
+        let button = RoundedButton(title: "GO", action: #selector(goButtonTapped), target: self, tag: 1)
         button.constraintWidth(width: view.bounds.width / 4)
         return button
     }()
@@ -191,7 +187,7 @@ class MessagingViewController: UIViewController, Instantiatable, Coordinatable, 
     }
 
     // MARK: - ViewActions
-    @objc func goAction(_ sender: UIButton) {
+    @objc func goButtonTapped(_ sender: UIButton) {
         let contentType = contentTypeTextField.text ?? ""
         let messageId = messageIdTextField.text ?? ""
         let payload = messagePayloadTextField.text ?? ""

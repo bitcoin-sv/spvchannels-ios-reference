@@ -6,7 +6,7 @@
 
 import UIKit
 
-typealias NavigatableVC = Coordinatable & Instantiatable & UIViewController
+typealias NavigatableVC = Coordinatable & CleanVIP & UIViewController
 
 class Scenes {}
 
@@ -40,7 +40,7 @@ class SceneCoordinator: Coordinator {
     }
 
     private func makeViewController<T: NavigatableVC>() -> T? {
-        guard let viewController = T.instantiate() else { return nil }
+        let viewController = T.init()
         viewController.setupVIP()
         viewController.coordinator = self
         return viewController
