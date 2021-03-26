@@ -67,4 +67,37 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
         }
     }
 
+    func markMessageRead(sequenceId: String, read: Bool, older: Bool, completion: @escaping StringResult) {
+        var parameters: [String: Any] = ["read": read]
+        if older {
+            parameters["older"] = true
+        }
+        let messagingRequest = MessagingEndpoint.markMessageRead(sequenceId: sequenceId, parameters: parameters)
+        let operation = APIOperation(messagingRequest)
+
+        operation.execute(in: requestDispatcher) { result in
+            switch result {
+            case .data:
+                completion(.success("OK"))
+            case .error(let error, _):
+                operation.cancel()
+                completion(.failure(error ?? APIError.unknown))
+            }
+        }
+    }
+
+    func deleteMessage(sequenceId: String, completion: @escaping StringResult) {
+        let messagingRequest = MessagingEndpoint.deleteMessage(sequenceId: sequenceId)
+        let operation = APIOperation(messagingRequest)
+
+        operation.execute(in: requestDispatcher) { result in
+            switch result {
+            case .data:
+                completion(.success("OK"))
+            case .error(let error, _):
+                operation.cancel()
+                completion(.failure(error ?? APIError.unknown))
+            }
+        }
+    }
 }

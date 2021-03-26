@@ -21,6 +21,7 @@ extension Encodable {
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
         encoder.dataEncodingStrategy = .custom(customDataEncoder)
+        encoder.dateEncodingStrategy = .iso8601
         encoder.outputFormatting = .prettyPrinted
         return try? encoder.encode(self)
     }

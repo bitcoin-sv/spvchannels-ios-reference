@@ -14,4 +14,6 @@ protocol SpvMessagingApiProtocol {
 
     func getMaxSequence(completion: @escaping StringResult)
     func getAllMessages(unread: Bool, completion: @escaping MessageResult)
+    func markMessageRead(sequenceId: String, read: Bool, older: Bool, completion: @escaping StringResult)
+    func deleteMessage(sequenceId: String, completion: @escaping StringResult)
 }

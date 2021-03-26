@@ -32,9 +32,11 @@ final class MessagingInteractor: MessagingInteractorType {
         case .sendMessage:
             sendMessage()
         case .markMessageRead:
-            markMessageRead()
+            markMessageRead(sequenceId: viewAction.sequenceId,
+                            read: viewAction.markReadUnread,
+                            older: viewAction.markOlderMessages)
         case .deleteMessage:
-            deleteMessage()
+            deleteMessage(sequenceId: viewAction.sequenceId)
         }
     }
 
@@ -53,12 +55,18 @@ final class MessagingInteractor: MessagingInteractorType {
         }
     }
 
-    func markMessageRead() {
-        presenter?.presentActionResults(actionResponse: .init(result: .success(#function + "TODO")))
+    func markMessageRead(sequenceId: String, read: Bool, older: Bool) {
+        guard let spvMessagingApi = spvMessagingApi else { return }
+        spvMessagingApi.markMessageRead(sequenceId: sequenceId, read: read, older: older) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
+        }
     }
 
-    func deleteMessage() {
-        presenter?.presentActionResults(actionResponse: .init(result: .success(#function + "TODO")))
+    func deleteMessage(sequenceId: String) {
+        guard let spvMessagingApi = spvMessagingApi else { return }
+        spvMessagingApi.deleteMessage(sequenceId: sequenceId) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
+        }
     }
 
     func sendMessage() {

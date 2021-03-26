@@ -28,6 +28,8 @@ enum MessagingEndpoint {
 
     case getMaxSequence
     case getAllMessages(unread: Bool)
+    case markMessageRead(sequenceId: String, parameters: [String: Any])
+    case deleteMessage(sequenceId: String)
 
 }
 
@@ -39,6 +41,10 @@ extension MessagingEndpoint: RequestProtocol {
             return ""
         case .getAllMessages:
             return ""
+        case .markMessageRead(let sequenceId, _):
+            return "/\(sequenceId)"
+        case .deleteMessage(let sequenceId):
+            return "/\(sequenceId)"
         }
     }
 
@@ -48,6 +54,10 @@ extension MessagingEndpoint: RequestProtocol {
             return .head
         case .getAllMessages:
             return .get
+        case .markMessageRead:
+            return .post
+        case .deleteMessage:
+            return .delete
         }
     }
 
@@ -61,6 +71,10 @@ extension MessagingEndpoint: RequestProtocol {
             return nil
         case .getAllMessages(let unread):
             return unread ? ["unread": "true"] : nil
+        case .markMessageRead(_, let parameters):
+            return parameters
+        case .deleteMessage:
+            return nil
         }
     }
 
