@@ -21,7 +21,7 @@ enum MessagingModels {
 
     enum PerformApiAction {
         struct ViewAction {
-            let action: String // SpvClientApi.Endpoint
+            let action: MessagingEndpoint.Actions
             let contentType: String
             let messageId: String
             let payload: String
@@ -29,8 +29,8 @@ enum MessagingModels {
             let markReadUnread: Bool
             let markOlderMessages: Bool
         }
-        struct ActionResponse {
-            let result: String
+        struct ActionResponse<T: Encodable> {
+            let result: Result<T, Error>
         }
         struct ResponseDisplay {
             let result: String

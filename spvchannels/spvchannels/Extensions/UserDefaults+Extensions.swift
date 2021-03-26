@@ -13,6 +13,8 @@ extension UserDefaults {
         case accountId = "account_id"
         case username = "username"
         case password = "password"
+        case token = "token"
+        case channelId = "channel_id"
     }
 
     // MARK: -
@@ -22,28 +24,6 @@ extension UserDefaults {
     }
 
     static private func setValue<T>(value: T?, for key: UserDefaults.Keys) {
-        if value == nil {
-            UserDefaults.standard.removeObject(forKey: key.rawValue)
-        } else {
-            UserDefaults.standard.setValue(value, forKey: key.rawValue)
-        }
-    }
-
-    static private func getData<T: Decodable>(for key: UserDefaults.Keys) -> T? {
-        guard let data = Self.getDataRaw(for: key) else { return nil }
-        return try? PropertyListDecoder().decode(T.self, from: data)
-    }
-
-    static private func getDataRaw(for key: UserDefaults.Keys) -> Data? {
-        UserDefaults.standard.object(forKey: key.rawValue) as? Data
-    }
-
-    static private func setData<T: Encodable>(value: T?, for key: UserDefaults.Keys) {
-        let data = try? PropertyListEncoder().encode(value)
-        Self.setDataRaw(value: data, for: key)
-    }
-
-    static private func setDataRaw(value: Data?, for key: UserDefaults.Keys) {
         if value == nil {
             UserDefaults.standard.removeObject(forKey: key.rawValue)
         } else {
@@ -72,4 +52,13 @@ extension UserDefaults {
         set { Self.setValue(value: newValue, for: .password) }
     }
 
+    var channelId: String? {
+        get { Self.getValue(for: .channelId) }
+        set { Self.setValue(value: newValue, for: .channelId) }
+    }
+
+    var token: String? {
+        get { Self.getValue(for: .token) }
+        set { Self.setValue(value: newValue, for: .token) }
+    }
 }

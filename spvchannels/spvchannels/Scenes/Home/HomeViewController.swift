@@ -110,7 +110,7 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
         let channelId = channelIdTextField.text ?? ""
         let channelToken = channelTokenTextField.text ?? ""
         interactor?.createMessagingApiAndOpen(viewAction: .init(channelId: channelId,
-                                                                tokenId: channelToken))
+                                                                token: channelToken))
     }
 
     private func loadSavedCredentials() {
@@ -124,6 +124,8 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
         accountIdTextField.text = responseDisplay.accountId
         usernameTextField.text = responseDisplay.username
         passwordTextField.text = responseDisplay.password
+        channelIdTextField.text = responseDisplay.channelId
+        channelTokenTextField.text = responseDisplay.token
     }
 
     func displayCreateSdkAndOpenChannels(responseDisplay: Models.CreateSdkAndChannelApi.ResponseDisplay) {
