@@ -16,7 +16,9 @@ final class HomePresenter: HomeActionResponses {
         viewController?.displaySavedCredentials(responseDisplay: .init(baseUrl: actionResponse.baseUrl,
                                                                        accountId: actionResponse.accountId,
                                                                        username: actionResponse.username,
-                                                                       password: actionResponse.password))
+                                                                       password: actionResponse.password,
+                                                                       channelId: actionResponse.channelId,
+                                                                       token: actionResponse.token))
     }
 
     func createSdkAndChannelApi(actionResponse: HomeModels.CreateSdkAndChannelApi.ActionResponse) {
@@ -28,7 +30,7 @@ final class HomePresenter: HomeActionResponses {
 
     func createMessagingApiAndOpen(actionResponse: HomeModels.CreateMessagingApi.ViewAction) {
         viewController?.displayMessagingApiAndOpen(responseDisplay: .init(channelId: actionResponse.channelId,
-                                                                          tokenId: actionResponse.tokenId))
+                                                                          token: actionResponse.token))
     }
 
     func presentError(errorMessage: String) {

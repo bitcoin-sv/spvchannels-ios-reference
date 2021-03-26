@@ -6,29 +6,6 @@
 
 import UIKit
 
-enum MessagesAPI: CaseIterable {
-    case getMaxMessageSequence
-    case writeMessage
-    case getMessages
-    case markMessageAsReadOrUnread
-    case deleteMessage
-
-    var actionTitle: String {
-        switch self {
-        case .getMaxMessageSequence:
-            return "Get Max Message Sequence"
-        case .writeMessage:
-            return "Write Message"
-        case .getMessages:
-            return "Get Messages"
-        case .markMessageAsReadOrUnread:
-            return "Mark Message As Read"
-        case .deleteMessage:
-            return "Delete Message"
-        }
-    }
-}
-
 class MessagingViewController: UIViewController, CleanVIP, Coordinatable, MessagingResponseDisplays {
 
     weak var coordinator: SceneCoordinator? {
@@ -125,16 +102,16 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
             .filter { $0.tag != 1}
             .forEach { $0.isHidden = true }
         switch messagesAction {
-        case .getMaxMessageSequence:
+        case .getMaxSequence:
             resultsTextView.isHidden = false
-        case .writeMessage:
+        case .sendMessage:
             resultsTextView.isHidden = false
             contentTypeTextField.isHidden = false
             messagePayloadTextField.isHidden = false
-        case .getMessages:
+        case .getAllMessages:
             resultsTextView.isHidden = false
             unreadOnlyStack.isHidden = false
-        case .markMessageAsReadOrUnread:
+        case .markMessageRead:
             resultsTextView.isHidden = false
             messageIdLabel.isHidden = false
             messageIdTextField.isHidden = false
@@ -159,7 +136,7 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
     }
 
     // MARK: - Action selection
-    var messagesAction = MessagesAPI.getMessages {
+    var messagesAction = MessagingEndpoint.Actions.getMaxSequence {
         didSet {
             setupMessagingUI()
         }
@@ -171,7 +148,7 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
 
     private func presentActionSelection() {
         let sheet = UIAlertController()
-        MessagesAPI.allCases.forEach { action in
+        MessagingEndpoint.Actions.allCases.forEach { action in
             sheet.addAction(.init(title: action.actionTitle, style: .default) { [weak self] _ in
                 self?.messagesAction = action
             })
@@ -194,7 +171,7 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
         let unreadOnly = unreadOnlyUISwitch.isOn
         let markReadUnread = messageReadStatusSwitch.isOn
         let markOlderMessages = markOlderMessagesSwitch.isOn
-        let viewAction = Models.PerformApiAction.ViewAction(action: messagesAction.actionTitle,
+        let viewAction = Models.PerformApiAction.ViewAction(action: messagesAction,
                                                             contentType: contentType,
                                                             messageId: messageId,
                                                             payload: payload,
@@ -212,6 +189,19 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
 
     func displayActionResults(responseDisplay: Models.PerformApiAction.ResponseDisplay) {
         resultsTextView.text = responseDisplay.result
+    }
+
+    func displayErrorMessage(errorMessage: String) {
+        displayAlertMessage(message: errorMessage)
+    }
+
+    // MARK: - Additional Helpers
+    private func displayAlertMessage(message: String) {
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        present(alert, animated: true, completion: nil)
     }
 
 }

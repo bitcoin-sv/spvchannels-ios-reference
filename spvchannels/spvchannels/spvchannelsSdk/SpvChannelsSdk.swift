@@ -37,7 +37,7 @@ class SpvChannelsSdk {
     }
 
     func messagingWithToken(channelId: String, token: String, encryption: SpvEncryptionProtocol) -> SpvMessagingApi {
-        SpvMessagingApi(baseUrl: baseUrl, channelId: channelId, tokenId: token)
+        SpvMessagingApi(baseUrl: baseUrl, channelId: channelId, token: token, encryption: encryption)
     }
 
     @objc func appWillEnterForeground() {

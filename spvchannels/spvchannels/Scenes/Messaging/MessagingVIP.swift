@@ -17,12 +17,14 @@ protocol MessagingViewActions {
 
 protocol MessagingActionResponses {
     func presentChannelInfo(actionResponse: MessagingModels.GetChannelInfo.ActionResponse)
-    func presentActionResults(actionResponse: MessagingModels.PerformApiAction.ActionResponse)
+    func presentActionResults<T: Encodable>(actionResponse: MessagingModels.PerformApiAction.ActionResponse<T>)
+    func presentError(errorMessage: String)
 }
 
 protocol MessagingResponseDisplays: AnyObject {
-    func displayActionResults(responseDisplay: MessagingModels.PerformApiAction.ResponseDisplay)
     func displayChannelInfo(responseDisplay: MessagingModels.GetChannelInfo.ResponseDisplay)
+    func displayActionResults(responseDisplay: MessagingModels.PerformApiAction.ResponseDisplay)
+    func displayErrorMessage(errorMessage: String)
 }
 
 protocol MessagingDataStore {

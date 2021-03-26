@@ -11,6 +11,7 @@ final class ChannelsPresenter: ChannelsActionResponses {
     typealias Models = ChannelsModels
     weak var viewController: ChannelsResponseDisplays?
 
+    // MARK: - Action Responses
     func presentActionResults<T: Encodable>(actionResponse: Models.PerformApiAction.ActionResponse<T>) {
         let jsonString = makeJsonResult(result: actionResponse.result)
         viewController?.displayActionResults(responseDisplay: .init(result: jsonString))
@@ -20,7 +21,7 @@ final class ChannelsPresenter: ChannelsActionResponses {
         viewController?.displayErrorMessage(errorMessage: errorMessage)
     }
 
-    // MARK: - Utility helper
+    // MARK: - Utility helpers
     func makeJsonResult<T: Encodable>(result: Result<T, Error>) -> String {
         var resultStr: String
         switch result {
