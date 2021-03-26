@@ -136,7 +136,7 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
     }
 
     // MARK: - Action selection
-    var messagesAction = MessagingEndpoint.Actions.getMaxSequence {
+    var messagesAction = MessagingEndpoint.Actions.getAllMessages {
         didSet {
             setupMessagingUI()
         }

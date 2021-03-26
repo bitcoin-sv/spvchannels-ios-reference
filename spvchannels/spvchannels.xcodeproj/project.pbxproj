@@ -67,7 +67,7 @@
 		A1CBD9E3260CE259005C4091 /* SpvMessagingApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD9E2260CE259005C4091 /* SpvMessagingApiProtocol.swift */; };
 		A1CBD9F6260CE411005C4091 /* SpvMessagingApiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD9F5260CE411005C4091 /* SpvMessagingApiEnvironment.swift */; };
 		A1CBDA2E260DBE6B005C4091 /* SpvMessagingEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBDA2D260DBE6B005C4091 /* SpvMessagingEndpoint.swift */; };
-		A1CBDA85260DDD5D005C4091 /* RawMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBDA84260DDD5D005C4091 /* RawMessage.swift */; };
+		A1CBDB5B260E078C005C4091 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBDB5A260E078C005C4091 /* Message.swift */; };
 		A1F807F52601F8C900AAA5F7 /* Decodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F807F42601F8C900AAA5F7 /* Decodable+Extensions.swift */; };
 		A1F807FA2601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */; };
 		A1F808A22602125400AAA5F7 /* SpvChannelsApiMockValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */; };
@@ -162,7 +162,7 @@
 		A1CBD9E2260CE259005C4091 /* SpvMessagingApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvMessagingApiProtocol.swift; sourceTree = "<group>"; };
 		A1CBD9F5260CE411005C4091 /* SpvMessagingApiEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvMessagingApiEnvironment.swift; sourceTree = "<group>"; };
 		A1CBDA2D260DBE6B005C4091 /* SpvMessagingEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvMessagingEndpoint.swift; sourceTree = "<group>"; };
-		A1CBDA84260DDD5D005C4091 /* RawMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawMessage.swift; sourceTree = "<group>"; };
+		A1CBDB5A260E078C005C4091 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A1F807F42601F8C900AAA5F7 /* Decodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Extensions.swift"; sourceTree = "<group>"; };
 		A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelsApiMockValues.swift; sourceTree = "<group>"; };
 		AA2D584D3379CB4E86D67CEC /* Pods-spvchannels-spvchannelsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spvchannels-spvchannelsUITests.debug.xcconfig"; path = "Target Support Files/Pods-spvchannels-spvchannelsUITests/Pods-spvchannels-spvchannelsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -393,7 +393,7 @@
 		A15E077826006ABD000AB996 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A1CBDA84260DDD5D005C4091 /* RawMessage.swift */,
+				A1CBDB5A260E078C005C4091 /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -728,6 +728,7 @@
 				A135835C2608A24E00B9BA6C /* HomeModels.swift in Sources */,
 				A15E071425FEBCC7000AB996 /* ChannelPermissions.swift in Sources */,
 				A15E070F25FEBCB5000AB996 /* ChannelInfo.swift in Sources */,
+				A1CBDB5B260E078C005C4091 /* Message.swift in Sources */,
 				A13583FB260905B900B9BA6C /* SpvMessagingApi.swift in Sources */,
 				A1CBDA2E260DBE6B005C4091 /* SpvMessagingEndpoint.swift in Sources */,
 				A13584812609DE8500B9BA6C /* Codable+Extensions.swift in Sources */,
@@ -754,7 +755,6 @@
 				A1CBD8C8260C7D78005C4091 /* CreateChannelRequest.swift in Sources */,
 				A15E080D26014D88000AB996 /* Coordinatable.swift in Sources */,
 				A1CBD813260BE4D6005C4091 /* RequestProtocol.swift in Sources */,
-				A1CBDA85260DDD5D005C4091 /* RawMessage.swift in Sources */,
 				A15E071925FEBCD6000AB996 /* Retention.swift in Sources */,
 				A1358560260A45BD00B9BA6C /* MessagingInteractor.swift in Sources */,
 				A1CBD86F260BEFA6005C4091 /* APIRequestDispatcher.swift in Sources */,

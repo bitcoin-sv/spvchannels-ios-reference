@@ -7,9 +7,20 @@
 import Foundation
 
 extension Encodable {
+
+    private func customDataEncoder(data: Data, encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        if let str = String(data: data, encoding: .utf8) {
+            try container.encode(str)
+        } else {
+            try container.encode(data.base64EncodedString())
+        }
+    }
+
     func encoded() -> Data? {
         let encoder = JSONEncoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
+        encoder.dataEncodingStrategy = .custom(customDataEncoder)
         encoder.outputFormatting = .prettyPrinted
         return try? encoder.encode(self)
     }

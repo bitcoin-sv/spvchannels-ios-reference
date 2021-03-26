@@ -8,16 +8,16 @@ import Foundation
 
 enum MessagingEndpoint {
     enum Actions: CaseIterable {
-        case getMaxSequence, sendMessage, getAllMessages, markMessageRead, deleteMessage
+        case getAllMessages, getMaxSequence, sendMessage, markMessageRead, deleteMessage
 
         var actionTitle: String {
             switch self {
+            case .getAllMessages:
+                return "Get All Messages"
             case .getMaxSequence:
                 return "Get Max Message Sequence"
             case .sendMessage:
                 return "Write Message"
-            case .getAllMessages:
-                return "Get Messages"
             case .markMessageRead:
                 return "Mark Message As Read/Unread"
             case .deleteMessage:
@@ -27,6 +27,8 @@ enum MessagingEndpoint {
     }
 
     case getMaxSequence
+    case getAllMessages(unread: Bool)
+
 }
 
 extension MessagingEndpoint: RequestProtocol {
@@ -35,6 +37,8 @@ extension MessagingEndpoint: RequestProtocol {
         switch self {
         case .getMaxSequence:
             return ""
+        case .getAllMessages:
+            return ""
         }
     }
 
@@ -42,6 +46,8 @@ extension MessagingEndpoint: RequestProtocol {
         switch self {
         case .getMaxSequence:
             return .head
+        case .getAllMessages:
+            return .get
         }
     }
 
@@ -53,6 +59,8 @@ extension MessagingEndpoint: RequestProtocol {
         switch self {
         case .getMaxSequence:
             return nil
+        case .getAllMessages(let unread):
+            return unread ? ["unread": "true"] : nil
         }
     }
 

@@ -27,10 +27,10 @@ final class MessagingInteractor: MessagingInteractorType {
         switch viewAction.action {
         case .getMaxSequence:
             getMaxSequence()
+        case .getAllMessages:
+            getAllMessages(unread: viewAction.unreadOnly)
         case .sendMessage:
             sendMessage()
-        case .getAllMessages:
-            getAllMessages()
         case .markMessageRead:
             markMessageRead()
         case .deleteMessage:
@@ -46,12 +46,11 @@ final class MessagingInteractor: MessagingInteractorType {
         }
     }
 
-    func sendMessage() {
-        presenter?.presentActionResults(actionResponse: .init(result: .success(#function + "TODO")))
-    }
-
-    func getAllMessages() {
-        presenter?.presentActionResults(actionResponse: .init(result: .success(#function + "TODO")))
+    func getAllMessages(unread: Bool) {
+        guard let spvMessagingApi = spvMessagingApi else { return }
+        spvMessagingApi.getAllMessages(unread: unread) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
+        }
     }
 
     func markMessageRead() {
@@ -59,6 +58,10 @@ final class MessagingInteractor: MessagingInteractorType {
     }
 
     func deleteMessage() {
+        presenter?.presentActionResults(actionResponse: .init(result: .success(#function + "TODO")))
+    }
+
+    func sendMessage() {
         presenter?.presentActionResults(actionResponse: .init(result: .success(#function + "TODO")))
     }
 

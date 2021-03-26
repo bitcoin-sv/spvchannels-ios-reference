@@ -55,9 +55,13 @@ extension RequestProtocol {
         guard method == .get, let parameters = parameters else {
             return nil
         }
-        return parameters.map { (key: String, value: Any?) -> URLQueryItem in
-            let valueString = String(describing: value)
-            return URLQueryItem(name: key, value: valueString)
+        return parameters.compactMap { (key: String, value: Any?) -> URLQueryItem? in
+            if let value = value {
+                let valueString = String(describing: value)
+                return URLQueryItem(name: key, value: valueString)
+            } else {
+                return nil
+            }
         }
     }
 
