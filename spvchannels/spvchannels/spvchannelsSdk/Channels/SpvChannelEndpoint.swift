@@ -47,6 +47,7 @@ enum ChannelsEndpoint {
 }
 
 extension ChannelsEndpoint: RequestProtocol {
+
     var path: String {
         switch self {
         case .getAllChannels:
@@ -95,6 +96,10 @@ extension ChannelsEndpoint: RequestProtocol {
 
     var headers: RequestHeaders? {
         nil
+    }
+
+    var rawBody: Data? {
+        return nil
     }
 
     var parameters: RequestParameters? {

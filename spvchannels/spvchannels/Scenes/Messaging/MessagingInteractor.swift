@@ -30,7 +30,12 @@ final class MessagingInteractor: MessagingInteractorType {
         case .getAllMessages:
             getAllMessages(unread: viewAction.unreadOnly)
         case .sendMessage:
-            sendMessage()
+            if let data = viewAction.payload.data(using: .utf8) {
+                sendMessage(contentType: viewAction.contentType,
+                            payload: data)
+            } else {
+                presenter?.presentError(errorMessage: "Can't form Data payload from string")
+            }
         case .markMessageRead:
             markMessageRead(sequenceId: viewAction.sequenceId,
                             read: viewAction.markReadUnread,
@@ -69,8 +74,11 @@ final class MessagingInteractor: MessagingInteractorType {
         }
     }
 
-    func sendMessage() {
-        presenter?.presentActionResults(actionResponse: .init(result: .success(#function + "TODO")))
+    func sendMessage(contentType: String, payload: Data) {
+        guard let spvMessagingApi = spvMessagingApi else { return }
+        spvMessagingApi.sendMessage(contentType: contentType, payload: payload) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
+        }
     }
 
 }

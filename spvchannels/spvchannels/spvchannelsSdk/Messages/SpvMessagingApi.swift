@@ -47,7 +47,7 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
         }
     }
 
-    func getAllMessages(unread: Bool, completion: @escaping MessageResult) {
+    func getAllMessages(unread: Bool, completion: @escaping MessagesResult) {
         let messagingRequest = MessagingEndpoint.getAllMessages(unread: unread)
         let operation = APIOperation(messagingRequest)
         operation.execute(in: requestDispatcher) { result in
@@ -100,4 +100,26 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
             }
         }
     }
+
+    func sendMessage(contentType: String, payload: Data, completion: @escaping MessageResult) {
+        let encrypted = encryptionService.encrypt(input: payload)
+        let messagingRequest = MessagingEndpoint.sendMessage(contentType: contentType, payload: encrypted)
+        let operation = APIOperation(messagingRequest)
+
+        operation.execute(in: requestDispatcher) { result in
+            switch result {
+            case .data(let data, _):
+                if let data = data,
+                   let result: Message = .parse(from: data) {
+                    completion(.success(result))
+                } else {
+                    completion(.failure(APIError.parseError("JSON error")))
+                }
+            case .error(let error, _):
+                operation.cancel()
+                completion(.failure(error ?? APIError.unknown))
+            }
+        }
+    }
+
 }

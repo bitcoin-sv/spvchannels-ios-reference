@@ -28,6 +28,7 @@ protocol RequestProtocol {
     var method: RequestMethod { get }
     var headers: RequestHeaders? { get }
     var parameters: RequestParameters? { get }
+    var rawBody: Data? { get }
 }
 
 extension RequestProtocol {
@@ -66,6 +67,9 @@ extension RequestProtocol {
     }
 
     private var jsonBody: Data? {
+        if let rawBody = rawBody {
+            return rawBody
+        }
         guard [.post, .put, .patch].contains(method), let parameters = parameters else {
             return nil
         }
