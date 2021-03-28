@@ -4,3 +4,7 @@ excluded:
 disabled_rules:
   - identifier_name
   - nesting
+
+function_parameter_count:
+    warning: 6
+    error: 8

@@ -15,8 +15,8 @@ protocol OperationProtocol {
 }
 
 enum OperationResult {
-    case data(_ : Data?, _ : HTTPURLResponse?)
-    case error(_ : Error?, _ : HTTPURLResponse?)
+    case data(Data?, _ : HTTPURLResponse?)
+    case error(Error?, _ : HTTPURLResponse?)
 }
 
 class APIOperation: OperationProtocol {

@@ -68,6 +68,8 @@
 		A1CBD9F6260CE411005C4091 /* SpvMessagingApiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD9F5260CE411005C4091 /* SpvMessagingApiEnvironment.swift */; };
 		A1CBDA2E260DBE6B005C4091 /* SpvMessagingEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBDA2D260DBE6B005C4091 /* SpvMessagingEndpoint.swift */; };
 		A1CBDB5B260E078C005C4091 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBDB5A260E078C005C4091 /* Message.swift */; };
+		A1CBDC92260E5A72005C4091 /* SpvLibSodiumEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBDC91260E5A72005C4091 /* SpvLibSodiumEncryption.swift */; };
+		A1CBDCA5260FC034005C4091 /* SpvChannelsLibSodiumEncryptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBDCA4260FC034005C4091 /* SpvChannelsLibSodiumEncryptionTests.swift */; };
 		A1F807F52601F8C900AAA5F7 /* Decodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F807F42601F8C900AAA5F7 /* Decodable+Extensions.swift */; };
 		A1F807FA2601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */; };
 		A1F808A22602125400AAA5F7 /* SpvChannelsApiMockValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */; };
@@ -163,6 +165,8 @@
 		A1CBD9F5260CE411005C4091 /* SpvMessagingApiEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvMessagingApiEnvironment.swift; sourceTree = "<group>"; };
 		A1CBDA2D260DBE6B005C4091 /* SpvMessagingEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvMessagingEndpoint.swift; sourceTree = "<group>"; };
 		A1CBDB5A260E078C005C4091 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		A1CBDC91260E5A72005C4091 /* SpvLibSodiumEncryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvLibSodiumEncryption.swift; sourceTree = "<group>"; };
+		A1CBDCA4260FC034005C4091 /* SpvChannelsLibSodiumEncryptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelsLibSodiumEncryptionTests.swift; sourceTree = "<group>"; };
 		A1F807F42601F8C900AAA5F7 /* Decodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Extensions.swift"; sourceTree = "<group>"; };
 		A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelsApiMockValues.swift; sourceTree = "<group>"; };
 		AA2D584D3379CB4E86D67CEC /* Pods-spvchannels-spvchannelsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spvchannels-spvchannelsUITests.debug.xcconfig"; path = "Target Support Files/Pods-spvchannels-spvchannelsUITests/Pods-spvchannels-spvchannelsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -311,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				A15E066525FA0B07000AB996 /* SpvChannelsTests.swift */,
+				A1CBDCA4260FC034005C4091 /* SpvChannelsLibSodiumEncryptionTests.swift */,
 				A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */,
 				A15E066725FA0B07000AB996 /* Info.plist */,
 			);
@@ -444,6 +449,7 @@
 			children = (
 				A13583E72609041C00B9BA6C /* SpvEncryptionProtocol.swift */,
 				A13583EC2609048000B9BA6C /* SpvNoOpEncryption.swift */,
+				A1CBDC91260E5A72005C4091 /* SpvLibSodiumEncryption.swift */,
 			);
 			path = Encryption;
 			sourceTree = "<group>";
@@ -739,6 +745,7 @@
 				A1CBD9F6260CE411005C4091 /* SpvMessagingApiEnvironment.swift in Sources */,
 				A1F808A22602125400AAA5F7 /* SpvChannelsApiMockValues.swift in Sources */,
 				A135840A260907AD00B9BA6C /* ChannelsModels.swift in Sources */,
+				A1CBDC92260E5A72005C4091 /* SpvLibSodiumEncryption.swift in Sources */,
 				A13584002609078D00B9BA6C /* ChannelsVIP.swift in Sources */,
 				A15E065325FA0B06000AB996 /* HomeViewController.swift in Sources */,
 				A15E077D26006B29000AB996 /* SpvChannelsSdk.swift in Sources */,
@@ -783,6 +790,7 @@
 			files = (
 				A1F807FA2601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift in Sources */,
 				A15E066625FA0B07000AB996 /* SpvChannelsTests.swift in Sources */,
+				A1CBDCA5260FC034005C4091 /* SpvChannelsLibSodiumEncryptionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
