@@ -55,8 +55,12 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
             case .data(let data, _):
                 if let data = data,
                    let result: [Message] = .parse(from: data) {
-                    let decrypted = result.map { $0.decrypted(with: self.encryptionService) }
-                    completion(.success(decrypted))
+                    let decrypted = result.compactMap({ $0.decrypted(with: self.encryptionService) })
+                    if result.count != decrypted.count {
+                        completion(.failure(APIError.encryptionError))
+                    } else {
+                        completion(.success(decrypted))
+                    }
                 } else {
                     completion(.failure(APIError.parseError("JSON error")))
                 }
@@ -102,7 +106,10 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
     }
 
     func sendMessage(contentType: String, payload: Data, completion: @escaping MessageResult) {
-        let encrypted = encryptionService.encrypt(input: payload)
+        guard let encrypted = encryptionService.encrypt(input: payload) else {
+            completion(.failure(APIError.encryptionError))
+            return
+        }
         let messagingRequest = MessagingEndpoint.sendMessage(contentType: contentType, payload: encrypted)
         let operation = APIOperation(messagingRequest)
 

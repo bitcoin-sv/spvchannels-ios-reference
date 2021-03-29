@@ -80,7 +80,9 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
             return
         }
 
-        guard let encryption = SpvLibSodiumEncryption() else {
+        let bobPubKey = "3uNk31m6mtuKeK/f6U5EFREilaahQR2PewReP3Cypzg="
+        let bobSecKey = "Pr9g/f79rGIlIq+NpsXreUifC5KTTwRYLaWTYjhHfY8="
+        guard let encryption = SpvLibSodiumEncryption(publicKeyString: bobPubKey, secretKeyString: bobSecKey) else {
             presenter?.presentError(errorMessage: "Could not instantiate LibSodiumEncryption")
             return
         }

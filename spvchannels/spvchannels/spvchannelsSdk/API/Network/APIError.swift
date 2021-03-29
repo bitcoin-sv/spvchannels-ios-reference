@@ -19,6 +19,7 @@ enum APIError: Error, CustomStringConvertible {
     case insufficientStorage
     case parseError(String)
     case unknown
+    case encryptionError
 
     static func getErrorDescription(from error: Error?) -> String {
         var errorMessage: String
@@ -64,6 +65,7 @@ enum APIError: Error, CustomStringConvertible {
         case .conflict: return "Conflict - sequencing failure"
         case .payloadTooLarge: return "Payload error - Message too large"
         case .insufficientStorage: return "Storage error - Server storage quota exceeded"
+        case .encryptionError: return "Payload encryption failed"
         }
     }
 

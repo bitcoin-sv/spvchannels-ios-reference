@@ -28,24 +28,20 @@ class SpvLibSodiumEncryption: SpvEncryptionProtocol {
     private var myKeyPair: SodiumKeyPair
     private var encryptionKey: Data?
 
-    func encrypt(input: Data) -> Data {
-        if let encryptionKey = encryptionKey,
-           let encrypted = sodium.box.seal(message: input.bytes,
-                                           recipientPublicKey: encryptionKey.bytes) {
-            return Data(encrypted)
-        } else {
-            return input
-        }
+    func encrypt(input: Data) -> Data? {
+        guard let encryptionKey = encryptionKey,
+              let encryptedPayload = sodium.box.seal(message: input.bytes,
+                                                     recipientPublicKey: encryptionKey.bytes)
+        else { return nil }
+        return Data(encryptedPayload)
     }
 
-    func decrypt(input: Data) -> Data {
-        if let decrypted = sodium.box.open(anonymousCipherText: input.bytes,
-                                           recipientPublicKey: myKeyPair.publicKey.bytes,
-                                           recipientSecretKey: myKeyPair.secretKey.bytes) {
-            return Data(decrypted)
-        } else {
-            return input
-        }
+    func decrypt(input: Data) -> Data? {
+        guard let decryptedPayload = sodium.box.open(anonymousCipherText: input.bytes,
+                                                     recipientPublicKey: myKeyPair.publicKey.bytes,
+                                                     recipientSecretKey: myKeyPair.secretKey.bytes)
+        else { return nil }
+        return Data(decryptedPayload)
     }
 
     func myPublicKey() -> Data {

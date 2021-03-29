@@ -27,7 +27,8 @@ protocol RequestProtocol {
     var path: String { get }
     var method: RequestMethod { get }
     var headers: RequestHeaders? { get }
-    var parameters: RequestParameters? { get }
+    var urlParameters: RequestParameters? { get }
+    var bodyParameters: RequestParameters? { get }
     var rawBody: Data? { get }
 }
 
@@ -49,7 +50,7 @@ extension RequestProtocol {
     }
 
     private var queryItems: [URLQueryItem]? {
-        guard method == .get, let parameters = parameters else { return nil }
+        guard let parameters = urlParameters else { return nil }
         return parameters.compactMap { key, value in
             return URLQueryItem(name: key, value: String(describing: value))
         }
@@ -59,7 +60,7 @@ extension RequestProtocol {
         if let rawBody = rawBody {
             return rawBody
         }
-        guard [.post, .put, .patch].contains(method), let parameters = parameters else { return nil }
+        guard [.post, .put, .patch].contains(method), let parameters = bodyParameters else { return nil }
         return try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
     }
 }

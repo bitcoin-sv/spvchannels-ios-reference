@@ -17,8 +17,9 @@ struct Message: Codable, Equatable {
         case contentType = "content_type"
     }
 
-    func decrypted(with encryption: SpvEncryptionProtocol) -> Message {
-        Message(sequence: sequence, received: received, contentType: contentType,
-                payload: encryption.decrypt(input: payload))
+    func decrypted(with encryption: SpvEncryptionProtocol) -> Message? {
+        guard let decryptedPayload = encryption.decrypt(input: payload) else { return nil }
+        return Message(sequence: sequence, received: received, contentType: contentType,
+                       payload: decryptedPayload)
     }
 }

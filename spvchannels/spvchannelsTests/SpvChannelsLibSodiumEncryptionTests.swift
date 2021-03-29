@@ -118,23 +118,23 @@ class SpvChannelsLibSodiumEncryptionTests: XCTestCase {
 
     func testEncryptingFailsWithoutEncryptionKey() {
         guard let encryption = SpvLibSodiumEncryption() else {
-            XCTFail("encryption init failed")
+            XCTFail("Encryption init failed")
             return
         }
         let bobToAliceMessage = "The quick brown fox jumped over the lazy dog."+UUID().uuidString
         let bobToAliceMessageData = bobToAliceMessage.data(using: .utf8)!
         let bobToAliceEncryptedMessageData = encryption.encrypt(input: bobToAliceMessageData)
-        XCTAssertEqual(bobToAliceEncryptedMessageData, bobToAliceMessageData)
+        XCTAssertNil(bobToAliceEncryptedMessageData)
     }
 
     func testEncryptingReturnsCypherText() {
         let alicePubKey = "DqnzGcbqmdSrhMji1m+G57dGjYwGcPbxnyn6323N2Sw="
         guard let encryption = SpvLibSodiumEncryption() else {
-            XCTFail("encryption init failed")
+            XCTFail("Encryption init failed")
             return
         }
         if !encryption.setEncryptionKey(recipientPublicKeyString: alicePubKey) {
-            XCTFail("setting encryption key failed")
+            XCTFail("Setting encryption key failed")
             return
         }
         let bobToAliceMessage = "The quick brown fox jumped over the lazy dog."+UUID().uuidString
@@ -148,23 +148,32 @@ class SpvChannelsLibSodiumEncryptionTests: XCTestCase {
         let aliceSecKey = "gGh+Jl6mWXI3vkMN8DTwXmg6KKDjZCKCLDbP5N2d54M="
 
         guard let encryption = SpvLibSodiumEncryption() else {
-            XCTFail("encryption init failed")
+            XCTFail("Encryption init failed")
             return
         }
 
         if !encryption.setEncryptionKey(recipientPublicKeyString: alicePubKey) {
-            XCTFail("setting encryption key failed")
+            XCTFail("Setting encryption key failed")
             return
         }
         let bobToAliceMessage = "The quick brown fox jumped over the lazy dog."+UUID().uuidString
         let bobToAliceMessageData = bobToAliceMessage.data(using: .utf8)!
-        let bobToAliceEncryptedMessage = encryption.encrypt(input: bobToAliceMessageData)
+        guard let bobToAliceEncryptedMessage = encryption.encrypt(input: bobToAliceMessageData) else {
+            XCTFail("Could not encrypt message")
+            return
+        }
         XCTAssertNotNil(bobToAliceEncryptedMessage)
 
         guard let encryption2 = SpvLibSodiumEncryption(publicKeyString: alicePubKey,
-                                                       secretKeyString: aliceSecKey) else { return }
-        let aliceSeesThis = String(data: encryption2.decrypt(input: bobToAliceEncryptedMessage),
-                                   encoding: .utf8)
+                                                       secretKeyString: aliceSecKey) else {
+            XCTFail("Could not initialize encryption")
+            return
+        }
+        guard let aliceSeesThisData = encryption2.decrypt(input: bobToAliceEncryptedMessage),
+              let aliceSeesThis = String(data: aliceSeesThisData, encoding: .utf8) else {
+            XCTFail("Could not decrypt message")
+            return
+        }
         XCTAssertEqual(bobToAliceMessage, aliceSeesThis)
     }
 
@@ -172,26 +181,28 @@ class SpvChannelsLibSodiumEncryptionTests: XCTestCase {
         let alicePubKey = "DqnzGcbqmdSrhMji1m+G57dGjYwGcPbxnyn6323N2Sw="
 
         guard let encryption = SpvLibSodiumEncryption() else {
-            XCTFail("encryption init failed")
+            XCTFail("Encryption init failed")
             return
         }
 
         if !encryption.setEncryptionKey(recipientPublicKeyString: alicePubKey) {
-            XCTFail("setting encryption key failed")
+            XCTFail("Setting encryption key failed")
             return
         }
         let bobToAliceMessage = "The quick brown fox jumped over the lazy dog."+UUID().uuidString
         let bobToAliceMessageData = bobToAliceMessage.data(using: .utf8)!
-        let bobToAliceEncryptedMessage = encryption.encrypt(input: bobToAliceMessageData)
-        XCTAssertNotNil(bobToAliceEncryptedMessage)
+        guard let bobToAliceEncryptedMessage = encryption.encrypt(input: bobToAliceMessageData) else {
+            XCTFail("Could not encrypt message")
+            return
+        }
 
         let bobSeesThis = encryption.decrypt(input: bobToAliceEncryptedMessage)
-        XCTAssertEqual(bobSeesThis, bobToAliceEncryptedMessage)
+        XCTAssertNil(bobSeesThis)
     }
 
     func testEncryptionDuration1MB() throws {
         guard let encryption = SpvLibSodiumEncryption() else {
-            XCTFail("encryption init failed")
+            XCTFail("Encryption init failed")
             return
         }
         let alicePubKey = "DqnzGcbqmdSrhMji1m+G57dGjYwGcPbxnyn6323N2Sw="
