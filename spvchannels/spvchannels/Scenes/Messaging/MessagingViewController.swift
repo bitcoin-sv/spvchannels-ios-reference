@@ -42,10 +42,10 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
     private lazy var unreadOnlyUISwitch = UISwitch(value: false)
     private lazy var unreadOnlyStack = UIStackView(views: [UILabel(text: "Unread messages only"),
                                                            unreadOnlyUISwitch])
-    private lazy var messageIdLabel = UILabel(text: "Message ID")
-    private lazy var messageIdTextField = RoundedTextField(placeholder: "Enter message ID")
+    private lazy var messageIdLabel = UILabel(text: "Sequence ID")
+    private lazy var messageIdTextField = RoundedTextField(placeholder: "Enter sequence ID")
     private lazy var messageReadStatusSwitch = UISwitch(value: false)
-    private lazy var messageReadStatusStack = UIStackView(views: [UILabel(text: "Set message as read/unread"),
+    private lazy var messageReadStatusStack = UIStackView(views: [UILabel(text: "Mark message as read/unread"),
                                                                   messageReadStatusSwitch])
     private lazy var markOlderMessagesSwitch = UISwitch(value: false)
     private lazy var markOlderMessagesStack = UIStackView(views: [
@@ -136,7 +136,7 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
     }
 
     // MARK: - Action selection
-    var messagesAction = MessagingEndpoint.Actions.getMaxSequence {
+    var messagesAction = MessagingEndpoint.Actions.getAllMessages {
         didSet {
             setupMessagingUI()
         }
@@ -173,7 +173,7 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
         let markOlderMessages = markOlderMessagesSwitch.isOn
         let viewAction = Models.PerformApiAction.ViewAction(action: messagesAction,
                                                             contentType: contentType,
-                                                            messageId: messageId,
+                                                            sequenceId: messageId,
                                                             payload: payload,
                                                             unreadOnly: unreadOnly,
                                                             markReadUnread: markReadUnread,

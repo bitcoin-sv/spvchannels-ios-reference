@@ -23,7 +23,7 @@ enum MessagingModels {
         struct ViewAction {
             let action: MessagingEndpoint.Actions
             let contentType: String
-            let messageId: String
+            let sequenceId: String
             let payload: String
             let unreadOnly: Bool
             let markReadUnread: Bool

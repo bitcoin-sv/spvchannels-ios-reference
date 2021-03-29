@@ -27,14 +27,21 @@ final class MessagingInteractor: MessagingInteractorType {
         switch viewAction.action {
         case .getMaxSequence:
             getMaxSequence()
-        case .sendMessage:
-            sendMessage()
         case .getAllMessages:
-            getAllMessages()
+            getAllMessages(unread: viewAction.unreadOnly)
+        case .sendMessage:
+            if let data = viewAction.payload.data(using: .utf8) {
+                sendMessage(contentType: viewAction.contentType,
+                            payload: data)
+            } else {
+                presenter?.presentError(errorMessage: "Can't form Data payload from string")
+            }
         case .markMessageRead:
-            markMessageRead()
+            markMessageRead(sequenceId: viewAction.sequenceId,
+                            read: viewAction.markReadUnread,
+                            older: viewAction.markOlderMessages)
         case .deleteMessage:
-            deleteMessage()
+            deleteMessage(sequenceId: viewAction.sequenceId)
         }
     }
 
@@ -46,20 +53,32 @@ final class MessagingInteractor: MessagingInteractorType {
         }
     }
 
-    func sendMessage() {
-        presenter?.presentActionResults(actionResponse: .init(result: .success(#function + "TODO")))
+    func getAllMessages(unread: Bool) {
+        guard let spvMessagingApi = spvMessagingApi else { return }
+        spvMessagingApi.getAllMessages(unread: unread) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
+        }
     }
 
-    func getAllMessages() {
-        presenter?.presentActionResults(actionResponse: .init(result: .success(#function + "TODO")))
+    func markMessageRead(sequenceId: String, read: Bool, older: Bool) {
+        guard let spvMessagingApi = spvMessagingApi else { return }
+        spvMessagingApi.markMessageRead(sequenceId: sequenceId, read: read, older: older) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
+        }
     }
 
-    func markMessageRead() {
-        presenter?.presentActionResults(actionResponse: .init(result: .success(#function + "TODO")))
+    func deleteMessage(sequenceId: String) {
+        guard let spvMessagingApi = spvMessagingApi else { return }
+        spvMessagingApi.deleteMessage(sequenceId: sequenceId) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
+        }
     }
 
-    func deleteMessage() {
-        presenter?.presentActionResults(actionResponse: .init(result: .success(#function + "TODO")))
+    func sendMessage(contentType: String, payload: Data) {
+        guard let spvMessagingApi = spvMessagingApi else { return }
+        spvMessagingApi.sendMessage(contentType: contentType, payload: payload) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
+        }
     }
 
 }

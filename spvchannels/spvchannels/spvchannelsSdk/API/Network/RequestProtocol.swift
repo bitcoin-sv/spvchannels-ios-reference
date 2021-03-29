@@ -28,6 +28,7 @@ protocol RequestProtocol {
     var method: RequestMethod { get }
     var headers: RequestHeaders? { get }
     var parameters: RequestParameters? { get }
+    var rawBody: Data? { get }
 }
 
 extension RequestProtocol {
@@ -55,13 +56,20 @@ extension RequestProtocol {
         guard method == .get, let parameters = parameters else {
             return nil
         }
-        return parameters.map { (key: String, value: Any?) -> URLQueryItem in
-            let valueString = String(describing: value)
-            return URLQueryItem(name: key, value: valueString)
+        return parameters.compactMap { (key: String, value: Any?) -> URLQueryItem? in
+            if let value = value {
+                let valueString = String(describing: value)
+                return URLQueryItem(name: key, value: valueString)
+            } else {
+                return nil
+            }
         }
     }
 
     private var jsonBody: Data? {
+        if let rawBody = rawBody {
+            return rawBody
+        }
         guard [.post, .put, .patch].contains(method), let parameters = parameters else {
             return nil
         }

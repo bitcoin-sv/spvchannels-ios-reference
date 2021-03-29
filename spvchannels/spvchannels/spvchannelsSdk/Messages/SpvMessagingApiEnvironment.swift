@@ -11,8 +11,7 @@ struct SpvMessagingApiEnvironment: EnvironmentProtocol {
     private var token: String
 
     var headers: RequestHeaders? {
-        [ "Content-Type": "application/json",
-          "Authorization": "Bearer \(token)"]
+        [ "Authorization": "Bearer \(token)" ]
     }
     init(baseUrl: String, token: String) {
         self.baseUrl = baseUrl

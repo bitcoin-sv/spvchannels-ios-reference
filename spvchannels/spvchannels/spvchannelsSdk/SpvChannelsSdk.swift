@@ -36,7 +36,8 @@ class SpvChannelsSdk {
         SpvChannelApi(baseUrl: baseUrl, accountId: accountId, username: username, password: password)
     }
 
-    func messagingWithToken(channelId: String, token: String, encryption: SpvEncryptionProtocol) -> SpvMessagingApi {
+    func messagingWithToken(channelId: String, token: String,
+                            encryption: SpvEncryptionProtocol = SpvNoOpEncryption()) -> SpvMessagingApi {
         SpvMessagingApi(baseUrl: baseUrl, channelId: channelId, token: token, encryption: encryption)
     }
 

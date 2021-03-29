@@ -75,10 +75,8 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
 
     func createMessagingApiAndOpen(viewAction: HomeModels.CreateMessagingApi.ViewAction) {
         spvMessagingApi = nil
-        let encryption = SpvNoOpEncryption()
         spvMessagingApi = spvChannelsSdk?.messagingWithToken(channelId: viewAction.channelId,
-                                                             token: viewAction.token,
-                                                             encryption: encryption)
+                                                             token: viewAction.token)
         if spvChannelsSdk == nil {
             presenter?.presentError(errorMessage: "Initialize SPV Channels SDK first")
         } else if spvMessagingApi != nil {
