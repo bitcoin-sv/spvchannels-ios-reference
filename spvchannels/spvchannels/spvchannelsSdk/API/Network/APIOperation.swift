@@ -22,7 +22,7 @@ enum OperationResult {
 class APIOperation: OperationProtocol {
     typealias Output = OperationResult
 
-    private var task: URLSessionTask?
+    private var task: URLSessionDataTaskProtocol?
     internal var request: RequestProtocol
     init(_ request: RequestProtocol) {
         self.request = request

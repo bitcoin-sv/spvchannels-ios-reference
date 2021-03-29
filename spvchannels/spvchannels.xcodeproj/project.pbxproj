@@ -315,8 +315,8 @@
 			isa = PBXGroup;
 			children = (
 				A15E066525FA0B07000AB996 /* SpvChannelsTests.swift */,
-				A1CBDCA4260FC034005C4091 /* SpvChannelsLibSodiumEncryptionTests.swift */,
 				A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */,
+				A1CBDCA4260FC034005C4091 /* SpvChannelsLibSodiumEncryptionTests.swift */,
 				A15E066725FA0B07000AB996 /* Info.plist */,
 			);
 			path = spvchannelsTests;
@@ -387,9 +387,9 @@
 			isa = PBXGroup;
 			children = (
 				A13583FA260905B900B9BA6C /* SpvMessagingApi.swift */,
-				A1CBD9F5260CE411005C4091 /* SpvMessagingApiEnvironment.swift */,
-				A1CBDA2D260DBE6B005C4091 /* SpvMessagingEndpoint.swift */,
 				A1CBD9E2260CE259005C4091 /* SpvMessagingApiProtocol.swift */,
+				A1CBDA2D260DBE6B005C4091 /* SpvMessagingEndpoint.swift */,
+				A1CBD9F5260CE411005C4091 /* SpvMessagingApiEnvironment.swift */,
 				A15E077826006ABD000AB996 /* Models */,
 			);
 			path = Messages;

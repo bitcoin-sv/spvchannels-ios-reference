@@ -7,9 +7,18 @@
 import Foundation
 
 protocol NetworkSessionProtocol {
+    typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
+
     func dataTask(with request: URLRequest,
-                  completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask?
+                  completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol?
 }
+
+protocol URLSessionDataTaskProtocol {
+    func resume()
+    func cancel()
+}
+
+extension URLSessionDataTask: URLSessionDataTaskProtocol {}
 
 class APINetworkSession: NSObject, URLSessionDelegate {
     var session: URLSession?
@@ -42,7 +51,7 @@ class APINetworkSession: NSObject, URLSessionDelegate {
 extension APINetworkSession: NetworkSessionProtocol {
 
     func dataTask(with request: URLRequest,
-                  completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask? {
+                  completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol? {
         let dataTask = session?.dataTask(with: request) { (data, response, error) in
             completionHandler(data, response, error)
         }
