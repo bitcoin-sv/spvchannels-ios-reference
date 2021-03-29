@@ -80,13 +80,15 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
             return
         }
 
-        let bobPubKey = "3uNk31m6mtuKeK/f6U5EFREilaahQR2PewReP3Cypzg="
-        let bobSecKey = "Pr9g/f79rGIlIq+NpsXreUifC5KTTwRYLaWTYjhHfY8="
-        guard let encryption = SpvLibSodiumEncryption(publicKeyString: bobPubKey, secretKeyString: bobSecKey) else {
+        guard let encryption = SpvLibSodiumEncryption(publicKeyString: Constants.bobPublicKey.rawValue,
+                                                      secretKeyString: Constants.bobSecretKey.rawValue) else {
             presenter?.presentError(errorMessage: "Could not instantiate LibSodiumEncryption")
             return
         }
-        guard encryption.setEncryptionKey(recipientPublicKey: encryption.myPublicKey()) else { return }
+        guard encryption.setEncryptionKey(recipientPublicKeyString: Constants.bobPublicKey.rawValue) else {
+            presenter?.presentError(errorMessage: "Could not set encryption key")
+            return
+        }
 
         spvMessagingApi = spvChannelsSdk?.messagingWithToken(channelId: viewAction.channelId,
                                                              token: viewAction.token,

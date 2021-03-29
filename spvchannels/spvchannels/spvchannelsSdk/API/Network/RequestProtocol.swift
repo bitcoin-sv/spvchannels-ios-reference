@@ -38,7 +38,13 @@ extension RequestProtocol {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
-        request.httpBody = jsonBody
+        if [.post, .put, .patch].contains(method) {
+            if let rawBody = rawBody {
+                request.httpBody = rawBody
+            } else {
+                request.httpBody = jsonBody
+            }
+        }
         return request
     }
 
@@ -57,9 +63,6 @@ extension RequestProtocol {
     }
 
     private var jsonBody: Data? {
-        if let rawBody = rawBody {
-            return rawBody
-        }
         guard [.post, .put, .patch].contains(method), let parameters = bodyParameters else { return nil }
         return try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
     }

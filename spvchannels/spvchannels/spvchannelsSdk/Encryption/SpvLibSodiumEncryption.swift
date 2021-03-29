@@ -75,7 +75,9 @@ class SpvLibSodiumEncryption: SpvEncryptionProtocol {
     }
 
     init?(publicKey: Data, secretKey: Data) {
-        guard publicKey.count == 32, secretKey.count == 32, publicKey != secretKey else { return nil }
+        guard publicKey.count == 32,
+              secretKey.count == 32,
+              publicKey != secretKey else { return nil }
         self.myKeyPair = SodiumKeyPair(publicKey: publicKey, secretKey: secretKey)
     }
 
