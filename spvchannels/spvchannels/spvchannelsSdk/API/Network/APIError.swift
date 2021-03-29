@@ -11,11 +11,15 @@ enum APIError: Error, CustomStringConvertible {
     case unauthorized
     case forbidden
     case notFound
+    case conflict
+    case payloadTooLarge
     case invalidResponse(String)
     case badRequest(String)
     case serverError(String)
+    case insufficientStorage
     case parseError(String)
     case unknown
+    case encryptionError
 
     static func getErrorDescription(from error: Error?) -> String {
         var errorMessage: String
@@ -35,16 +39,16 @@ enum APIError: Error, CustomStringConvertible {
         case 401: return APIError.unauthorized
         case 403: return APIError.forbidden
         case 404: return APIError.notFound
+        case 409: return APIError.conflict
+        case 413: return APIError.payloadTooLarge
         case 500: return APIError.serverError(errorMessage)
+        case 507: return APIError.insufficientStorage
         default: return APIError.badRequest(errorMessage)
         }
     }
 
     static fileprivate func isErrorStatusCode(_ statusCode: Int) -> Bool {
-        if case 400 ... 599 = statusCode {
-            return true
-        }
-        return false
+        (400...599).contains(statusCode)
     }
 
     var description: String {
@@ -58,6 +62,10 @@ enum APIError: Error, CustomStringConvertible {
         case .serverError: return "Server error"
         case .unknown: return "unknown"
         case .parseError(let message): return "Parsing error (\(message))"
+        case .conflict: return "Conflict - sequencing failure"
+        case .payloadTooLarge: return "Payload error - Message too large"
+        case .insufficientStorage: return "Storage error - Server storage quota exceeded"
+        case .encryptionError: return "Payload encryption failed"
         }
     }
 

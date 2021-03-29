@@ -67,12 +67,18 @@ extension MessagingEndpoint: RequestProtocol {
         }
     }
 
-    var parameters: RequestParameters? {
+    var urlParameters: RequestParameters? {
         switch self {
         case .getAllMessages(let unread):
             return unread ? ["unread": true] : nil
-        case .markMessageRead(_, let parameters):
-            return parameters
+        default: return nil
+        }
+    }
+
+    var bodyParameters: RequestParameters? {
+        switch self {
+        case .markMessageRead(_, let bodyParameters):
+            return bodyParameters
         default: return nil
         }
     }

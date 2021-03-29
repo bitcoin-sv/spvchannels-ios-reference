@@ -15,14 +15,14 @@ protocol OperationProtocol {
 }
 
 enum OperationResult {
-    case data(_ : Data?, _ : HTTPURLResponse?)
-    case error(_ : Error?, _ : HTTPURLResponse?)
+    case data(Data?, _ : HTTPURLResponse?)
+    case error(Error?, _ : HTTPURLResponse?)
 }
 
 class APIOperation: OperationProtocol {
     typealias Output = OperationResult
 
-    private var task: URLSessionTask?
+    private var task: URLSessionDataTaskProtocol?
     internal var request: RequestProtocol
     init(_ request: RequestProtocol) {
         self.request = request

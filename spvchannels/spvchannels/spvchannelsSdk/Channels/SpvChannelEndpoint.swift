@@ -102,19 +102,13 @@ extension ChannelsEndpoint: RequestProtocol {
         return nil
     }
 
-    var parameters: RequestParameters? {
+    var urlParameters: RequestParameters? {
+        return nil
+    }
+
+    var bodyParameters: RequestParameters? {
         switch self {
-        case .getAllChannels:
-            return nil
-        case .getChannel:
-            return nil
-        case .deleteChannel:
-            return nil
-        case .getAllChannelTokens:
-            return nil
-        case .getChannelToken:
-            return nil
-        case .revokeChannelToken:
+        case .getAllChannels, .getChannel, .deleteChannel, .getAllChannelTokens, .getChannelToken, .revokeChannelToken:
             return nil
         case .createChannel(let parameters):
             return parameters

@@ -8,7 +8,8 @@ import Foundation
 
 protocol RequestDispatcherProtocol {
     init(environment: EnvironmentProtocol, networkSession: NetworkSessionProtocol)
-    func execute(request: RequestProtocol, completion: @escaping (OperationResult) -> Void) -> URLSessionTask?
+    func execute(request: RequestProtocol,
+                 completion: @escaping (OperationResult) -> Void) -> URLSessionDataTaskProtocol?
 }
 
 class APIRequestDispatcher: RequestDispatcherProtocol {
@@ -20,7 +21,8 @@ class APIRequestDispatcher: RequestDispatcherProtocol {
         self.networkSession = networkSession
     }
 
-    func execute(request: RequestProtocol, completion: @escaping (OperationResult) -> Void) -> URLSessionTask? {
+    func execute(request: RequestProtocol,
+                 completion: @escaping (OperationResult) -> Void) -> URLSessionDataTaskProtocol? {
         guard var urlRequest = request.urlRequest(with: environment) else {
             completion(.error(APIError.badRequest("Invalid URL for: \(request)"), nil))
             return nil
@@ -29,10 +31,10 @@ class APIRequestDispatcher: RequestDispatcherProtocol {
             urlRequest.addValue(value, forHTTPHeaderField: key)
         })
 
-        var task: URLSessionTask?
-        task = networkSession.dataTask(with: urlRequest, completionHandler: { [weak self] (data, urlResponse, error) in
+        var task: URLSessionDataTaskProtocol?
+        task = networkSession.dataTask(with: urlRequest) { [weak self] (data, urlResponse, error) in
             self?.handleDataTaskResponse(data: data, urlResponse: urlResponse, error: error, completion: completion)
-        })
+        }
         task?.resume()
         return task
     }
@@ -55,18 +57,6 @@ class APIRequestDispatcher: RequestDispatcherProtocol {
             DispatchQueue.main.async {
                 completion(OperationResult.error(error, urlResponse))
             }
-        }
-    }
-
-    private func parse(data: Data?) -> Result<Any, Error> {
-        guard let data = data else {
-            return .failure(APIError.noData)
-        }
-        do {
-            let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-            return .success(json)
-        } catch let exception {
-            return .failure(APIError.parseError(exception.localizedDescription))
         }
     }
 

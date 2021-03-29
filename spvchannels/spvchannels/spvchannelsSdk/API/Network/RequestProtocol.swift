@@ -7,7 +7,7 @@
 import Foundation
 
 typealias RequestHeaders = [String: String]
-typealias RequestParameters = [String: Any?]
+typealias RequestParameters = [String: Any]
 
 protocol EnvironmentProtocol {
     var headers: RequestHeaders? { get }
@@ -27,59 +27,43 @@ protocol RequestProtocol {
     var path: String { get }
     var method: RequestMethod { get }
     var headers: RequestHeaders? { get }
-    var parameters: RequestParameters? { get }
+    var urlParameters: RequestParameters? { get }
+    var bodyParameters: RequestParameters? { get }
     var rawBody: Data? { get }
 }
 
 extension RequestProtocol {
     public func urlRequest(with environment: EnvironmentProtocol) -> URLRequest? {
-        guard let url = url(with: environment.baseUrl) else {
-            return nil
-        }
+        guard let url = url(with: environment.baseUrl) else { return nil }
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
-        request.httpBody = jsonBody
+        if [.post, .put, .patch].contains(method) {
+            if let rawBody = rawBody {
+                request.httpBody = rawBody
+            } else {
+                request.httpBody = jsonBody
+            }
+        }
         return request
     }
 
     private func url(with baseUrl: String) -> URL? {
-        guard var urlComponents = URLComponents(string: baseUrl) else {
-            return nil
-        }
+        guard var urlComponents = URLComponents(string: baseUrl) else { return nil }
         urlComponents.path += path
         urlComponents.queryItems = queryItems
         return urlComponents.url
     }
 
     private var queryItems: [URLQueryItem]? {
-        guard method == .get, let parameters = parameters else {
-            return nil
-        }
-        return parameters.compactMap { (key: String, value: Any?) -> URLQueryItem? in
-            if let value = value {
-                let valueString = String(describing: value)
-                return URLQueryItem(name: key, value: valueString)
-            } else {
-                return nil
-            }
+        guard let parameters = urlParameters else { return nil }
+        return parameters.compactMap { key, value in
+            return URLQueryItem(name: key, value: String(describing: value))
         }
     }
 
     private var jsonBody: Data? {
-        if let rawBody = rawBody {
-            return rawBody
-        }
-        guard [.post, .put, .patch].contains(method), let parameters = parameters else {
-            return nil
-        }
-        var jsonBody: Data?
-        do {
-            jsonBody = try JSONSerialization.data(withJSONObject: parameters,
-                                                  options: .prettyPrinted)
-        } catch {
-            print(error)
-        }
-        return jsonBody
+        guard [.post, .put, .patch].contains(method), let parameters = bodyParameters else { return nil }
+        return try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
     }
 }

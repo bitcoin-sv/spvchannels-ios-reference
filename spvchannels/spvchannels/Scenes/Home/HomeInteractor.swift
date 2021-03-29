@@ -75,18 +75,32 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
 
     func createMessagingApiAndOpen(viewAction: HomeModels.CreateMessagingApi.ViewAction) {
         spvMessagingApi = nil
-        spvMessagingApi = spvChannelsSdk?.messagingWithToken(channelId: viewAction.channelId,
-                                                             token: viewAction.token)
-        if spvChannelsSdk == nil {
+        guard spvChannelsSdk != nil else {
             presenter?.presentError(errorMessage: "Initialize SPV Channels SDK first")
-        } else if spvMessagingApi != nil {
-            saveMessagingApiCredentials(channelId: viewAction.channelId,
-                                        token: viewAction.token)
-            presenter?.createMessagingApiAndOpen(actionResponse: .init(channelId: viewAction.channelId,
-                                                                       token: viewAction.token))
-        } else {
-            presenter?.presentError(errorMessage: "Could not instantiate Messaging API")
+            return
         }
+
+        guard let encryption = SpvLibSodiumEncryption(publicKeyString: Constants.bobPublicKey.rawValue,
+                                                      secretKeyString: Constants.bobSecretKey.rawValue) else {
+            presenter?.presentError(errorMessage: "Could not instantiate LibSodiumEncryption")
+            return
+        }
+        guard encryption.setEncryptionKey(recipientPublicKeyString: Constants.bobPublicKey.rawValue) else {
+            presenter?.presentError(errorMessage: "Could not set encryption key")
+            return
+        }
+
+        spvMessagingApi = spvChannelsSdk?.messagingWithToken(channelId: viewAction.channelId,
+                                                             token: viewAction.token,
+                                                             encryption: encryption)
+        guard spvMessagingApi != nil else {
+            presenter?.presentError(errorMessage: "Could not instantiate Messaging API")
+            return
+        }
+        saveMessagingApiCredentials(channelId: viewAction.channelId,
+                                    token: viewAction.token)
+        presenter?.createMessagingApiAndOpen(actionResponse: .init(channelId: viewAction.channelId,
+                                                                   token: viewAction.token))
     }
 
 }
