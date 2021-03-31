@@ -12,21 +12,27 @@ extension Scenes {
 
 protocol HomeViewActions {
     func loadSavedCredentials()
-    func createSdkAndChannelApi(viewAction: HomeModels.CreateSdkAndChannelApi.ViewAction)
-    func createMessagingApiAndOpen(viewAction: HomeModels.CreateMessagingApi.ViewAction)
+    func createSdk(viewAction: HomeModels.CreateSdk.ViewAction)
+    func createChannelApi(viewAction: HomeModels.CreateChannelApi.ViewAction)
+    func createMessagingApi(viewAction: HomeModels.CreateMessagingApi.ViewAction)
+    func getFirebaseToken(viewAction: HomeModels.GetFirebaseToken.ViewAction)
 }
 
 protocol HomeActionResponses {
-    func passSavedCredentials(actionResponse: HomeModels.LoadSavedCredentials.ResponseDisplay)
-    func createSdkAndChannelApi(actionResponse: HomeModels.CreateSdkAndChannelApi.ActionResponse)
-    func createMessagingApiAndOpen(actionResponse: HomeModels.CreateMessagingApi.ViewAction)
+    func passSavedCredentials(actionResponse: HomeModels.LoadSavedCredentials.ActionResponse)
+    func createSdk(actionResponse: HomeModels.CreateSdk.ActionResponse)
+    func createChannelApi(actionResponse: HomeModels.CreateChannelApi.ActionResponse)
+    func createMessagingApi(actionResponse: HomeModels.CreateMessagingApi.ActionResponse)
+    func getFirebaseToken(actionResponse: HomeModels.GetFirebaseToken.ActionResponse)
     func presentError(errorMessage: String)
 }
 
 protocol HomeResponseDisplays: AnyObject {
     func displaySavedCredentials(responseDisplay: HomeModels.LoadSavedCredentials.ResponseDisplay)
-    func displayCreateSdkAndOpenChannels(responseDisplay: HomeModels.CreateSdkAndChannelApi.ResponseDisplay)
-    func displayMessagingApiAndOpen(responseDisplay: HomeModels.CreateMessagingApi.ViewAction)
+    func displayCreateSdk(responseDisplay: HomeModels.CreateSdk.ResponseDisplay)
+    func displayCreateChannelApi(responseDisplay: HomeModels.CreateChannelApi.ResponseDisplay)
+    func displayMessagingApi(responseDisplay: HomeModels.CreateMessagingApi.ResponseDisplay)
+    func displayFirebaseToken(responseDisplay: HomeModels.GetFirebaseToken.ResponseDisplay)
     func displayErrorMessage(errorMessage: String)
 }
 

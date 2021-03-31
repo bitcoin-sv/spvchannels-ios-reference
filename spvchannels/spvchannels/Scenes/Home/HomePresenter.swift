@@ -12,7 +12,7 @@ final class HomePresenter: HomeActionResponses {
     weak var viewController: HomeResponseDisplays?
 
     // MARK: - ActionResponses
-    func passSavedCredentials(actionResponse: HomeModels.LoadSavedCredentials.ResponseDisplay) {
+    func passSavedCredentials(actionResponse: Models.LoadSavedCredentials.ActionResponse) {
         viewController?.displaySavedCredentials(responseDisplay: .init(baseUrl: actionResponse.baseUrl,
                                                                        accountId: actionResponse.accountId,
                                                                        username: actionResponse.username,
@@ -21,16 +21,20 @@ final class HomePresenter: HomeActionResponses {
                                                                        token: actionResponse.token))
     }
 
-    func createSdkAndChannelApi(actionResponse: HomeModels.CreateSdkAndChannelApi.ActionResponse) {
-        viewController?.displayCreateSdkAndOpenChannels(responseDisplay: .init(baseUrl: actionResponse.baseUrl,
-                                                                               accountId: actionResponse.accountId,
-                                                                               username: actionResponse.username,
-                                                                               password: actionResponse.password))
+    func createSdk(actionResponse: Models.CreateSdk.ActionResponse) {
+        viewController?.displayCreateSdk(responseDisplay: .init(result: actionResponse.result))
     }
 
-    func createMessagingApiAndOpen(actionResponse: HomeModels.CreateMessagingApi.ViewAction) {
-        viewController?.displayMessagingApiAndOpen(responseDisplay: .init(channelId: actionResponse.channelId,
-                                                                          token: actionResponse.token))
+    func getFirebaseToken(actionResponse: Models.GetFirebaseToken.ActionResponse) {
+        viewController?.displayFirebaseToken(responseDisplay: .init(token: actionResponse.token))
+    }
+
+    func createChannelApi(actionResponse: Models.CreateChannelApi.ActionResponse) {
+        viewController?.displayCreateChannelApi(responseDisplay: .init(result: actionResponse.result))
+    }
+
+    func createMessagingApi(actionResponse: Models.CreateMessagingApi.ActionResponse) {
+        viewController?.displayMessagingApi(responseDisplay: .init(result: actionResponse.result))
     }
 
     func presentError(errorMessage: String) {

@@ -35,5 +35,4 @@ class HomeRouter: HomeRouterType {
         }
     }
 
-    // MARK: - Additional Helpers
 }

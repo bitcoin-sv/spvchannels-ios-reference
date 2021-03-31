@@ -1,4 +1,9 @@
 PODS:
+  - Firebase/CoreOnly (7.8.1):
+    - FirebaseCore (= 7.8.0)
+  - Firebase/Messaging (7.8.1):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 7.8.0)
   - FirebaseCore (7.8.0):
     - FirebaseCoreDiagnostics (~> 7.4)
     - GoogleUtilities/Environment (~> 7.0)
@@ -56,12 +61,13 @@ PODS:
   - SwiftLint (0.43.1)
 
 DEPENDENCIES:
-  - FirebaseMessaging
+  - Firebase/Messaging
   - Sodium
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - Firebase
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseInstallations
@@ -75,6 +81,7 @@ SPEC REPOS:
     - SwiftLint
 
 SPEC CHECKSUMS:
+  Firebase: d59ad4129167f9f0d2a4f6c1f0c462254b6002c8
   FirebaseCore: 049029df3096e5c118917029be7da75ee16f3b1b
   FirebaseCoreDiagnostics: 066f996579cf097bdad3d7dc9a918d6b9e129c50
   FirebaseInstallations: 7f7ed0e7e27fb51f57291e1876e2ddb1524126c1
@@ -87,6 +94,6 @@ SPEC CHECKSUMS:
   Sodium: 23d11554ecd556196d313cf6130d406dfe7ac6da
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: 6cf68161c476c9dde211bd3d9767511b20950b56
+PODFILE CHECKSUM: e0328d863ea038c2ca1f7cbd9a1d60210462b314
 
 COCOAPODS: 1.10.1
