@@ -33,74 +33,73 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
                                                               token: token))
     }
 
-    private func saveChannelApiCredentials(baseUrl: String,
-                                           accountId: String,
-                                           username: String,
-                                           password: String) {
-        UserDefaults.standard.baseUrl = baseUrl
-        UserDefaults.standard.accountId = accountId
-        UserDefaults.standard.username = username
-        UserDefaults.standard.password = password
-    }
-
-    private func saveMessagingApiCredentials(channelId: String,
-                                             token: String) {
-        UserDefaults.standard.channelId = channelId
-        UserDefaults.standard.token = token
-    }
-
-    func createSdkAndChannelApi(viewAction: HomeModels.CreateSdkAndChannelApi.ViewAction) {
+    func createSdk(viewAction: Models.CreateSdk.ViewAction) {
         spvChannelsSdk = nil
-        spvChannelApi = nil
-        let firebase = FirebaseConfig(projectId: "pid", appId: "appid", apiKey: "apikey")
-        spvChannelsSdk = SpvChannelsSdk(firebase: firebase, baseUrl: viewAction.baseUrl)
-        saveChannelApiCredentials(baseUrl: viewAction.baseUrl,
-                        accountId: viewAction.accountId,
-                        username: viewAction.username,
-                        password: viewAction.password)
-        spvChannelApi = spvChannelsSdk?.channelWithCredentials(accountId: viewAction.accountId,
-                                                              username: viewAction.username,
-                                                              password: viewAction.password)
-        if spvChannelsSdk == nil {
-            presenter?.presentError(errorMessage: "Could not initialize SPV Channels SDK")
-        } else if spvChannelApi != nil {
-            presenter?.createSdkAndChannelApi(actionResponse: .init(baseUrl: viewAction.baseUrl,
-                                                                    accountId: viewAction.accountId,
-                                                                    username: viewAction.username,
-                                                                    password: viewAction.password))
-        } else {
-            presenter?.presentError(errorMessage: "Could not initialize Channels API")
+        let onOpenNotification = { [weak self] (message: String, channelId: String) -> Void in
+            self?.presenter?.presentError(errorMessage: "\(message)\n\(channelId)")
         }
+        let firebaseConfigFile = Bundle.main.path(forResource: Constants.firebaseConfigFile.rawValue,
+                                                  ofType: "plist") ?? ""
+        if let sdk = SpvChannelsSdk(firebaseConfig: firebaseConfigFile,
+                                    baseUrl: viewAction.baseUrl,
+                                    openNotification: onOpenNotification) {
+            spvChannelsSdk = sdk
+            UserDefaults.standard.baseUrl = viewAction.baseUrl
+        }
+        presenter?.createSdk(actionResponse: .init(result: spvChannelsSdk != nil))
     }
 
-    func createMessagingApiAndOpen(viewAction: HomeModels.CreateMessagingApi.ViewAction) {
-        spvMessagingApi = nil
+    func getFirebaseToken(viewAction: Models.GetFirebaseToken.ViewAction) {
+        let token = UserDefaults.standard.firebaseToken ?? "n/a"
+        presenter?.getFirebaseToken(actionResponse: .init(token: token))
+    }
+
+    func createChannelApi(viewAction: Models.CreateChannelApi.ViewAction) {
         guard spvChannelsSdk != nil else {
             presenter?.presentError(errorMessage: "Initialize SPV Channels SDK first")
             return
         }
+        spvChannelApi = nil
+        if let channelApi = spvChannelsSdk?.channelWithCredentials(accountId: viewAction.accountId,
+                                                              username: viewAction.username,
+                                                              password: viewAction.password) {
+            spvChannelApi = channelApi
+            UserDefaults.standard.accountId = viewAction.accountId
+            UserDefaults.standard.username = viewAction.username
+            UserDefaults.standard.password = viewAction.password
+        }
+        presenter?.createChannelApi(actionResponse: .init(result: spvChannelApi != nil))
+    }
 
-        guard let encryption = SpvLibSodiumEncryption(publicKeyString: Constants.bobPublicKey.rawValue,
-                                                      secretKeyString: Constants.bobSecretKey.rawValue) else {
-            presenter?.presentError(errorMessage: "Could not instantiate LibSodiumEncryption")
+    func createMessagingApi(viewAction: Models.CreateMessagingApi.ViewAction) {
+        guard spvChannelsSdk != nil else {
+            presenter?.presentError(errorMessage: "Initialize SPV Channels SDK first")
             return
         }
-        guard encryption.setEncryptionKey(recipientPublicKeyString: Constants.bobPublicKey.rawValue) else {
-            presenter?.presentError(errorMessage: "Could not set encryption key")
-            return
+        spvMessagingApi = nil
+
+        var encryptionService: SpvEncryptionProtocol
+        if viewAction.encryption {
+            if let encryptionClass = SpvLibSodiumEncryption(publicKeyString: Constants.bobPublicKey.rawValue,
+                                                            secretKeyString: Constants.bobSecretKey.rawValue),
+               encryptionClass.setEncryptionKey(recipientPublicKeyString: Constants.bobPublicKey.rawValue) {
+                encryptionService = encryptionClass
+            } else {
+                presenter?.presentError(errorMessage: "Could not create encryption class and set key")
+                return
+            }
+        } else {
+            encryptionService = SpvNoOpEncryption()
         }
 
-        spvMessagingApi = spvChannelsSdk?.messagingWithToken(channelId: viewAction.channelId,
-                                                             token: viewAction.token,
-                                                             encryption: encryption)
-        guard spvMessagingApi != nil else {
-            presenter?.presentError(errorMessage: "Could not instantiate Messaging API")
-            return
+        if let messagingApi = spvChannelsSdk?.messagingWithToken(channelId: viewAction.channelId,
+                                                                 token: viewAction.token,
+                                                                 encryption: encryptionService) {
+            spvMessagingApi = messagingApi
+            UserDefaults.standard.channelId = viewAction.channelId
+            UserDefaults.standard.token = viewAction.token
         }
-        saveMessagingApiCredentials(channelId: viewAction.channelId,
-                                    token: viewAction.token)
-        presenter?.createMessagingApiAndOpen(actionResponse: .init(channelId: viewAction.channelId,
-                                                                   token: viewAction.token))
+        presenter?.createMessagingApi(actionResponse: .init(result: spvMessagingApi != nil))
     }
 
 }

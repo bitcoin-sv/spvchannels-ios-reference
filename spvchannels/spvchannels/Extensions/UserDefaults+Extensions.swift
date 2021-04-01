@@ -15,6 +15,7 @@ extension UserDefaults {
         case password = "password"
         case token = "token"
         case channelId = "channel_id"
+        case firebaseToken = "firebase_token"
     }
 
     // MARK: -
@@ -61,4 +62,10 @@ extension UserDefaults {
         get { Self.getValue(for: .token) }
         set { Self.setValue(value: newValue, for: .token) }
     }
+
+    var firebaseToken: String? {
+        get { Self.getValue(for: .firebaseToken) }
+        set { Self.setValue(value: newValue, for: .firebaseToken) }
+    }
+
 }

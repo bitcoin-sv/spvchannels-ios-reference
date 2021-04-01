@@ -8,14 +8,10 @@ target 'spvchannels' do
   # Pods for spvchannels
   pod 'SwiftLint'
   pod 'Sodium'
-  pod 'FirebaseMessaging'
+  pod 'Firebase/Messaging'
 
   target 'spvchannelsTests' do
     inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'spvchannelsUITests' do
     # Pods for testing
   end
 

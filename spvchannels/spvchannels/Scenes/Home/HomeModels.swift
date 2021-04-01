@@ -8,24 +8,29 @@ import Foundation
 
 enum HomeModels {
 
-    enum CreateSdkAndChannelApi {
+    enum CreateSdk {
         struct ViewAction {
             let baseUrl: String
+        }
+        struct ActionResponse {
+            let result: Bool
+        }
+        struct ResponseDisplay {
+            let result: Bool
+        }
+    }
+
+    enum CreateChannelApi {
+        struct ViewAction {
             let accountId: String
             let username: String
             let password: String
         }
         struct ActionResponse {
-            let baseUrl: String
-            let accountId: String
-            let username: String
-            let password: String
+            let result: Bool
         }
         struct ResponseDisplay {
-            let baseUrl: String
-            let accountId: String
-            let username: String
-            let password: String
+            let result: Bool
         }
     }
 
@@ -53,14 +58,23 @@ enum HomeModels {
         struct ViewAction {
             let channelId: String
             let token: String
+            let encryption: Bool
         }
         struct ActionResponse {
-            let channelId: String
-            let tokenId: String
+            let result: Bool
         }
         struct ResponseDisplay {
-            let channelId: String
-            let tokenId: String
+            let result: Bool
+        }
+    }
+
+    enum GetFirebaseToken {
+        struct ViewAction {}
+        struct ActionResponse {
+            let token: String
+        }
+        struct ResponseDisplay {
+            let token: String
         }
     }
 

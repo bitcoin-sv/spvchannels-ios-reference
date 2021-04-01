@@ -39,7 +39,10 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
         return spacer
     }()
 
-    private lazy var separator = UIView(height: 3, backgroundColor: .darkGray)
+    private lazy var separator1 = UIView(height: 2, backgroundColor: .darkGray)
+    private lazy var separator2 = UIView(height: 2, backgroundColor: .darkGray)
+    private lazy var separator3 = UIView(height: 2, backgroundColor: .darkGray)
+    private lazy var separator4 = UIView(height: 2, backgroundColor: .darkGray)
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel(text: "SPV Channels SDK test app")
@@ -48,36 +51,76 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
         return label
     }()
 
+    private lazy var baseUrlStack = UIStackView(views: [UILabel(text: "Base URL:"), baseUrlTextField],
+                                                distribution: .fillProportionally)
     private lazy var baseUrlTextField = RoundedTextField(placeholder: "Enter base url")
+
+    private lazy var accountIdStack = UIStackView(views: [UILabel(text: "Account ID:"), accountIdTextField],
+                                                  distribution: .fillProportionally)
     private lazy var accountIdTextField = RoundedTextField(placeholder: "Enter account ID")
+
+    private lazy var usernameStack = UIStackView(views: [UILabel(text: "Username:"), usernameTextField],
+                                                 distribution: .fillProportionally)
     private lazy var usernameTextField = RoundedTextField(placeholder: "Enter username")
+
+    private lazy var passwordStack = UIStackView(views: [UILabel(text: "Password:"), passwordTextField],
+                                                 distribution: .fillProportionally)
+
     private lazy var passwordTextField = RoundedTextField(placeholder: "Enter password")
+    private lazy var createSdkButton = RoundedButton(title: "INITIALIZE SPV CHANNELS SDK",
+                                                           action: #selector(createSdkAction),
+                                                           target: self)
     private lazy var openChannelsAPIButton = RoundedButton(title: "OPEN CHANNELS API",
                                                            action: #selector(openChannelsApiAction),
                                                            target: self)
 
     private lazy var channelIdTextField = RoundedTextField(placeholder: "Enter channel ID")
     private lazy var channelTokenTextField = RoundedTextField(placeholder: "Enter channel token")
+    private lazy var encryptionSwitch = UISwitch(value: false)
+    private lazy var encryptionStack = UIStackView(views: [UILabel(text: "libSodium Encryption"),
+                                                           encryptionSwitch])
     private lazy var openMessagingAPIButton = RoundedButton(title: "OPEN MESSAGING API",
                                                            action: #selector(openMessagingAction),
                                                            target: self)
 
+    private lazy var firebaseTokenLabel = UILabel(text: "Firebase token:")
+
+    private lazy var firebaseToken: UITextView = {
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.layer.cornerRadius = 8
+        textView.layer.borderWidth = 2
+        textView.layer.borderColor = UIColor.darkGray.cgColor
+        textView.isEditable = false
+        return textView
+    }()
+
     private lazy var stack = UIStackView(views: [titleLabel,
-                                                 separator,
-                                                 baseUrlTextField,
-                                                 accountIdTextField,
-                                                 usernameTextField,
-                                                 passwordTextField,
+                                                 separator1,
+                                                 baseUrlStack,
+                                                 createSdkButton,
+                                                 separator2,
+                                                 accountIdStack,
+                                                 usernameStack,
+                                                 passwordStack,
                                                  openChannelsAPIButton,
+                                                 separator3,
                                                  channelIdTextField,
                                                  channelTokenTextField,
+                                                 encryptionStack,
                                                  openMessagingAPIButton,
-                                                 spacer],
+                                                 separator4,
+                                                 firebaseTokenLabel,
+                                                 firebaseToken],
                                          axis: .vertical)
 
     private func setupUI() {
         view.addSubview(stack)
         stack.pin(to: view, insets: .init(top: 40, left: 10.0, bottom: 40, right: 10.0))
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        (view.getAllSubviews() as [UITextField]).forEach { $0.delegate = self }
     }
 
     // MARK: - ViewController lifecycle
@@ -92,25 +135,43 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
     }
 
     // MARK: - ViewActions
+    @objc func createSdkAction(_ sender: UIButton) {
+        hideKeyboard()
+        guard let baseUrl = baseUrlTextField.text else {
+            displayAlertMessage(message: "Please fill base URL")
+            return
+        }
+        interactor?.createSdk(viewAction: .init(baseUrl: baseUrl))
+    }
+
     @objc func openChannelsApiAction(_ sender: UIButton) {
-        guard let baseUrl = baseUrlTextField.text,
-              let accountId = accountIdTextField.text,
+        hideKeyboard()
+        guard let accountId = accountIdTextField.text,
+              !accountId.isEmpty,
               let userName = usernameTextField.text,
-              let password = passwordTextField.text else {
+              !userName.isEmpty,
+              let password = passwordTextField.text,
+              !password.isEmpty else {
             displayAlertMessage(message: "Please fill all required fields")
             return
         }
-        interactor?.createSdkAndChannelApi(viewAction: .init(baseUrl: baseUrl,
-                                                             accountId: accountId,
-                                                             username: userName,
-                                                             password: password))
+        interactor?.createChannelApi(viewAction: .init(accountId: accountId,
+                                                       username: userName,
+                                                       password: password))
     }
 
     @objc func openMessagingAction(_ sender: UIButton) {
-        let channelId = channelIdTextField.text ?? ""
-        let channelToken = channelTokenTextField.text ?? ""
-        interactor?.createMessagingApiAndOpen(viewAction: .init(channelId: channelId,
-                                                                token: channelToken))
+        guard let channelId = channelIdTextField.text,
+              !channelId.isEmpty,
+              let channelToken = channelTokenTextField.text,
+              !channelToken.isEmpty else {
+            displayAlertMessage(message: "Please fill all required fields")
+            return
+        }
+        let encryption = encryptionSwitch.isOn
+        interactor?.createMessagingApi(viewAction: .init(channelId: channelId,
+                                                         token: channelToken,
+                                                         encryption: encryption))
     }
 
     private func loadSavedCredentials() {
@@ -128,12 +189,32 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
         channelTokenTextField.text = responseDisplay.token
     }
 
-    func displayCreateSdkAndOpenChannels(responseDisplay: Models.CreateSdkAndChannelApi.ResponseDisplay) {
-        router?.routeToChannels()
+    func displayCreateSdk(responseDisplay: Models.CreateSdk.ResponseDisplay) {
+        if responseDisplay.result {
+            displayAlertMessage(message: "SPV Channels SDK initialized successfully")
+            interactor?.getFirebaseToken(viewAction: .init())
+        } else {
+            displayErrorMessage(errorMessage: "SPV Channels SDK initialization failed")
+        }
     }
 
-    func displayMessagingApiAndOpen(responseDisplay: Models.CreateMessagingApi.ViewAction) {
-        router?.routeToMessages()
+    func displayFirebaseToken(responseDisplay: Models.GetFirebaseToken.ResponseDisplay) {
+        firebaseToken.text = responseDisplay.token
+    }
+    func displayCreateChannelApi(responseDisplay: Models.CreateChannelApi.ResponseDisplay) {
+        if responseDisplay.result {
+            router?.routeToChannels()
+        } else {
+            displayErrorMessage(errorMessage: "Channels API initialization failed")
+        }
+    }
+
+    func displayMessagingApi(responseDisplay: Models.CreateMessagingApi.ResponseDisplay) {
+        if responseDisplay.result {
+            router?.routeToMessages()
+        } else {
+            displayErrorMessage(errorMessage: "Messaging API initialization failed")
+        }
     }
 
     func displayErrorMessage(errorMessage: String) {
@@ -149,4 +230,16 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
         present(alert, animated: true, completion: nil)
     }
 
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+
+}
+
+extension HomeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        textField.resignFirstResponder()
+        return true
+    }
 }

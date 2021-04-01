@@ -8,3 +8,5 @@ disabled_rules:
 function_parameter_count:
     warning: 6
     error: 8
+
+cyclomatic_complexity: 11

@@ -90,6 +90,10 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
         edgesForExtendedLayout = []
         view.addSubview(stack)
         stack.pin(to: view, insets: .init(top: 10, left: 10.0, bottom: 40, right: 10.0))
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        (view.getAllSubviews() as [UITextField]).forEach { $0.delegate = self }
         setupMessagingUI()
         setupActionButton()
         interactor?.getChannelInfo(viewAction: .init())
@@ -165,6 +169,7 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
 
     // MARK: - ViewActions
     @objc func goButtonTapped(_ sender: UIButton) {
+        hideKeyboard()
         let contentType = contentTypeTextField.text ?? ""
         let messageId = messageIdTextField.text ?? ""
         let payload = messagePayloadTextField.text ?? ""
@@ -202,6 +207,20 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
             alert.dismiss(animated: true, completion: nil)
         }))
         present(alert, animated: true, completion: nil)
+    }
+
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+
+}
+
+extension MessagingViewController: UITextFieldDelegate {
+
+    @objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        textField.resignFirstResponder()
+        return true
     }
 
 }

@@ -14,8 +14,6 @@
 		A135836F2608A2DB00B9BA6C /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135836E2608A2DB00B9BA6C /* HomePresenter.swift */; };
 		A13583952608A8FB00B9BA6C /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583942608A8FB00B9BA6C /* HomeRouter.swift */; };
 		A13583A02608A98700B9BA6C /* CleanVIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135839F2608A98700B9BA6C /* CleanVIP.swift */; };
-		A13583D92608C95E00B9BA6C /* FirebaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583D82608C95E00B9BA6C /* FirebaseConfig.swift */; };
-		A13583DE2608C97800B9BA6C /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583DD2608C97700B9BA6C /* TokenStorage.swift */; };
 		A13583E3260903D200B9BA6C /* SpvChannelApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583E2260903D200B9BA6C /* SpvChannelApi.swift */; };
 		A13583E82609041C00B9BA6C /* SpvEncryptionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583E72609041C00B9BA6C /* SpvEncryptionProtocol.swift */; };
 		A13583ED2609048000B9BA6C /* SpvNoOpEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13583EC2609048000B9BA6C /* SpvNoOpEncryption.swift */; };
@@ -55,6 +53,12 @@
 		A15E080D26014D88000AB996 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E080926014D88000AB996 /* Coordinatable.swift */; };
 		A15E085626015BF2000AB996 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E085526015BF2000AB996 /* UIView+Extensions.swift */; };
 		A1AC72F02611FF6F00E0A190 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC72EF2611FF6F00E0A190 /* Constants.swift */; };
+		A1BDBE9126145B6700613B2B /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BDBE9026145B6700613B2B /* ObjC.m */; };
+		A1BDBFBC2614969800613B2B /* SPV-FCM-GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1BDBFBB2614969800613B2B /* SPV-FCM-GoogleService-Info.plist */; };
+		A1BDC0412614FE6100613B2B /* SpvFirebaseTokenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BDC01C2614FB5500613B2B /* SpvFirebaseTokenEndpoint.swift */; };
+		A1BDC0422614FE6100613B2B /* SpvFirebaseTokenApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BDC01B2614FB5500613B2B /* SpvFirebaseTokenApiProtocol.swift */; };
+		A1BDC0432614FE6100613B2B /* SpvFirebaseTokenApiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BDC01E2614FB5500613B2B /* SpvFirebaseTokenApiEnvironment.swift */; };
+		A1BDC0442614FE6100613B2B /* SpvFirebaseTokenApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BDC01D2614FB5500613B2B /* SpvFirebaseTokenApi.swift */; };
 		A1CBD813260BE4D6005C4091 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD812260BE4D6005C4091 /* RequestProtocol.swift */; };
 		A1CBD818260BE5A6005C4091 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD817260BE5A6005C4091 /* APIError.swift */; };
 		A1CBD865260BEF31005C4091 /* SpvChannelsApiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD864260BEF31005C4091 /* SpvChannelsApiEnvironment.swift */; };
@@ -97,8 +101,6 @@
 		A135836E2608A2DB00B9BA6C /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		A13583942608A8FB00B9BA6C /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		A135839F2608A98700B9BA6C /* CleanVIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanVIP.swift; sourceTree = "<group>"; };
-		A13583D82608C95E00B9BA6C /* FirebaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConfig.swift; sourceTree = "<group>"; };
-		A13583DD2608C97700B9BA6C /* TokenStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
 		A13583E2260903D200B9BA6C /* SpvChannelApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelApi.swift; sourceTree = "<group>"; };
 		A13583E72609041C00B9BA6C /* SpvEncryptionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvEncryptionProtocol.swift; sourceTree = "<group>"; };
 		A13583EC2609048000B9BA6C /* SpvNoOpEncryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvNoOpEncryption.swift; sourceTree = "<group>"; };
@@ -143,6 +145,14 @@
 		A15E080926014D88000AB996 /* Coordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		A15E085526015BF2000AB996 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		A1AC72EF2611FF6F00E0A190 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A1BDBE8F26145B6700613B2B /* spvchannels-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "spvchannels-Bridging-Header.h"; sourceTree = "<group>"; };
+		A1BDBE9026145B6700613B2B /* ObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjC.m; sourceTree = "<group>"; };
+		A1BDBEA22614603300613B2B /* ObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjC.h; sourceTree = "<group>"; };
+		A1BDBFBB2614969800613B2B /* SPV-FCM-GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SPV-FCM-GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A1BDC01B2614FB5500613B2B /* SpvFirebaseTokenApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvFirebaseTokenApiProtocol.swift; sourceTree = "<group>"; };
+		A1BDC01C2614FB5500613B2B /* SpvFirebaseTokenEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvFirebaseTokenEndpoint.swift; sourceTree = "<group>"; };
+		A1BDC01D2614FB5500613B2B /* SpvFirebaseTokenApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvFirebaseTokenApi.swift; sourceTree = "<group>"; };
+		A1BDC01E2614FB5500613B2B /* SpvFirebaseTokenApiEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvFirebaseTokenApiEnvironment.swift; sourceTree = "<group>"; };
 		A1CBD812260BE4D6005C4091 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		A1CBD817260BE5A6005C4091 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		A1CBD864260BEF31005C4091 /* SpvChannelsApiEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelsApiEnvironment.swift; sourceTree = "<group>"; };
@@ -223,13 +233,15 @@
 			path = Channels;
 			sourceTree = "<group>";
 		};
-		A13583D72608C94900B9BA6C /* Firebase */ = {
+		A13583D72608C94900B9BA6C /* FirebaseToken */ = {
 			isa = PBXGroup;
 			children = (
-				A13583D82608C95E00B9BA6C /* FirebaseConfig.swift */,
-				A13583DD2608C97700B9BA6C /* TokenStorage.swift */,
+				A1BDC01E2614FB5500613B2B /* SpvFirebaseTokenApiEnvironment.swift */,
+				A1BDC01C2614FB5500613B2B /* SpvFirebaseTokenEndpoint.swift */,
+				A1BDC01B2614FB5500613B2B /* SpvFirebaseTokenApiProtocol.swift */,
+				A1BDC01D2614FB5500613B2B /* SpvFirebaseTokenApi.swift */,
 			);
-			path = Firebase;
+			path = FirebaseToken;
 			sourceTree = "<group>";
 		};
 		A13584512609C7A900B9BA6C /* Views */ = {
@@ -277,6 +289,7 @@
 		A15E064D25FA0B06000AB996 /* spvchannels */ = {
 			isa = PBXGroup;
 			children = (
+				A1BDBFBA2614968600613B2B /* Resources */,
 				A13584512609C7A900B9BA6C /* Views */,
 				A15E080526014D77000AB996 /* Coordinator */,
 				A15E069D25FAB688000AB996 /* Extensions */,
@@ -321,11 +334,12 @@
 			isa = PBXGroup;
 			children = (
 				A15E077C26006B29000AB996 /* SpvChannelsSdk.swift */,
+				A1BDBEA52614633200613B2B /* ObjC */,
 				A15E078126006BCA000AB996 /* API */,
 				A15E077326006A9A000AB996 /* Channels */,
 				A15E077726006AB5000AB996 /* Messages */,
 				A1CBD82D260BEB58005C4091 /* Encryption */,
-				A13583D72608C94900B9BA6C /* Firebase */,
+				A13583D72608C94900B9BA6C /* FirebaseToken */,
 			);
 			path = spvchannelsSdk;
 			sourceTree = "<group>";
@@ -346,10 +360,10 @@
 		A15E077326006A9A000AB996 /* Channels */ = {
 			isa = PBXGroup;
 			children = (
-				A13583E2260903D200B9BA6C /* SpvChannelApi.swift */,
-				A15E079026008BCD000AB996 /* SpvChannelsApiProtocol.swift */,
-				A1CBD89D260C4A5D005C4091 /* SpvChannelEndpoint.swift */,
 				A1CBD864260BEF31005C4091 /* SpvChannelsApiEnvironment.swift */,
+				A1CBD89D260C4A5D005C4091 /* SpvChannelEndpoint.swift */,
+				A15E079026008BCD000AB996 /* SpvChannelsApiProtocol.swift */,
+				A13583E2260903D200B9BA6C /* SpvChannelApi.swift */,
 				A15E070325FEBC84000AB996 /* Models */,
 			);
 			path = Channels;
@@ -414,6 +428,24 @@
 				A1CBD873260BEFE0005C4091 /* APIOperation.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		A1BDBEA52614633200613B2B /* ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				A1BDBE9026145B6700613B2B /* ObjC.m */,
+				A1BDBEA22614603300613B2B /* ObjC.h */,
+				A1BDBE8F26145B6700613B2B /* spvchannels-Bridging-Header.h */,
+			);
+			path = ObjC;
+			sourceTree = "<group>";
+		};
+		A1BDBFBA2614968600613B2B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A1BDBFBB2614969800613B2B /* SPV-FCM-GoogleService-Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		A1CBD82D260BEB58005C4091 /* Encryption */ = {
@@ -492,6 +524,7 @@
 				TargetAttributes = {
 					A15E064A25FA0B06000AB996 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					A15E066025FA0B07000AB996 = {
 						CreatedOnToolsVersion = 12.4;
@@ -523,6 +556,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1BDBFBC2614969800613B2B /* SPV-FCM-GoogleService-Info.plist in Resources */,
 				A15E065B25FA0B07000AB996 /* LaunchScreen.storyboard in Resources */,
 				A15E065825FA0B07000AB996 /* Assets.xcassets in Resources */,
 			);
@@ -634,7 +668,9 @@
 				A135840F260907C000B9BA6C /* ChannelsInteractor.swift in Sources */,
 				A135835C2608A24E00B9BA6C /* HomeModels.swift in Sources */,
 				A15E071425FEBCC7000AB996 /* ChannelPermissions.swift in Sources */,
+				A1BDBE9126145B6700613B2B /* ObjC.m in Sources */,
 				A15E070F25FEBCB5000AB996 /* ChannelInfo.swift in Sources */,
+				A1BDC0432614FE6100613B2B /* SpvFirebaseTokenApiEnvironment.swift in Sources */,
 				A1CBDB5B260E078C005C4091 /* Message.swift in Sources */,
 				A13583FB260905B900B9BA6C /* SpvMessagingApi.swift in Sources */,
 				A1CBDA2E260DBE6B005C4091 /* SpvMessagingEndpoint.swift in Sources */,
@@ -650,8 +686,8 @@
 				A13584002609078D00B9BA6C /* ChannelsVIP.swift in Sources */,
 				A15E065325FA0B06000AB996 /* HomeViewController.swift in Sources */,
 				A15E077D26006B29000AB996 /* SpvChannelsSdk.swift in Sources */,
-				A13583DE2608C97800B9BA6C /* TokenStorage.swift in Sources */,
 				A135836F2608A2DB00B9BA6C /* HomePresenter.swift in Sources */,
+				A1BDC0412614FE6100613B2B /* SpvFirebaseTokenEndpoint.swift in Sources */,
 				A1CBD89E260C4A5D005C4091 /* SpvChannelEndpoint.swift in Sources */,
 				A1CBD865260BEF31005C4091 /* SpvChannelsApiEnvironment.swift in Sources */,
 				A13583952608A8FB00B9BA6C /* HomeRouter.swift in Sources */,
@@ -666,8 +702,10 @@
 				A1CBD813260BE4D6005C4091 /* RequestProtocol.swift in Sources */,
 				A15E071925FEBCD6000AB996 /* Retention.swift in Sources */,
 				A1358560260A45BD00B9BA6C /* MessagingInteractor.swift in Sources */,
+				A1BDC0442614FE6100613B2B /* SpvFirebaseTokenApi.swift in Sources */,
 				A1CBD86F260BEFA6005C4091 /* APIRequestDispatcher.swift in Sources */,
 				A15E064F25FA0B06000AB996 /* AppDelegate.swift in Sources */,
+				A1BDC0422614FE6100613B2B /* SpvFirebaseTokenApiProtocol.swift in Sources */,
 				A15E085626015BF2000AB996 /* UIView+Extensions.swift in Sources */,
 				A1CBD86A260BEF6D005C4091 /* APINetworkSession.swift in Sources */,
 				A15E069F25FAB6B0000AB996 /* UserDefaults+Extensions.swift in Sources */,
@@ -679,7 +717,6 @@
 				A135856A260A462200B9BA6C /* MessagingRouter.swift in Sources */,
 				A13583E82609041C00B9BA6C /* SpvEncryptionProtocol.swift in Sources */,
 				A135836A2608A2D500B9BA6C /* HomeInteractor.swift in Sources */,
-				A13583D92608C95E00B9BA6C /* FirebaseConfig.swift in Sources */,
 				A15E079126008BCD000AB996 /* SpvChannelsApiProtocol.swift in Sources */,
 				A15E071E25FEBCE1000AB996 /* ChannelToken.swift in Sources */,
 				A15E07A42600B78D000AB996 /* CreateTokenRequest.swift in Sources */,
@@ -840,9 +877,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = spvchannels/spvchannels.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L7DB8MDJK9;
+				DEVELOPMENT_TEAM = RX9SG4239U;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"$(inherited)",
+					"PB_FIELD_32BIT=1",
+					"PB_NO_PACKED_STRUCTS=1",
+					"PB_ENABLE_MALLOC=1",
+					FIREBASE_ANALYTICS_SUPPRESS_WARNING,
+				);
 				INFOPLIST_FILE = spvchannels/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -851,6 +899,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.equaleyes.spvchannels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "spvchannels/spvchannelsSdk/ObjC/spvchannels-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -862,9 +913,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = spvchannels/spvchannels.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L7DB8MDJK9;
+				DEVELOPMENT_TEAM = RX9SG4239U;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"$(inherited)",
+					"PB_FIELD_32BIT=1",
+					"PB_NO_PACKED_STRUCTS=1",
+					"PB_ENABLE_MALLOC=1",
+					FIREBASE_ANALYTICS_SUPPRESS_WARNING,
+				);
 				INFOPLIST_FILE = spvchannels/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -873,6 +935,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.equaleyes.spvchannels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "spvchannels/spvchannelsSdk/ObjC/spvchannels-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -884,8 +948,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L7DB8MDJK9;
+				DEVELOPMENT_TEAM = RX9SG4239U;
 				INFOPLIST_FILE = spvchannelsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -895,6 +961,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.equaleyes.spvchannelsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/spvchannels.app/spvchannels";
@@ -907,8 +975,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L7DB8MDJK9;
+				DEVELOPMENT_TEAM = RX9SG4239U;
 				INFOPLIST_FILE = spvchannelsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -918,6 +988,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.equaleyes.spvchannelsTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/spvchannels.app/spvchannels";

@@ -9,7 +9,7 @@ import Foundation
 enum ChannelsModels {
     enum CreateSdkAndChannelApi {
         struct ViewAction {
-            let firebase: FirebaseConfig
+            let firebaseConfig: String
             let baseUrl: String
             let accountId: String
             let username: String

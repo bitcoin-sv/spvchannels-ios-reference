@@ -36,6 +36,7 @@ enum APIError: Error, CustomStringConvertible {
         guard let response = response else { return APIError.invalidResponse(errorMessage) }
         guard isErrorStatusCode(response.statusCode) else { return nil }
         switch response.statusCode {
+        case 400: return APIError.badRequest(errorMessage)
         case 401: return APIError.unauthorized
         case 403: return APIError.forbidden
         case 404: return APIError.notFound
@@ -43,7 +44,7 @@ enum APIError: Error, CustomStringConvertible {
         case 413: return APIError.payloadTooLarge
         case 500: return APIError.serverError(errorMessage)
         case 507: return APIError.insufficientStorage
-        default: return APIError.badRequest(errorMessage)
+        default: return APIError.unknown
         }
     }
 
@@ -58,7 +59,7 @@ enum APIError: Error, CustomStringConvertible {
         case .forbidden: return "Forbidden"
         case .notFound: return "Not found"
         case .invalidResponse: return "Invalid response"
-        case .badRequest: return "Bad request"
+        case .badRequest(let message): return "Bad request - (\(message))"
         case .serverError: return "Server error"
         case .unknown: return "unknown"
         case .parseError(let message): return "Parsing error (\(message))"
