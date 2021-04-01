@@ -210,8 +210,7 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
     }
 
     @objc func hideKeyboard() {
-        (view.getAllSubviews() as [UITextField])
-            .forEach { $0.endEditing(true) }
+        view.endEditing(true)
     }
 
 }

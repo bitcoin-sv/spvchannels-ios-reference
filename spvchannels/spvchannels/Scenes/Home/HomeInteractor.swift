@@ -38,9 +38,8 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
         let onOpenNotification = { [weak self] (message: String, channelId: String) -> Void in
             self?.presenter?.presentError(errorMessage: "\(message)\n\(channelId)")
         }
-        let firebaseConfigFile = Bundle.main
-            .path(forResource: "SPV-FCM-GoogleService-Info",
-                  ofType: "plist") ?? ""
+        let firebaseConfigFile = Bundle.main.path(forResource: Constants.firebaseConfigFile.rawValue,
+                                                  ofType: "plist") ?? ""
         if let sdk = SpvChannelsSdk(firebaseConfig: firebaseConfigFile,
                                     baseUrl: viewAction.baseUrl,
                                     openNotification: onOpenNotification) {

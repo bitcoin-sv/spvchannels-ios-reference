@@ -33,7 +33,7 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
     }
 
     // MARK: - UI elements
-    private lazy var resultsTextView = { () -> UITextView in
+    private lazy var resultsTextView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.layer.cornerRadius = 8
@@ -219,8 +219,7 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
     }
 
     @objc func hideKeyboard() {
-        (view.getAllSubviews() as [UITextField])
-            .forEach { $0.endEditing(true) }
+        self.view.endEditing(true)
     }
 }
 

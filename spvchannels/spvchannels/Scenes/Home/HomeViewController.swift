@@ -85,7 +85,7 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
 
     private lazy var firebaseTokenLabel = UILabel(text: "Firebase token:")
 
-    private lazy var firebaseToken = { () -> UITextView in
+    private lazy var firebaseToken: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.layer.cornerRadius = 8
@@ -231,8 +231,7 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
     }
 
     @objc func hideKeyboard() {
-        (view.getAllSubviews() as [UITextField])
-            .forEach { $0.endEditing(true) }
+        view.endEditing(true)
     }
 
 }

@@ -50,6 +50,7 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
         guard let firebaseOptions = FirebaseOptions.init(contentsOfFile: configFile) else {
             return false
         }
+        // Needed to use Objective-C catch in a wrapper class to handle NSException that Firebase throws
         guard (try? ObjC.catch { [weak self] in
             guard let self = self else { return }
             FirebaseApp.configure(options: firebaseOptions)

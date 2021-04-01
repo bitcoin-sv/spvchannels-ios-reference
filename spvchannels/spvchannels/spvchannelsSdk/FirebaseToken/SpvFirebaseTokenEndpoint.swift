@@ -13,17 +13,11 @@ enum FirebaseTokenEndpoint {
 extension FirebaseTokenEndpoint: RequestProtocol {
 
     var path: String {
-        switch self {
-        case .updateFirebaseToken:
-            return "/"
-        }
+        "/"
     }
 
     var method: RequestMethod {
-        switch self {
-        case .updateFirebaseToken:
-            return .post
-        }
+        .post
     }
 
     var headers: RequestHeaders? {
@@ -31,11 +25,11 @@ extension FirebaseTokenEndpoint: RequestProtocol {
     }
 
     var rawBody: Data? {
-        return nil
+        nil
     }
 
     var urlParameters: RequestParameters? {
-        return nil
+        nil
     }
 
     var bodyParameters: RequestParameters? {
