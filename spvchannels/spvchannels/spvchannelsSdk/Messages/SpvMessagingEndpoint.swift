@@ -28,7 +28,7 @@ enum MessagingEndpoint {
 
     case getMaxSequence
     case getAllMessages(unread: Bool)
-    case markMessageRead(sequenceId: String, parameters: [String: Any])
+    case markMessageRead(sequenceId: String, urlParameters: [String: Any], bodyParameters: [String: Any])
     case sendMessage(contentType: String, payload: Data)
     case deleteMessage(sequenceId: String)
 }
@@ -39,7 +39,7 @@ extension MessagingEndpoint: RequestProtocol {
         switch self {
         case .getAllMessages, .getMaxSequence, .sendMessage:
             return ""
-        case .markMessageRead(let sequenceId, _):
+        case .markMessageRead(let sequenceId, _, _):
             return "/\(sequenceId)"
         case .deleteMessage(let sequenceId):
             return "/\(sequenceId)"
@@ -71,13 +71,15 @@ extension MessagingEndpoint: RequestProtocol {
         switch self {
         case .getAllMessages(let unread):
             return unread ? ["unread": true] : nil
+        case .markMessageRead(_, let urlParameters, _):
+            return urlParameters
         default: return nil
         }
     }
 
     var bodyParameters: RequestParameters? {
         switch self {
-        case .markMessageRead(_, let bodyParameters):
+        case .markMessageRead(_, _, let bodyParameters):
             return bodyParameters
         default: return nil
         }

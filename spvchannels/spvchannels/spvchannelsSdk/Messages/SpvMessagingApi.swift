@@ -72,11 +72,11 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
     }
 
     func markMessageRead(sequenceId: String, read: Bool, older: Bool, completion: @escaping StringResult) {
-        var parameters: [String: Any] = ["read": read]
-        if older {
-            parameters["older"] = true
-        }
-        let messagingRequest = MessagingEndpoint.markMessageRead(sequenceId: sequenceId, parameters: parameters)
+        let bodyParameters: [String: Any] = ["read": read]
+        let urlParameters: [String: Any] = ["older": older]
+        let messagingRequest = MessagingEndpoint.markMessageRead(sequenceId: sequenceId,
+                                                                 urlParameters: urlParameters,
+                                                                 bodyParameters: bodyParameters)
         let operation = APIOperation(messagingRequest)
 
         operation.execute(in: requestDispatcher) { result in
