@@ -93,6 +93,10 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
         edgesForExtendedLayout = []
         view.addSubview(stack)
         stack.pin(to: view, insets: .init(top: 10, left: 10.0, bottom: 40, right: 10.0))
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        (view.getAllSubviews() as [UITextField]).forEach { $0.delegate = self }
         setupChannelsUI()
         setupActionButton()
     }
@@ -171,6 +175,7 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
 
     // MARK: - ViewActions
     @objc func goButtonTapped(_ sender: UIButton) {
+        hideKeyboard()
         let publicRead = publicReadSwitch.isOn
         let publicWrite = publicWriteSwitch.isOn
         let locked = lockedSwitch.isOn
@@ -213,4 +218,16 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
         present(alert, animated: true, completion: nil)
     }
 
+    @objc func hideKeyboard() {
+        (view.getAllSubviews() as [UITextField])
+            .forEach { $0.endEditing(true) }
+    }
+}
+
+extension ChannelsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        textField.resignFirstResponder()
+        return true
+    }
 }

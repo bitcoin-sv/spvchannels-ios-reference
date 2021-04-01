@@ -64,7 +64,14 @@ class APIRequestDispatcher: RequestDispatcherProtocol {
         switch urlResponse.statusCode {
         case 200...299:
             return .success(data ?? Data())
-        case 400...599:
+        case 400:
+            if let data = data as? Data,
+               let errorMessage = String(data: data, encoding: .utf8) {
+                return .failure(APIError.badRequest(errorMessage))
+            } else {
+                return .failure(APIError.badRequest(""))
+            }
+        case 401...599:
             return .failure(APIError.getError(from: urlResponse, error: error) ?? APIError.unknown)
         default:
             return .failure(APIError.unknown)

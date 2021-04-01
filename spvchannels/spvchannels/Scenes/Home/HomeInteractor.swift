@@ -35,11 +35,15 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
 
     func createSdk(viewAction: Models.CreateSdk.ViewAction) {
         spvChannelsSdk = nil
+        let onOpenNotification = { [weak self] (message: String, channelId: String) -> Void in
+            self?.presenter?.presentError(errorMessage: "\(message)\n\(channelId)")
+        }
         let firebaseConfigFile = Bundle.main
             .path(forResource: "SPV-FCM-GoogleService-Info",
                   ofType: "plist") ?? ""
         if let sdk = SpvChannelsSdk(firebaseConfig: firebaseConfigFile,
-                                    baseUrl: viewAction.baseUrl) {
+                                    baseUrl: viewAction.baseUrl,
+                                    openNotification: onOpenNotification) {
             spvChannelsSdk = sdk
             UserDefaults.standard.baseUrl = viewAction.baseUrl
         }
@@ -73,21 +77,25 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
             presenter?.presentError(errorMessage: "Initialize SPV Channels SDK first")
             return
         }
-
         spvMessagingApi = nil
-        guard let encryption = SpvLibSodiumEncryption(publicKeyString: Constants.bobPublicKey.rawValue,
-                                                      secretKeyString: Constants.bobSecretKey.rawValue) else {
-            presenter?.presentError(errorMessage: "Could not instantiate LibSodiumEncryption")
-            return
-        }
-        guard encryption.setEncryptionKey(recipientPublicKeyString: Constants.bobPublicKey.rawValue) else {
-            presenter?.presentError(errorMessage: "Could not set encryption key")
-            return
+
+        var encryptionService: SpvEncryptionProtocol
+        if viewAction.encryption {
+            if let encryptionClass = SpvLibSodiumEncryption(publicKeyString: Constants.bobPublicKey.rawValue,
+                                                            secretKeyString: Constants.bobSecretKey.rawValue),
+               encryptionClass.setEncryptionKey(recipientPublicKeyString: Constants.bobPublicKey.rawValue) {
+                encryptionService = encryptionClass
+            } else {
+                presenter?.presentError(errorMessage: "Could not create encryption class and set key")
+                return
+            }
+        } else {
+            encryptionService = SpvNoOpEncryption()
         }
 
         if let messagingApi = spvChannelsSdk?.messagingWithToken(channelId: viewAction.channelId,
                                                                  token: viewAction.token,
-                                                                 encryption: encryption) {
+                                                                 encryption: encryptionService) {
             spvMessagingApi = messagingApi
             UserDefaults.standard.channelId = viewAction.channelId
             UserDefaults.standard.token = viewAction.token

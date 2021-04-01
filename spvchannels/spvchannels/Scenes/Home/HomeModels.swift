@@ -58,6 +58,7 @@ enum HomeModels {
         struct ViewAction {
             let channelId: String
             let token: String
+            let encryption: Bool
         }
         struct ActionResponse {
             let result: Bool

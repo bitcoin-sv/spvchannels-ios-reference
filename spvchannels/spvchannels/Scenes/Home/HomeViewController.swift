@@ -76,6 +76,9 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
 
     private lazy var channelIdTextField = RoundedTextField(placeholder: "Enter channel ID")
     private lazy var channelTokenTextField = RoundedTextField(placeholder: "Enter channel token")
+    private lazy var encryptionSwitch = UISwitch(value: false)
+    private lazy var encryptionStack = UIStackView(views: [UILabel(text: "libSodium Encryption"),
+                                                           encryptionSwitch])
     private lazy var openMessagingAPIButton = RoundedButton(title: "OPEN MESSAGING API",
                                                            action: #selector(openMessagingAction),
                                                            target: self)
@@ -104,6 +107,7 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
                                                  separator3,
                                                  channelIdTextField,
                                                  channelTokenTextField,
+                                                 encryptionStack,
                                                  openMessagingAPIButton,
                                                  separator4,
                                                  firebaseTokenLabel,
@@ -113,6 +117,10 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
     private func setupUI() {
         view.addSubview(stack)
         stack.pin(to: view, insets: .init(top: 40, left: 10.0, bottom: 40, right: 10.0))
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        (view.getAllSubviews() as [UITextField]).forEach { $0.delegate = self }
     }
 
     // MARK: - ViewController lifecycle
@@ -128,6 +136,7 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
 
     // MARK: - ViewActions
     @objc func createSdkAction(_ sender: UIButton) {
+        hideKeyboard()
         guard let baseUrl = baseUrlTextField.text else {
             displayAlertMessage(message: "Please fill base URL")
             return
@@ -136,9 +145,13 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
     }
 
     @objc func openChannelsApiAction(_ sender: UIButton) {
+        hideKeyboard()
         guard let accountId = accountIdTextField.text,
+              !accountId.isEmpty,
               let userName = usernameTextField.text,
-              let password = passwordTextField.text else {
+              !userName.isEmpty,
+              let password = passwordTextField.text,
+              !password.isEmpty else {
             displayAlertMessage(message: "Please fill all required fields")
             return
         }
@@ -148,10 +161,17 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
     }
 
     @objc func openMessagingAction(_ sender: UIButton) {
-        let channelId = channelIdTextField.text ?? ""
-        let channelToken = channelTokenTextField.text ?? ""
+        guard let channelId = channelIdTextField.text,
+              !channelId.isEmpty,
+              let channelToken = channelTokenTextField.text,
+              !channelToken.isEmpty else {
+            displayAlertMessage(message: "Please fill all required fields")
+            return
+        }
+        let encryption = encryptionSwitch.isOn
         interactor?.createMessagingApi(viewAction: .init(channelId: channelId,
-                                                         token: channelToken))
+                                                         token: channelToken,
+                                                         encryption: encryption))
     }
 
     private func loadSavedCredentials() {
@@ -210,4 +230,17 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
         present(alert, animated: true, completion: nil)
     }
 
+    @objc func hideKeyboard() {
+        (view.getAllSubviews() as [UITextField])
+            .forEach { $0.endEditing(true) }
+    }
+
+}
+
+extension HomeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        textField.resignFirstResponder()
+        return true
+    }
 }

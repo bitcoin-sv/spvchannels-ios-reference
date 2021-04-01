@@ -12,9 +12,11 @@ class SpvChannelsSdk: NSObject {
 
     let baseUrl: String
     private var updateTokenService: SpvFirebaseTokenApi?
+    private var openNotification: ((String, String) -> Void)?
 
-    init?(firebaseConfig: String = "", baseUrl: String) {
+    init?(firebaseConfig: String = "", baseUrl: String, openNotification: ((String, String) -> Void)? = nil) {
         self.baseUrl = baseUrl
+        self.openNotification = openNotification
         super.init()
         if !firebaseConfig.isEmpty {
             if setupFirebaseMessaging(configFile: firebaseConfig) {
@@ -37,13 +39,14 @@ class SpvChannelsSdk: NSObject {
 }
 
 extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
-    func setupFirebaseMessaging(configFile: String) -> Bool {
 
+    func setupFirebaseMessaging(configFile: String) -> Bool {
         let application = UIApplication.shared
-        FirebaseApp.app()?.delete({_ in})
+        Messaging.messaging().delegate = nil
         UNUserNotificationCenter.current().delegate = nil
         application.unregisterForRemoteNotifications()
-        Messaging.messaging().delegate = nil
+        FirebaseApp.app()?.delete({_ in})
+
         guard let firebaseOptions = FirebaseOptions.init(contentsOfFile: configFile) else {
             return false
         }
@@ -95,18 +98,17 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping
                                     (UNNotificationPresentationOptions) -> Void) {
-        let title = notification.request.content.title
-        let body = notification.request.content.body
-        print(#function, title, body)
         completionHandler([[.badge, .alert, .sound]])
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        let title = response.notification.request.content.title
-        let body = response.notification.request.content.body
-        print(#function, title, body)
+        let message = response.notification.request.content.title
+        let channelId = response.notification.request.content.body
+        DispatchQueue.main.async { [weak self] in
+            self?.openNotification?(message, channelId)
+        }
         completionHandler()
     }
 

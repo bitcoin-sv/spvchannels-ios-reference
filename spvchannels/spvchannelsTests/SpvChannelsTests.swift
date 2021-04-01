@@ -38,7 +38,7 @@ class SpvChannelApiTests: XCTestCase {
     override func setUpWithError() throws {
         mockSession = MockURLSession()
 
-        sdk = SpvChannelsSdk(firebase: FirebaseConfig(projectId: "", appId: "", apiKey: ""), baseUrl: "")
+        sdk = SpvChannelsSdk(baseUrl: "")
         channelApi = SpvChannelApi(baseUrl: "https://mock", accountId: "c1", username: "c2", password: "c3", networkSession: mockSession)
         messagingApi = SpvMessagingApi(baseUrl: "https://mock", channelId: "m1", token: "m2", encryption: SpvNoOpEncryption(), networkSession: mockSession)
     }
