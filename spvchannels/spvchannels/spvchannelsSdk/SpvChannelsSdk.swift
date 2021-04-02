@@ -77,12 +77,13 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
         updateFcmTokenIfNeeded(token: token)
     }
 
-    func updateFcmTokenIfNeeded(token: String) {
+    private func updateFcmTokenIfNeeded(token: String) {
         let currentToken = UserDefaults.standard.firebaseToken
         if token != currentToken {
-            UserDefaults.standard.firebaseToken = token
             updateTokenService?.updateFirebaseToken(token: token) { result in
-                print("TOKEN UPDATE: ", result)
+                if case .success = result {
+                    UserDefaults.standard.firebaseToken = token
+                }
             }
         }
     }

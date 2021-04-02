@@ -60,11 +60,4 @@ extension UIView {
         Self.getAllSubviews(from: self) as [T]
     }
 
-    func get<T: UIView>(all type: T.Type) -> [T] {
-        Self.getAllSubviews(from: self) as [T]
-    }
-
-    func get(all types: [UIView.Type]) -> [UIView] {
-        Self.getAllSubviews(from: self, types: types)
-    }
 }

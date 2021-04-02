@@ -32,4 +32,13 @@ extension Encodable {
         else { return "" }
         return jsonStr
     }
+
+    var asDictionary: [String: Any] {
+        guard let data = encoded(),
+              let dictionary = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+            return [:]
+        }
+        return dictionary
+    }
+
 }
