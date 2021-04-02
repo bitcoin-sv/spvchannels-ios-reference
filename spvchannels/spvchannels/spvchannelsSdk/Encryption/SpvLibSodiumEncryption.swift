@@ -16,10 +16,6 @@ extension Data {
 struct SodiumKeyPair: Codable {
     let publicKey: Data
     let secretKey: Data
-    enum CodingKeys: String, CodingKey {
-        case publicKey = "public_key"
-        case secretKey = "secret_key"
-    }
 }
 
 class SpvLibSodiumEncryption: SpvEncryptionProtocol {

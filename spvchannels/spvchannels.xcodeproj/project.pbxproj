@@ -49,8 +49,7 @@
 		A15E079126008BCD000AB996 /* SpvChannelsApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E079026008BCD000AB996 /* SpvChannelsApiProtocol.swift */; };
 		A15E07A42600B78D000AB996 /* CreateTokenRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E07A32600B78D000AB996 /* CreateTokenRequest.swift */; };
 		A15E080A26014D88000AB996 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E080626014D88000AB996 /* SceneCoordinator.swift */; };
-		A15E080C26014D88000AB996 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E080826014D88000AB996 /* Coordinator.swift */; };
-		A15E080D26014D88000AB996 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E080926014D88000AB996 /* Coordinatable.swift */; };
+		A15E080C26014D88000AB996 /* Coordinator+Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E080826014D88000AB996 /* Coordinator+Coordinatable.swift */; };
 		A15E085626015BF2000AB996 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E085526015BF2000AB996 /* UIView+Extensions.swift */; };
 		A1AC72F02611FF6F00E0A190 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC72EF2611FF6F00E0A190 /* Constants.swift */; };
 		A1BDBE9126145B6700613B2B /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BDBE9026145B6700613B2B /* ObjC.m */; };
@@ -59,6 +58,7 @@
 		A1BDC0422614FE6100613B2B /* SpvFirebaseTokenApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BDC01B2614FB5500613B2B /* SpvFirebaseTokenApiProtocol.swift */; };
 		A1BDC0432614FE6100613B2B /* SpvFirebaseTokenApiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BDC01E2614FB5500613B2B /* SpvFirebaseTokenApiEnvironment.swift */; };
 		A1BDC0442614FE6100613B2B /* SpvFirebaseTokenApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BDC01D2614FB5500613B2B /* SpvFirebaseTokenApi.swift */; };
+		A1C4BB722617187B00645F72 /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C4BB712617187B00645F72 /* DateFormatter+Extensions.swift */; };
 		A1CBD813260BE4D6005C4091 /* RequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD812260BE4D6005C4091 /* RequestProtocol.swift */; };
 		A1CBD818260BE5A6005C4091 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD817260BE5A6005C4091 /* APIError.swift */; };
 		A1CBD865260BEF31005C4091 /* SpvChannelsApiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBD864260BEF31005C4091 /* SpvChannelsApiEnvironment.swift */; };
@@ -141,8 +141,7 @@
 		A15E079026008BCD000AB996 /* SpvChannelsApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelsApiProtocol.swift; sourceTree = "<group>"; };
 		A15E07A32600B78D000AB996 /* CreateTokenRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTokenRequest.swift; sourceTree = "<group>"; };
 		A15E080626014D88000AB996 /* SceneCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
-		A15E080826014D88000AB996 /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		A15E080926014D88000AB996 /* Coordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
+		A15E080826014D88000AB996 /* Coordinator+Coordinatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Coordinator+Coordinatable.swift"; sourceTree = "<group>"; };
 		A15E085526015BF2000AB996 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		A1AC72EF2611FF6F00E0A190 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A1BDBE8F26145B6700613B2B /* spvchannels-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "spvchannels-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -153,6 +152,7 @@
 		A1BDC01C2614FB5500613B2B /* SpvFirebaseTokenEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvFirebaseTokenEndpoint.swift; sourceTree = "<group>"; };
 		A1BDC01D2614FB5500613B2B /* SpvFirebaseTokenApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvFirebaseTokenApi.swift; sourceTree = "<group>"; };
 		A1BDC01E2614FB5500613B2B /* SpvFirebaseTokenApiEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvFirebaseTokenApiEnvironment.swift; sourceTree = "<group>"; };
+		A1C4BB712617187B00645F72 /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		A1CBD812260BE4D6005C4091 /* RequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProtocol.swift; sourceTree = "<group>"; };
 		A1CBD817260BE5A6005C4091 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		A1CBD864260BEF31005C4091 /* SpvChannelsApiEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelsApiEnvironment.swift; sourceTree = "<group>"; };
@@ -325,6 +325,7 @@
 				A15E069E25FAB6B0000AB996 /* UserDefaults+Extensions.swift */,
 				A15E085526015BF2000AB996 /* UIView+Extensions.swift */,
 				A1F807F42601F8C900AAA5F7 /* Decodable+Extensions.swift */,
+				A1C4BB712617187B00645F72 /* DateFormatter+Extensions.swift */,
 				A13584802609DE8500B9BA6C /* Codable+Extensions.swift */,
 			);
 			path = Extensions;
@@ -400,9 +401,8 @@
 		A15E080526014D77000AB996 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				A15E080926014D88000AB996 /* Coordinatable.swift */,
 				A135839F2608A98700B9BA6C /* CleanVIP.swift */,
-				A15E080826014D88000AB996 /* Coordinator.swift */,
+				A15E080826014D88000AB996 /* Coordinator+Coordinatable.swift */,
 				A15E080626014D88000AB996 /* SceneCoordinator.swift */,
 			);
 			path = Coordinator;
@@ -502,6 +502,7 @@
 				A15E065D25FA0B07000AB996 /* Sources */,
 				A15E065E25FA0B07000AB996 /* Frameworks */,
 				A15E065F25FA0B07000AB996 /* Resources */,
+				7D314552FD56F249C441AE57 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -616,6 +617,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7D314552FD56F249C441AE57 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-spvchannelsTests/Pods-spvchannelsTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-spvchannelsTests/Pods-spvchannelsTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-spvchannelsTests/Pods-spvchannelsTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A15E06CD25FABC4E000AB996 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -662,7 +680,7 @@
 				A13583572608A24100B9BA6C /* HomeVIP.swift in Sources */,
 				A13583E3260903D200B9BA6C /* SpvChannelApi.swift in Sources */,
 				A135846D2609CA4200B9BA6C /* RoundedButton.swift in Sources */,
-				A15E080C26014D88000AB996 /* Coordinator.swift in Sources */,
+				A15E080C26014D88000AB996 /* Coordinator+Coordinatable.swift in Sources */,
 				A1358414260907CD00B9BA6C /* ChannelsPresenter.swift in Sources */,
 				A1CBD874260BEFE0005C4091 /* APIOperation.swift in Sources */,
 				A135840F260907C000B9BA6C /* ChannelsInteractor.swift in Sources */,
@@ -698,10 +716,10 @@
 				A13584E2260A17B700B9BA6C /* UISwitch+Extensions.swift in Sources */,
 				A13583A02608A98700B9BA6C /* CleanVIP.swift in Sources */,
 				A1CBD8C8260C7D78005C4091 /* CreateChannelRequest.swift in Sources */,
-				A15E080D26014D88000AB996 /* Coordinatable.swift in Sources */,
 				A1CBD813260BE4D6005C4091 /* RequestProtocol.swift in Sources */,
 				A15E071925FEBCD6000AB996 /* Retention.swift in Sources */,
 				A1358560260A45BD00B9BA6C /* MessagingInteractor.swift in Sources */,
+				A1C4BB722617187B00645F72 /* DateFormatter+Extensions.swift in Sources */,
 				A1BDC0442614FE6100613B2B /* SpvFirebaseTokenApi.swift in Sources */,
 				A1CBD86F260BEFA6005C4091 /* APIRequestDispatcher.swift in Sources */,
 				A15E064F25FA0B06000AB996 /* AppDelegate.swift in Sources */,

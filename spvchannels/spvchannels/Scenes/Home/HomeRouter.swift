@@ -27,10 +27,10 @@ class HomeRouter: HomeRouterType {
     func routeToMessages() {
         coordinator?.open(Scenes.Messaging) { destination in
             guard let sdk = dataStore?.spvChannelsSdk,
-                  let channelApi = dataStore?.spvMessagingApi else { return false }
+                  let messagingApi = dataStore?.spvMessagingApi else { return false }
             var destDataStore = destination.router?.dataStore
             destDataStore?.spvChannelsSdk = sdk
-            destDataStore?.spvMessagingApi = channelApi
+            destDataStore?.spvMessagingApi = messagingApi
             return true
         }
     }

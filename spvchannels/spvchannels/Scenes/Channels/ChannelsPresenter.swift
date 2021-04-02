@@ -22,7 +22,7 @@ final class ChannelsPresenter: ChannelsActionResponses {
     }
 
     // MARK: - Utility helpers
-    func makeJsonResult<T: Encodable>(result: Result<T, Error>) -> String {
+    private func makeJsonResult<T: Encodable>(result: Result<T, Error>) -> String {
         var resultStr: String
         switch result {
         case .success(let channel):
