@@ -1,12 +1,15 @@
 //
 //  SpvMessagingEndpoint.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
+/// Messaging API endpoint definition
 enum MessagingEndpoint {
+
+    /// UI action selection strings
     enum Actions: CaseIterable {
         case getMaxSequence, getAllMessages, markMessageRead, sendMessage, deleteMessage
 
@@ -26,6 +29,7 @@ enum MessagingEndpoint {
         }
     }
 
+    /// Messaging API call parameter definitions
     case getMaxSequence
     case getAllMessages(unread: Bool)
     case markMessageRead(sequenceId: String, urlParameters: [String: Any], bodyParameters: [String: Any])
@@ -35,6 +39,7 @@ enum MessagingEndpoint {
 
 extension MessagingEndpoint: RequestProtocol {
 
+    /// URL path of each API call
     var path: String {
         switch self {
         case .getAllMessages, .getMaxSequence, .sendMessage:
@@ -46,6 +51,7 @@ extension MessagingEndpoint: RequestProtocol {
         }
     }
 
+    /// HTTP method of each API call
     var method: RequestMethod {
         switch self {
         case .getMaxSequence:
@@ -59,6 +65,7 @@ extension MessagingEndpoint: RequestProtocol {
         }
     }
 
+    /// Additional HTTP headers of each API call
     var headers: RequestHeaders? {
         switch self {
         case .sendMessage(let contentType, _):
@@ -67,6 +74,7 @@ extension MessagingEndpoint: RequestProtocol {
         }
     }
 
+    /// HTTP request URL parameters of each API call
     var urlParameters: RequestParameters? {
         switch self {
         case .getAllMessages(let unread):
@@ -77,6 +85,7 @@ extension MessagingEndpoint: RequestProtocol {
         }
     }
 
+    /// HTTP JSON body parameters of each API call
     var bodyParameters: RequestParameters? {
         switch self {
         case .markMessageRead(_, _, let bodyParameters):
@@ -85,6 +94,7 @@ extension MessagingEndpoint: RequestProtocol {
         }
     }
 
+    /// HTTP raw data body of each specific API call
     var rawBody: Data? {
         switch self {
         case .sendMessage(_, let payload):

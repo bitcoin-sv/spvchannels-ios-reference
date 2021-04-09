@@ -1,12 +1,14 @@
 //
 //  MessagesViewController.swift
 //  spvMessaging
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
 import UIKit
 
-class MessagingViewController: UIViewController, CleanVIP, Coordinatable, MessagingResponseDisplays {
+final class MessagingViewController: UIViewController, CleanVIP, Coordinatable, MessagingResponseDisplays {
 
     weak var coordinator: SceneCoordinator? {
         didSet {
@@ -36,14 +38,14 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
     private lazy var channelIdLabel = UILabel(text: "Channel:", tag: 1)
     private lazy var tokenIdLabel = UILabel(text: "Token:", tag: 1)
     private lazy var channelInfoStack = UIStackView(views: [channelIdLabel, tokenIdLabel], axis: .vertical, tag: 1)
-    private lazy var actionButton = RoundedButton(action: #selector(selectAction), target: self, tag: 1)
-    private lazy var contentTypeTextField = RoundedTextField(text: "text/plain")
-    private lazy var messagePayloadTextField = RoundedTextField(placeholder: "Message payload")
+    private lazy var actionButton = UIButton(action: #selector(selectAction), target: self, tag: 1)
+    private lazy var contentTypeTextField = UITextField(text: "text/plain")
+    private lazy var messagePayloadTextField = UITextField(placeholder: "Message payload")
     private lazy var unreadOnlyUISwitch = UISwitch(value: false)
     private lazy var unreadOnlyStack = UIStackView(views: [UILabel(text: "Unread messages only"),
                                                            unreadOnlyUISwitch])
     private lazy var messageIdLabel = UILabel(text: "Sequence ID")
-    private lazy var messageIdTextField = RoundedTextField(placeholder: "Enter sequence ID")
+    private lazy var messageIdTextField = UITextField(placeholder: "Enter sequence ID")
     private lazy var messageReadStatusSwitch = UISwitch(value: false)
     private lazy var messageReadStatusStack = UIStackView(views: [UILabel(text: "Mark message as read/unread"),
                                                                   messageReadStatusSwitch])
@@ -53,8 +55,8 @@ class MessagingViewController: UIViewController, CleanVIP, Coordinatable, Messag
         markOlderMessagesSwitch
     ])
 
-    private lazy var goButton: RoundedButton = {
-        let button = RoundedButton(title: "GO", action: #selector(goButtonTapped), target: self, tag: 1)
+    private lazy var goButton: UIButton = {
+        let button = UIButton(title: "GO", action: #selector(goButtonTapped), target: self, tag: 1)
         button.constraintWidth(width: view.bounds.width / 4)
         return button
     }()

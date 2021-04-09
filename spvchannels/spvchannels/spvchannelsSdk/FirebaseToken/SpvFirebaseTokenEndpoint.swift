@@ -1,10 +1,10 @@
 //
 //  SpvFirebaseTokenApiEndpoint.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
 //
-
-import Foundation
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
+//
 
 enum FirebaseTokenEndpoint {
     case updateFirebaseToken(parameters: [String: Any])

@@ -1,23 +1,27 @@
 //
 //  SpvLibSodiumEncryption.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
 import Sodium
 
+/// Convenience extension to convert Data class to an array of UInt8
 extension Data {
     var bytes: [UInt8] {
         self.withUnsafeBytes { $0.map { $0 } }
     }
 }
 
+/// Base keyPair for use in libSodium encryption
 struct SodiumKeyPair: Codable {
     let publicKey: Data
     let secretKey: Data
 }
 
+/// Implementation of libSodium encryption/decryption for SPV messaging, with helper methods
 class SpvLibSodiumEncryption: SpvEncryptionProtocol {
 
     private let sodium = Sodium()

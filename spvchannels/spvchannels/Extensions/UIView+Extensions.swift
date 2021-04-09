@@ -1,11 +1,14 @@
 //
 //  UIView+Extensions.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
 import UIKit
 
+/// Extension with convenience initializer to facilitate shortening of UI code, constraint and view collection helpers
 extension UIView {
 
     convenience init(height: CGFloat = 1, backgroundColor: UIColor = UIColor.darkGray, tag: Int = 0) {

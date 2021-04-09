@@ -1,15 +1,19 @@
 //
 //  SceneCoordinator.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
 import UIKit
 
 typealias NavigatableVC = Coordinatable & CleanVIP & UIViewController
 
+/// List of coordinated scenes is added in extensions
 class Scenes {}
 
+/// Concrete coordinator class to facilitate scene coordination and transitions
 class SceneCoordinator: Coordinator {
 
     var navigationController: UINavigationController

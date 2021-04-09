@@ -1,7 +1,9 @@
 //
 //  ChannelsViewController.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
 import UIKit
@@ -44,19 +46,19 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
         return textView
     }()
 
-    private lazy var goButton: RoundedButton = {
-        let button = RoundedButton(title: "GO", action: #selector(goButtonTapped), target: self, tag: 1)
+    private lazy var goButton: UIButton = {
+        let button = UIButton(title: "GO", action: #selector(goButtonTapped), target: self, tag: 1)
         button.constraintWidth(width: view.bounds.width / 4)
         return button
     }()
 
-    private lazy var actionButton = RoundedButton(action: #selector(selectAction), target: self, tag: 1)
-    private lazy var channelIdTextField = RoundedTextField(placeholder: "Enter channel ID")
-    private lazy var tokenTextField = RoundedTextField(placeholder: "Token")
-    private lazy var tokenDescriptionTextField = RoundedTextField(placeholder: "Token description")
-    private lazy var minAgeTextField = RoundedTextField()
+    private lazy var actionButton = UIButton(action: #selector(selectAction), target: self, tag: 1)
+    private lazy var channelIdTextField = UITextField(placeholder: "Enter channel ID")
+    private lazy var tokenTextField = UITextField(placeholder: "Token")
+    private lazy var tokenDescriptionTextField = UITextField(placeholder: "Token description")
+    private lazy var minAgeTextField = UITextField()
     private lazy var minAgeStack = UIStackView(views: [UILabel(text: "Min age (days)"), minAgeTextField])
-    private lazy var maxAgeTextField = RoundedTextField()
+    private lazy var maxAgeTextField = UITextField()
     private lazy var maxAgeStack = UIStackView(views: [UILabel(text: "Max age (days)"), maxAgeTextField])
     private lazy var publicReadSwitch = UISwitch(value: true)
     private lazy var publicReadSwitchStack = UIStackView(views: [UILabel(text: "Public read"),
@@ -108,9 +110,9 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
             .filter { $0.tag != 1}
             .forEach { $0.isHidden = true }
         switch channelsAction {
-        case .getChannel, .deleteChannel, .getAllChannelTokens:
+        case .getChannel, .deleteChannel:
             channelIdTextField.isHidden = false
-        case .getChannelToken, .revokeChannelToken:
+        case .getAllChannelTokens, .getChannelToken, .revokeChannelToken:
             channelIdTextField.isHidden = false
             tokenTextField.isHidden = false
         case .createChannel:

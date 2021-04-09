@@ -1,11 +1,14 @@
 //
 //  Coordinator+Coordinatable.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
 import UIKit
 
+/// Protocols to facilitate Coordinater pattern
 protocol Coordinator: AnyObject {
     var navigationController: UINavigationController { get set }
     func start()

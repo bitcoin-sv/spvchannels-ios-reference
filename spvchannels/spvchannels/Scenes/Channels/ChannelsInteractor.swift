@@ -1,10 +1,10 @@
 //
 //  ChannelsInteractor.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
 //
-
-import Foundation
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
+//
 
 final class ChannelsInteractor: ChannelsInteractorType {
 
@@ -28,7 +28,8 @@ final class ChannelsInteractor: ChannelsInteractorType {
                                            autoPrune: viewAction.autoPrune)
         case .getChannel: getChannel(channelId: viewAction.channelId)
         case .deleteChannel: deleteChannel(channelId: viewAction.channelId)
-        case .getAllChannelTokens: getAllChannelTokens(channelId: viewAction.channelId)
+        case .getAllChannelTokens: getAllChannelTokens(channelId: viewAction.channelId,
+                                                       token: viewAction.tokenId)
         case .amendChannel: amendChannel(channelId: viewAction.channelId,
                                          publicRead: viewAction.publicRead,
                                          publicWrite: viewAction.publicWrite,
@@ -98,9 +99,9 @@ final class ChannelsInteractor: ChannelsInteractorType {
         }
     }
 
-    private func getAllChannelTokens(channelId: String) {
+    private func getAllChannelTokens(channelId: String, token: String) {
         guard let spvChannelApi = spvChannelApi else { return }
-        spvChannelApi.getChannel(channelId: channelId) { [weak self] result in
+        spvChannelApi.getAllChannelTokens(channelId: channelId, token: token) { [weak self] result in
             self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }

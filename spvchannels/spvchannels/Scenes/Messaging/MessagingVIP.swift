@@ -1,11 +1,12 @@
 //
 //  MessagingVIP.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
+/// Messaging API Scene definition and use case methods as per Clean Swift architecture
 extension Scenes {
     static let Messaging = MessagingViewController.self
 }
@@ -32,8 +33,7 @@ protocol MessagingDataStore {
     var spvMessagingApi: SpvMessagingApi? { get set }
 }
 
-protocol MessagingRoutes {
-}
+protocol MessagingRoutes {}
 
 protocol MessagingDataPassing {
     var dataStore: MessagingDataStore? { get set }

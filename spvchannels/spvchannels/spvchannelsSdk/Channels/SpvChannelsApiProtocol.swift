@@ -1,11 +1,12 @@
 //
 //  SpvChannelsApiProtocol.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
+/// Types and methods of the Channels API facilitating network API calls
 protocol SpvChannelsApiProtocol {
 
     // MARK: Channels API
@@ -25,7 +26,7 @@ protocol SpvChannelsApiProtocol {
                     completion: @escaping ChannelInfoResult)
     func deleteChannel(channelId: String,
                        completion: @escaping StringResult)
-    func getAllChannelTokens(channelId: String,
+    func getAllChannelTokens(channelId: String, token: String,
                              completion: @escaping TokensInfoResult)
     func getChannelToken(channelId: String, tokenId: String,
                          completion: @escaping TokenInfoResult)

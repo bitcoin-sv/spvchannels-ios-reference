@@ -1,5 +1,5 @@
 //
-//  UISwitch+Extensions.swift
+//  UITextField+Extensions.swift
 //  spvchannels
 //
 //  Copyright (c) 2021 Bitcoin Association.
@@ -9,12 +9,15 @@
 import UIKit
 
 /// Extension with convenience initializer to facilitate shortening of UI generation code
-extension UISwitch {
+extension UITextField {
 
-    convenience init(value: Bool = true) {
+    convenience init(placeholder: String = "", text: String = "") {
         self.init()
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.isOn = value
+        self.autocorrectionType = .no
+        self.autocapitalizationType = .none
+        self.placeholder = placeholder
+        self.text = text
+        self.borderStyle = .roundedRect
     }
-
 }
