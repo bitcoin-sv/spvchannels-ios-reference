@@ -61,8 +61,8 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
         }
         spvChannelApi = nil
         if let channelApi = spvChannelsSdk?.channelWithCredentials(accountId: viewAction.accountId,
-                                                              username: viewAction.username,
-                                                              password: viewAction.password) {
+                                                                   username: viewAction.username,
+                                                                   password: viewAction.password) {
             spvChannelApi = channelApi
             UserDefaults.standard.accountId = viewAction.accountId
             UserDefaults.standard.username = viewAction.username

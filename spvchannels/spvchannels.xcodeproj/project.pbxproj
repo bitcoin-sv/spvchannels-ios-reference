@@ -122,6 +122,8 @@
 		A135855F260A45BD00B9BA6C /* MessagingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingInteractor.swift; sourceTree = "<group>"; };
 		A1358564260A461200B9BA6C /* MessagingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingPresenter.swift; sourceTree = "<group>"; };
 		A1358569260A462200B9BA6C /* MessagingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingRouter.swift; sourceTree = "<group>"; };
+		A1551F4726257C9800F6DCD1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		A1551F4826257C9800F6DCD1 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A15E064B25FA0B06000AB996 /* spvchannels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spvchannels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15E064E25FA0B06000AB996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A15E065225FA0B06000AB996 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -260,6 +262,8 @@
 		A15E064225FA0B06000AB996 = {
 			isa = PBXGroup;
 			children = (
+				A1551F4726257C9800F6DCD1 /* README.md */,
+				A1551F4826257C9800F6DCD1 /* LICENSE */,
 				A15E064D25FA0B06000AB996 /* spvchannels */,
 				A15E066425FA0B07000AB996 /* spvchannelsTests */,
 				A15E064C25FA0B06000AB996 /* Products */,
