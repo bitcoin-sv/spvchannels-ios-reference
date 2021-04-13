@@ -1,11 +1,12 @@
 //
 //  NoOpEncryption.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
+/// Payload encryption service that does no encryption
 struct SpvNoOpEncryption: SpvEncryptionProtocol {
 
     func encrypt(input: Data) -> Data? {

@@ -1,17 +1,19 @@
 //
 //  Message.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
+/// Structure to hold a single message received from a channel
 struct Message: Codable, Equatable {
     let sequence: Int
     let received: Date
     let contentType: String
     let payload: Data
 
+    /// Helper method to decrypt message payload
     func decrypted(with encryption: SpvEncryptionProtocol) -> Message? {
         guard let decryptedPayload = encryption.decrypt(input: payload) else { return nil }
         return Message(sequence: sequence, received: received, contentType: contentType,

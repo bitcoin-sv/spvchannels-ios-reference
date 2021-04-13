@@ -1,11 +1,12 @@
 //
 //  HomeVIP.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
+/// Home Scene definition and use case methods as per Clean Swift architecture
 extension Scenes {
     static let Home = HomeViewController.self
 }

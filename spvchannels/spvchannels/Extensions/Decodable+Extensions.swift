@@ -1,12 +1,14 @@
 //
 //  Decodable+Extensions.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
+/// Extension with helper functions to parse JSON response
 extension Decodable {
+
     static func parse<T: Decodable>(from data: Data) -> T? {
         do {
             let decoder = JSONDecoder()

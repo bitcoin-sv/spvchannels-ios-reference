@@ -1,9 +1,12 @@
 //
 //  ChannelInfo.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
+/// Structure to hold single channel info
 struct ChannelInfo: Codable, Equatable {
     let id: String
     let href: String
@@ -16,6 +19,7 @@ struct ChannelInfo: Codable, Equatable {
     let accessTokens: [ChannelToken]
 }
 
+/// Structure to hold an array of channel info
 struct ChannelsList: Codable, Equatable {
     let channels: [ChannelInfo]
 }

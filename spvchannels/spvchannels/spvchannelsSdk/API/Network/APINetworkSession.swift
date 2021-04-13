@@ -1,11 +1,12 @@
 //
 //  APINetworkSession.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
+/// Network abstraction protocol for **dataTask** creation
 protocol NetworkSessionProtocol {
     typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
 
@@ -13,17 +14,28 @@ protocol NetworkSessionProtocol {
                   completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol?
 }
 
+/// Network abstraction protocol for **dataTask** operation
 protocol URLSessionDataTaskProtocol {
     func resume()
     func cancel()
 }
 
+/// Conformance of built-in class to our Network abstraction protocol
 extension URLSessionDataTask: URLSessionDataTaskProtocol {}
 
+/**
+ Network API abstraction class
+ 
+ - parameter configuration: URLSessionConfiguration used to wrap all network calls into
+ 
+ # Notes: #
+ 1. In DEBUG mode this class overrides system setting and accepts connections to self-signed SSL equipped servers
+ 
+ */
 class APINetworkSession: NSObject, URLSessionDelegate {
     var session: URLSession?
 
-    public override convenience init() {
+    override convenience init() {
         let sessionConfiguration = URLSessionConfiguration.default
         sessionConfiguration.timeoutIntervalForResource = 30
         self.init(configuration: sessionConfiguration)
@@ -48,6 +60,7 @@ class APINetworkSession: NSObject, URLSessionDelegate {
     }
 }
 
+/// Provide conformance of this concrete class to our network abstraction protocol
 extension APINetworkSession: NetworkSessionProtocol {
 
     func dataTask(with request: URLRequest,

@@ -1,11 +1,12 @@
 //
 //  UserDefaults+Extensions.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
+/// Extension to UserDefaults for convenient storing and retrieving values in app preferences
 extension UserDefaults {
 
     enum Keys: String {

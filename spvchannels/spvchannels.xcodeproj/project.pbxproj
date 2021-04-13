@@ -23,8 +23,8 @@
 		A135840A260907AD00B9BA6C /* ChannelsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1358409260907AD00B9BA6C /* ChannelsModels.swift */; };
 		A135840F260907C000B9BA6C /* ChannelsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135840E260907C000B9BA6C /* ChannelsInteractor.swift */; };
 		A1358414260907CD00B9BA6C /* ChannelsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1358413260907CD00B9BA6C /* ChannelsPresenter.swift */; };
-		A13584532609C7BC00B9BA6C /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13584522609C7BC00B9BA6C /* RoundedTextField.swift */; };
-		A135846D2609CA4200B9BA6C /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135846C2609CA4200B9BA6C /* RoundedButton.swift */; };
+		A13584532609C7BC00B9BA6C /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13584522609C7BC00B9BA6C /* UITextField+Extensions.swift */; };
+		A135846D2609CA4200B9BA6C /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135846C2609CA4200B9BA6C /* UIButton+Extensions.swift */; };
 		A13584812609DE8500B9BA6C /* Codable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13584802609DE8500B9BA6C /* Codable+Extensions.swift */; };
 		A13584AC2609EC8B00B9BA6C /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13584AB2609EC8B00B9BA6C /* UILabel+Extensions.swift */; };
 		A13584CB260A0CF200B9BA6C /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13584CA260A0CF200B9BA6C /* UIStackView+Extensions.swift */; };
@@ -110,8 +110,8 @@
 		A1358409260907AD00B9BA6C /* ChannelsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsModels.swift; sourceTree = "<group>"; };
 		A135840E260907C000B9BA6C /* ChannelsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsInteractor.swift; sourceTree = "<group>"; };
 		A1358413260907CD00B9BA6C /* ChannelsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsPresenter.swift; sourceTree = "<group>"; };
-		A13584522609C7BC00B9BA6C /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
-		A135846C2609CA4200B9BA6C /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		A13584522609C7BC00B9BA6C /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		A135846C2609CA4200B9BA6C /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		A13584802609DE8500B9BA6C /* Codable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extensions.swift"; sourceTree = "<group>"; };
 		A13584AB2609EC8B00B9BA6C /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		A13584CA260A0CF200B9BA6C /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
@@ -122,6 +122,8 @@
 		A135855F260A45BD00B9BA6C /* MessagingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingInteractor.swift; sourceTree = "<group>"; };
 		A1358564260A461200B9BA6C /* MessagingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingPresenter.swift; sourceTree = "<group>"; };
 		A1358569260A462200B9BA6C /* MessagingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingRouter.swift; sourceTree = "<group>"; };
+		A1551F4726257C9800F6DCD1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		A1551F4826257C9800F6DCD1 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A15E064B25FA0B06000AB996 /* spvchannels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = spvchannels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15E064E25FA0B06000AB996 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A15E065225FA0B06000AB996 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -244,15 +246,6 @@
 			path = FirebaseToken;
 			sourceTree = "<group>";
 		};
-		A13584512609C7A900B9BA6C /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A13584522609C7BC00B9BA6C /* RoundedTextField.swift */,
-				A135846C2609CA4200B9BA6C /* RoundedButton.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		A135854F260A416200B9BA6C /* Messaging */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +262,8 @@
 		A15E064225FA0B06000AB996 = {
 			isa = PBXGroup;
 			children = (
+				A1551F4726257C9800F6DCD1 /* README.md */,
+				A1551F4826257C9800F6DCD1 /* LICENSE */,
 				A15E064D25FA0B06000AB996 /* spvchannels */,
 				A15E066425FA0B07000AB996 /* spvchannelsTests */,
 				A15E064C25FA0B06000AB996 /* Products */,
@@ -290,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				A1BDBFBA2614968600613B2B /* Resources */,
-				A13584512609C7A900B9BA6C /* Views */,
 				A15E080526014D77000AB996 /* Coordinator */,
 				A15E069D25FAB688000AB996 /* Extensions */,
 				A15E084426015249000AB996 /* Scenes */,
@@ -319,14 +313,16 @@
 		A15E069D25FAB688000AB996 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A135846C2609CA4200B9BA6C /* UIButton+Extensions.swift */,
+				A13584522609C7BC00B9BA6C /* UITextField+Extensions.swift */,
 				A13584AB2609EC8B00B9BA6C /* UILabel+Extensions.swift */,
 				A13584CA260A0CF200B9BA6C /* UIStackView+Extensions.swift */,
 				A13584E1260A17B700B9BA6C /* UISwitch+Extensions.swift */,
 				A15E069E25FAB6B0000AB996 /* UserDefaults+Extensions.swift */,
 				A15E085526015BF2000AB996 /* UIView+Extensions.swift */,
+				A13584802609DE8500B9BA6C /* Codable+Extensions.swift */,
 				A1F807F42601F8C900AAA5F7 /* Decodable+Extensions.swift */,
 				A1C4BB712617187B00645F72 /* DateFormatter+Extensions.swift */,
-				A13584802609DE8500B9BA6C /* Codable+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -373,10 +369,10 @@
 		A15E077726006AB5000AB996 /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				A13583FA260905B900B9BA6C /* SpvMessagingApi.swift */,
-				A1CBD9E2260CE259005C4091 /* SpvMessagingApiProtocol.swift */,
-				A1CBDA2D260DBE6B005C4091 /* SpvMessagingEndpoint.swift */,
 				A1CBD9F5260CE411005C4091 /* SpvMessagingApiEnvironment.swift */,
+				A1CBDA2D260DBE6B005C4091 /* SpvMessagingEndpoint.swift */,
+				A1CBD9E2260CE259005C4091 /* SpvMessagingApiProtocol.swift */,
+				A13583FA260905B900B9BA6C /* SpvMessagingApi.swift */,
 				A15E077826006ABD000AB996 /* Models */,
 			);
 			path = Messages;
@@ -676,10 +672,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDAAF59426024523002699A3 /* ChannelsViewController.swift in Sources */,
-				A13584532609C7BC00B9BA6C /* RoundedTextField.swift in Sources */,
+				A13584532609C7BC00B9BA6C /* UITextField+Extensions.swift in Sources */,
 				A13583572608A24100B9BA6C /* HomeVIP.swift in Sources */,
 				A13583E3260903D200B9BA6C /* SpvChannelApi.swift in Sources */,
-				A135846D2609CA4200B9BA6C /* RoundedButton.swift in Sources */,
+				A135846D2609CA4200B9BA6C /* UIButton+Extensions.swift in Sources */,
 				A15E080C26014D88000AB996 /* Coordinator+Coordinatable.swift in Sources */,
 				A1358414260907CD00B9BA6C /* ChannelsPresenter.swift in Sources */,
 				A1CBD874260BEFE0005C4091 /* APIOperation.swift in Sources */,
@@ -899,7 +895,7 @@
 				CODE_SIGN_ENTITLEMENTS = spvchannels/spvchannels.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RX9SG4239U;
+				DEVELOPMENT_TEAM = 53L833R9DC;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
@@ -935,7 +931,7 @@
 				CODE_SIGN_ENTITLEMENTS = spvchannels/spvchannels.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RX9SG4239U;
+				DEVELOPMENT_TEAM = 53L833R9DC;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
@@ -969,7 +965,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RX9SG4239U;
+				DEVELOPMENT_TEAM = 53L833R9DC;
 				INFOPLIST_FILE = spvchannelsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -996,7 +992,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RX9SG4239U;
+				DEVELOPMENT_TEAM = 53L833R9DC;
 				INFOPLIST_FILE = spvchannelsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (

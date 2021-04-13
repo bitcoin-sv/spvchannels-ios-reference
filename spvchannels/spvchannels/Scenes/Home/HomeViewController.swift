@@ -1,7 +1,9 @@
 //
 //  HomeViewController.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
 import UIKit
@@ -53,33 +55,33 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
 
     private lazy var baseUrlStack = UIStackView(views: [UILabel(text: "Base URL:"), baseUrlTextField],
                                                 distribution: .fillProportionally)
-    private lazy var baseUrlTextField = RoundedTextField(placeholder: "Enter base url")
+    private lazy var baseUrlTextField = UITextField(placeholder: "Enter base url")
 
     private lazy var accountIdStack = UIStackView(views: [UILabel(text: "Account ID:"), accountIdTextField],
                                                   distribution: .fillProportionally)
-    private lazy var accountIdTextField = RoundedTextField(placeholder: "Enter account ID")
+    private lazy var accountIdTextField = UITextField(placeholder: "Enter account ID")
 
     private lazy var usernameStack = UIStackView(views: [UILabel(text: "Username:"), usernameTextField],
                                                  distribution: .fillProportionally)
-    private lazy var usernameTextField = RoundedTextField(placeholder: "Enter username")
+    private lazy var usernameTextField = UITextField(placeholder: "Enter username")
 
     private lazy var passwordStack = UIStackView(views: [UILabel(text: "Password:"), passwordTextField],
                                                  distribution: .fillProportionally)
 
-    private lazy var passwordTextField = RoundedTextField(placeholder: "Enter password")
-    private lazy var createSdkButton = RoundedButton(title: "INITIALIZE SPV CHANNELS SDK",
+    private lazy var passwordTextField = UITextField(placeholder: "Enter password")
+    private lazy var createSdkButton = UIButton(title: "INITIALIZE SPV CHANNELS SDK",
                                                            action: #selector(createSdkAction),
                                                            target: self)
-    private lazy var openChannelsAPIButton = RoundedButton(title: "OPEN CHANNELS API",
+    private lazy var openChannelsAPIButton = UIButton(title: "OPEN CHANNELS API",
                                                            action: #selector(openChannelsApiAction),
                                                            target: self)
 
-    private lazy var channelIdTextField = RoundedTextField(placeholder: "Enter channel ID")
-    private lazy var channelTokenTextField = RoundedTextField(placeholder: "Enter channel token")
+    private lazy var channelIdTextField = UITextField(placeholder: "Enter channel ID")
+    private lazy var channelTokenTextField = UITextField(placeholder: "Enter channel token")
     private lazy var encryptionSwitch = UISwitch(value: false)
     private lazy var encryptionStack = UIStackView(views: [UILabel(text: "libSodium Encryption"),
                                                            encryptionSwitch])
-    private lazy var openMessagingAPIButton = RoundedButton(title: "OPEN MESSAGING API",
+    private lazy var openMessagingAPIButton = UIButton(title: "OPEN MESSAGING API",
                                                            action: #selector(openMessagingAction),
                                                            target: self)
 

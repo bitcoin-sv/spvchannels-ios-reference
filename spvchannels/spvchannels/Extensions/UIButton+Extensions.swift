@@ -1,5 +1,5 @@
 //
-//  UILabel+Extensions.swift
+//  UIButton+Extensions.swift
 //  spvchannels
 //
 //  Copyright (c) 2021 Bitcoin Association.
@@ -9,13 +9,16 @@
 import UIKit
 
 /// Extension with convenience initializer to facilitate shortening of UI generation code
-extension UILabel {
+extension UIButton {
 
-    convenience init(text: String = "", tag: Int = 0) {
+    convenience init(title: String = "", action: Selector, target: AnyObject, tag: Int = 0) {
         self.init()
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.text = text
+        self.setTitle(title, for: .normal)
+        self.constraintHeight(height: 40)
+        self.backgroundColor = .darkGray
+        self.layer.cornerRadius = 8
         self.tag = tag
+        self.addTarget(target, action: action, for: .touchUpInside)
     }
-
 }

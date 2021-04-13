@@ -1,9 +1,12 @@
 //
 //  Retention.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
+/// Struct containing channel message retention policy
 struct Retention: Codable, Equatable {
     let minAgeDays: Int
     let maxAgeDays: Int

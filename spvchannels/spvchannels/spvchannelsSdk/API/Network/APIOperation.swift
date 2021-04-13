@@ -1,11 +1,12 @@
 //
 //  APIOperation.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
+/// Abstraction protocol for performing API call operation (high level)
 protocol OperationProtocol {
     associatedtype Output
 
@@ -19,6 +20,7 @@ enum OperationResult {
     case error(Error?, _ : HTTPURLResponse?)
 }
 
+/// Concrete class for executing network API call operation
 class APIOperation: OperationProtocol {
     typealias Output = OperationResult
 

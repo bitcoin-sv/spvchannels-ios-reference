@@ -1,11 +1,12 @@
 //
 //  HomeModels.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
+/// Home Scene use case value structs for methods as per Clean Swift architecture
 enum HomeModels {
 
     enum CreateSdk {

@@ -1,17 +1,26 @@
 //
 //  APIRequestDispatcher.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
+/// Network API call request abstraction protocol
 protocol RequestDispatcherProtocol {
     init(environment: EnvironmentProtocol, networkSession: NetworkSessionProtocol)
     func execute(request: RequestProtocol,
                  completion: @escaping (OperationResult) -> Void) -> URLSessionDataTaskProtocol?
 }
 
+/**
+ Concrete class for dispatching API requests
+ - parameter environment: API environment configuration to use for calls on this dispatcher
+ - parameter networkSession: A configured network session to use
+ # Notes: #
+ - API environment provides baseUrl and credentials
+ - NetworkSession can be replaced with a mock for unit testing purposes
+*/
 class APIRequestDispatcher: RequestDispatcherProtocol {
     private var environment: EnvironmentProtocol
     private var networkSession: NetworkSessionProtocol
@@ -21,6 +30,7 @@ class APIRequestDispatcher: RequestDispatcherProtocol {
         self.networkSession = networkSession
     }
 
+    /// Execute and handle an API request
     func execute(request: RequestProtocol,
                  completion: @escaping (OperationResult) -> Void) -> URLSessionDataTaskProtocol? {
         guard var urlRequest = request.urlRequest(with: environment) else {
@@ -39,6 +49,26 @@ class APIRequestDispatcher: RequestDispatcherProtocol {
         return task
     }
 
+    /// Verify validity of the response and any error code, produce appropriate Error case if required
+    private func verify(data: Any?, urlResponse: HTTPURLResponse, error: Error?) -> Result<Any, APIError> {
+        switch urlResponse.statusCode {
+        case 200...299:
+            return .success(data ?? Data())
+        case 400:
+            if let data = data as? Data,
+               let errorMessage = String(data: data, encoding: .utf8) {
+                return .failure(APIError.badRequest(errorMessage))
+            } else {
+                return .failure(APIError.badRequest(""))
+            }
+        case 401...599:
+            return .failure(APIError.getError(from: urlResponse, error: error) ?? APIError.unknown)
+        default:
+            return .failure(APIError.unknown)
+        }
+    }
+
+    /// Handle the response and produce appropriate operation result
     private func handleDataTaskResponse(data: Data?, urlResponse: URLResponse?, error: Error?,
                                         completion: @escaping (OperationResult) -> Void) {
         guard let urlResponse = urlResponse as? HTTPURLResponse else {
@@ -60,21 +90,4 @@ class APIRequestDispatcher: RequestDispatcherProtocol {
         }
     }
 
-    private func verify(data: Any?, urlResponse: HTTPURLResponse, error: Error?) -> Result<Any, APIError> {
-        switch urlResponse.statusCode {
-        case 200...299:
-            return .success(data ?? Data())
-        case 400:
-            if let data = data as? Data,
-               let errorMessage = String(data: data, encoding: .utf8) {
-                return .failure(APIError.badRequest(errorMessage))
-            } else {
-                return .failure(APIError.badRequest(""))
-            }
-        case 401...599:
-            return .failure(APIError.getError(from: urlResponse, error: error) ?? APIError.unknown)
-        default:
-            return .failure(APIError.unknown)
-        }
-    }
 }

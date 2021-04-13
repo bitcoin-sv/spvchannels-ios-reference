@@ -1,19 +1,22 @@
 //
 //  RequestProtocol.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
+//
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
+/// String dictionaries for request URL headers and body parameters
 typealias RequestHeaders = [String: String]
 typealias RequestParameters = [String: Any]
 
+/// Abstraction protocol for the Environment object
 protocol EnvironmentProtocol {
     var headers: RequestHeaders? { get }
     var baseUrl: String { get }
 }
 
+/// HTTP request method map
 enum RequestMethod: String {
     case get = "GET"
     case post = "POST"
@@ -23,6 +26,7 @@ enum RequestMethod: String {
     case head = "HEAD"
 }
 
+/// Required properties of each request
 protocol RequestProtocol {
     var path: String { get }
     var method: RequestMethod { get }
@@ -32,6 +36,7 @@ protocol RequestProtocol {
     var rawBody: Data? { get }
 }
 
+/// Implementation of request building from required properties
 extension RequestProtocol {
     public func urlRequest(with environment: EnvironmentProtocol) -> URLRequest? {
         guard let url = url(with: environment.baseUrl) else { return nil }

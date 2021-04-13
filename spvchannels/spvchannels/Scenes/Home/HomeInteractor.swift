@@ -1,10 +1,10 @@
 //
 //  HomeInteractor.swift
 //  spvchannels
-//  Created by Equaleyes Solutions
 //
-
-import Foundation
+//  Copyright (c) 2021 Bitcoin Association.
+//  Distributed under the Open BSV software license, see the accompanying file LICENSE
+//
 
 final class HomeInteractor: HomeViewActions, HomeDataStore {
 
@@ -61,8 +61,8 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
         }
         spvChannelApi = nil
         if let channelApi = spvChannelsSdk?.channelWithCredentials(accountId: viewAction.accountId,
-                                                              username: viewAction.username,
-                                                              password: viewAction.password) {
+                                                                   username: viewAction.username,
+                                                                   password: viewAction.password) {
             spvChannelApi = channelApi
             UserDefaults.standard.accountId = viewAction.accountId
             UserDefaults.standard.username = viewAction.username
