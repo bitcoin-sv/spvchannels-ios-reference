@@ -15,8 +15,18 @@ class SpvChannelsSdk: NSObject {
     typealias PushNotificationClosure = (String, String) -> Void
     /// Base URL of SPV Channels server
     let baseUrl: String
-    private var updateTokenService: SpvFirebaseTokenApi?
+    private var notificationService: SpvFirebaseTokenApi?
     private var openNotification: ((String, String) -> Void)?
+
+    private var fcmToken: String? {
+        didSet {
+            updateFcmTokenIfNeeded(oldToken: oldValue, newToken: fcmToken)
+        }
+    }
+
+    private var storedToken: String? {
+        UserDefaults.standard.firebaseToken
+    }
 
     /**
      - parameter firebaseConfig: a file url with FireBase configuration to use for messaging
@@ -40,9 +50,12 @@ class SpvChannelsSdk: NSObject {
         self.baseUrl = baseUrl
         self.openNotification = openNotification
         super.init()
+        if let stored = storedToken {
+            self.fcmToken = stored
+        }
         if !firebaseConfig.isEmpty {
             if setupFirebaseMessaging(configFile: firebaseConfig) {
-                updateTokenService = SpvFirebaseTokenApi(baseUrl: baseUrl)
+                notificationService = SpvFirebaseTokenApi(baseUrl: baseUrl)
             } else {
                 return nil
             }
@@ -90,12 +103,14 @@ class SpvChannelsSdk: NSObject {
      */
     func messagingWithToken(channelId: String, token: String,
                             encryption: SpvEncryptionProtocol = SpvNoOpEncryption()) -> SpvMessagingApi {
-        SpvMessagingApi(baseUrl: baseUrl, channelId: channelId, token: token, encryption: encryption)
+        SpvMessagingApi(baseUrl: baseUrl, channelId: channelId, token: token,
+                        notificationService: notificationService, encryption: encryption)
     }
 
 }
 
 extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
+    typealias StringResult = (Result<String, Error>) -> Void
 
     /// Initializes Firebase messaging, sets up push notification authorization and registers for receiving
     /// Also listens for app lifecycle events for refresh FCM token upon app becoming active
@@ -124,6 +139,11 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
                 selector: #selector(self.appWillEnterForeground),
                 name: UIApplication.willEnterForegroundNotification,
                 object: nil)
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(self.appWillResignActive),
+                name: UIApplication.willResignActiveNotification,
+                object: nil)
         }) != nil
         else {
             return false
@@ -133,23 +153,49 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
 
     /// When app becomes active, check for any FCM token change
     @objc func appWillEnterForeground() {
-        guard let token = Messaging.messaging().fcmToken else { return }
-        updateFcmTokenIfNeeded(token: token)
+        guard let newToken = Messaging.messaging().fcmToken else { return }
+        if newToken != fcmToken {
+            fcmToken = newToken
+        }
+        updateFcmTokenIfNeeded()
+    }
+
+    /// When app becomes goes to background, check for any FCM token change
+    @objc func appWillResignActive() {
+        guard let newToken = Messaging.messaging().fcmToken else { return }
+        if newToken != fcmToken {
+            fcmToken = newToken
+        }
+        updateFcmTokenIfNeeded()
     }
 
     /// Received a FCM token, update it if needed
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         guard let fcmToken = fcmToken else { return }
-        updateFcmTokenIfNeeded(token: fcmToken)
+        self.fcmToken = fcmToken
+    }
+
+    /// Disables notifications for all channels by deregistering an existing FCM token
+    func disableAllNotifications(completion: @escaping StringResult) {
+        guard let fcmToken = fcmToken else {
+            completion(.failure(APIError.badRequest("Firebase token cannot be nil")))
+            return
+        }
+        notificationService?.deleteToken(oldToken: fcmToken, completion: completion)
+    }
+
+    /// Update FCM token on back-end so if current FCM token differs from stored token
+    private func updateFcmTokenIfNeeded() {
+        updateFcmTokenIfNeeded(oldToken: storedToken, newToken: fcmToken)
     }
 
     /// Register new FCM token with back-end so messages will be able to be addressed to this device
-    private func updateFcmTokenIfNeeded(token: String) {
-        let currentToken = UserDefaults.standard.firebaseToken
-        if token != currentToken {
-            updateTokenService?.updateFirebaseToken(token: token) { result in
+    private func updateFcmTokenIfNeeded(oldToken: String?, newToken: String?) {
+        guard let oldToken = oldToken, let newToken = newToken else { return }
+        if newToken != oldToken || storedToken != newToken {
+            notificationService?.updateToken(oldToken: oldToken, fcmToken: newToken) { result in
                 if case .success = result {
-                    UserDefaults.standard.firebaseToken = token
+                    UserDefaults.standard.firebaseToken = newToken
                 }
             }
         }
@@ -158,6 +204,7 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
     /// Received the Apple push notification token, associate it with FCM messaging
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
+        updateFcmTokenIfNeeded()
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,

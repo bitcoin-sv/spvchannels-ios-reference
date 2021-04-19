@@ -19,4 +19,8 @@ protocol SpvMessagingApiProtocol {
     func markMessageRead(sequenceId: String, read: Bool, older: Bool, completion: @escaping StringResult)
     func deleteMessage(sequenceId: String, completion: @escaping StringResult)
     func sendMessage(contentType: String, payload: Data, completion: @escaping MessageResult)
+
+    // MARK: Convenience methods for push notification registration
+    func registerForNotifications(completion: @escaping StringResult)
+    func deregisterNotifications(completion: @escaping StringResult)
 }

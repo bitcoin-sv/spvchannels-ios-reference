@@ -14,6 +14,8 @@ class SpvMessagingApi {
     let token: String
     let encryptionService: SpvEncryptionProtocol
 
+    private let notificationService: SpvFirebaseTokenApiProtocol?
+
     /**
      Class for executing Messaging API network calls
      The Messaging APIs allow account holders, third parties, or even general public to read from
@@ -24,6 +26,7 @@ class SpvMessagingApi {
      - parameter token: channel token to use with bearer authentication
      - parameter encryption: class that provides encryption/decryption of message payload
      - parameter networkSession: class corresponding to NetworkSessionProtocol to use for calls
+     - parameter notificationService: class corresponding to SpvFirebaseTokenApiProtocol to use for push token API
      - warning: The credentials provided are not checked at Channel API initialization time
 
      # Notes: #
@@ -35,10 +38,11 @@ class SpvMessagingApi {
                                                      token: token)
      ```
      */
-    init(baseUrl: String, channelId: String, token: String, encryption: SpvEncryptionProtocol,
-         networkSession: NetworkSessionProtocol) {
+    init(baseUrl: String, channelId: String, token: String, notificationService: SpvFirebaseTokenApiProtocol?,
+         encryption: SpvEncryptionProtocol, networkSession: NetworkSessionProtocol) {
         self.channelId = channelId
         self.token = token
+        self.notificationService = notificationService
         self.encryptionService = encryption
         let baseUrlWithSuffix = baseUrl + "/api/v1/channel/\(channelId)"
         let env = SpvMessagingApiEnvironment(baseUrl: baseUrlWithSuffix,
@@ -46,13 +50,30 @@ class SpvMessagingApi {
         requestDispatcher = APIRequestDispatcher(environment: env, networkSession: networkSession)
     }
 
-    convenience init(baseUrl: String, channelId: String, token: String, encryption: SpvEncryptionProtocol) {
-        self.init(baseUrl: baseUrl, channelId: channelId, token: token,
+    convenience init(baseUrl: String, channelId: String, token: String,
+                     notificationService: SpvFirebaseTokenApiProtocol? = nil, encryption: SpvEncryptionProtocol) {
+        self.init(baseUrl: baseUrl, channelId: channelId, token: token, notificationService: notificationService,
                   encryption: encryption, networkSession: APINetworkSession())
     }
 }
 
 extension SpvMessagingApi: SpvMessagingApiProtocol {
+
+    func registerForNotifications(completion: @escaping StringResult) {
+        guard let currentToken = UserDefaults.standard.firebaseToken else {
+            completion(.failure(APIError.badRequest("No Firebase token stored")))
+            return
+        }
+        notificationService?.registerFcmToken(fcmToken: currentToken, channelToken: token, completion: completion)
+    }
+
+    func deregisterNotifications(completion: @escaping StringResult) {
+        guard let currentToken = UserDefaults.standard.firebaseToken else {
+            completion(.failure(APIError.badRequest("No Firebase token stored")))
+            return
+        }
+        notificationService?.registerFcmToken(fcmToken: currentToken, channelToken: channelId, completion: completion)
+    }
 
     /**
      Retrieves the current max sequence in current channel
