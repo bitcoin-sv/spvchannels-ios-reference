@@ -156,8 +156,9 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
         guard let newToken = Messaging.messaging().fcmToken else { return }
         if newToken != fcmToken {
             fcmToken = newToken
+        } else {
+            updateTokenIfStoredDifferent()
         }
-        updateFcmTokenIfNeeded()
     }
 
     /// When app becomes goes to background, check for any FCM token change
@@ -165,8 +166,9 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
         guard let newToken = Messaging.messaging().fcmToken else { return }
         if newToken != fcmToken {
             fcmToken = newToken
+        } else {
+            updateTokenIfStoredDifferent()
         }
-        updateFcmTokenIfNeeded()
     }
 
     /// Received a FCM token, update it if needed
@@ -185,7 +187,7 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
     }
 
     /// Update FCM token on back-end so if current FCM token differs from stored token
-    private func updateFcmTokenIfNeeded() {
+    private func updateTokenIfStoredDifferent() {
         updateFcmTokenIfNeeded(oldToken: storedToken, newToken: fcmToken)
     }
 
@@ -204,7 +206,7 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
     /// Received the Apple push notification token, associate it with FCM messaging
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
-        updateFcmTokenIfNeeded()
+        updateTokenIfStoredDifferent()
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
