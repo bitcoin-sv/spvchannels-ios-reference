@@ -58,7 +58,7 @@ extension SpvFirebaseTokenApi: SpvFirebaseTokenApiProtocol {
         }
     }
 
-    /// send a delete Firebase Messaging token request for the passed channel id, stop receiving push notifications for it
+    /// send a delete Firebase Messaging token request for the passed channel id, stop receiving its push notifications
     /// if channel ID is nil, removes that token from all registered channel
     func deleteToken(oldToken: String, channelId: String?, completion: @escaping StringResult) {
         guard !oldToken.isEmpty else {
