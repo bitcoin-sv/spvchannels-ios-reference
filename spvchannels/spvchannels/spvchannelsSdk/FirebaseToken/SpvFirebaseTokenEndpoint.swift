@@ -7,21 +7,43 @@
 //
 
 enum FirebaseTokenEndpoint {
-    case updateFirebaseToken(parameters: [String: Any])
+
+    case registerFcmToken(fcmToken: String, channelToken: String)
+    case updateToken(oldToken: String, fcmToken: String)
+    case deleteToken(oldToken: String, channelId: String?)
 }
 
 extension FirebaseTokenEndpoint: RequestProtocol {
 
     var path: String {
-        "/"
+        switch self {
+        case .registerFcmToken:
+            return "/pushnotifications"
+        case .updateToken(let oldToken, _):
+            return "/pushnotifications/\(oldToken)"
+        case .deleteToken(let oldToken, _):
+            return "/pushnotifications/\(oldToken)"
+        }
     }
 
     var method: RequestMethod {
-        .post
+        switch self {
+        case .registerFcmToken:
+            return .post
+        case .updateToken:
+            return .put
+        case .deleteToken:
+            return .delete
+        }
     }
 
     var headers: RequestHeaders? {
-        nil
+        switch self {
+        case .registerFcmToken(_, let channelToken):
+            return [ "Authorization": "Bearer \(channelToken)"]
+        case .updateToken, .deleteToken:
+            return nil
+        }
     }
 
     var rawBody: Data? {
@@ -29,13 +51,26 @@ extension FirebaseTokenEndpoint: RequestProtocol {
     }
 
     var urlParameters: RequestParameters? {
-        nil
+        switch self {
+        case .registerFcmToken, .updateToken:
+            return nil
+        case .deleteToken(_, let channelId):
+            if let channelId = channelId {
+                return ["channelId": channelId ]
+            } else {
+                return nil
+            }
+        }
     }
 
     var bodyParameters: RequestParameters? {
         switch self {
-        case .updateFirebaseToken(let parameters):
-            return parameters
+        case .registerFcmToken(let fcmToken, _):
+            return ["token": fcmToken]
+        case .updateToken(_, let fcmToken):
+        return ["token": fcmToken]
+        case .deleteToken:
+            return nil
         }
     }
 
