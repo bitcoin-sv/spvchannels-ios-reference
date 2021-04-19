@@ -108,7 +108,7 @@ final class MessagingViewController: UIViewController, CleanVIP, Coordinatable, 
             .filter { $0.tag != 1}
             .forEach { $0.isHidden = true }
         switch messagesAction {
-        case .getMaxSequence:
+        case .getMaxSequence, .registerForPushNotifications, .deregisterNotifications:
             resultsTextView.isHidden = false
         case .sendMessage:
             resultsTextView.isHidden = false
@@ -142,7 +142,7 @@ final class MessagingViewController: UIViewController, CleanVIP, Coordinatable, 
     }
 
     // MARK: - Action selection
-    var messagesAction = MessagingEndpoint.Actions.getAllMessages {
+    private var messagesAction = MessagingEndpoint.Actions.getAllMessages {
         didSet {
             setupMessagingUI()
         }
@@ -165,12 +165,12 @@ final class MessagingViewController: UIViewController, CleanVIP, Coordinatable, 
         present(sheet, animated: true, completion: nil)
     }
 
-    @objc func selectAction(_ sender: UIButton) {
+    @objc private func selectAction(_ sender: UIButton) {
         presentActionSelection()
     }
 
     // MARK: - ViewActions
-    @objc func goButtonTapped(_ sender: UIButton) {
+    @objc private func goButtonTapped(_ sender: UIButton) {
         hideKeyboard()
         let contentType = contentTypeTextField.text ?? ""
         let messageId = messageIdTextField.text ?? ""
@@ -211,7 +211,7 @@ final class MessagingViewController: UIViewController, CleanVIP, Coordinatable, 
         present(alert, animated: true, completion: nil)
     }
 
-    @objc func hideKeyboard() {
+    @objc private func hideKeyboard() {
         view.endEditing(true)
     }
 

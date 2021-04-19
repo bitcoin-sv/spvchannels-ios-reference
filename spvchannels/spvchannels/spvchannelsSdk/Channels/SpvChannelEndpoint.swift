@@ -12,7 +12,7 @@ enum ChannelsEndpoint {
     /// UI action selection strings
     enum Actions: CaseIterable {
         case getAllChannels, getChannel, createChannel, amendChannel, deleteChannel, getAllChannelTokens
-        case getChannelToken, createChannelToken, revokeChannelToken
+        case getChannelToken, createChannelToken, revokeChannelToken, disableAllNotifications
 
         var actionTitle: String {
             switch self {
@@ -34,6 +34,8 @@ enum ChannelsEndpoint {
                 return "Generate Channel Token"
             case .revokeChannelToken:
                 return "Revoke Channel Token"
+            case .disableAllNotifications:
+                return "Disable all Push Notifications"
             }
         }
     }

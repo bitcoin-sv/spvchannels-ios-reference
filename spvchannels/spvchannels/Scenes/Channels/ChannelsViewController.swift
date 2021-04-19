@@ -131,7 +131,7 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
             tokenDescriptionTextField.isHidden = false
             publicReadSwitchStack.isHidden = false
             publicWriteSwitchStack.isHidden = false
-        case .getAllChannels:
+        case .getAllChannels, .disableAllNotifications:
             break
         }
     }
@@ -148,7 +148,7 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
     }
 
     // MARK: - Action selection
-    var channelsAction = ChannelsEndpoint.Actions.getAllChannels {
+    private var channelsAction = ChannelsEndpoint.Actions.getAllChannels {
         didSet {
             setupChannelsUI()
         }
@@ -158,7 +158,7 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
         actionButton.setTitle(channelsAction.actionTitle, for: .normal)
     }
 
-    @objc func selectAction(_ sender: UIButton) {
+    @objc private func selectAction(_ sender: UIButton) {
         presentActionSelection()
     }
 
@@ -176,7 +176,7 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
     }
 
     // MARK: - ViewActions
-    @objc func goButtonTapped(_ sender: UIButton) {
+    @objc private func goButtonTapped(_ sender: UIButton) {
         hideKeyboard()
         let publicRead = publicReadSwitch.isOn
         let publicWrite = publicWriteSwitch.isOn
@@ -220,7 +220,7 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
         present(alert, animated: true, completion: nil)
     }
 
-    @objc func hideKeyboard() {
+    @objc private func hideKeyboard() {
         self.view.endEditing(true)
     }
 }

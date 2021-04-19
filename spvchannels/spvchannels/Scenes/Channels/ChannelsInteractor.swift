@@ -42,6 +42,7 @@ final class ChannelsInteractor: ChannelsInteractorType {
                                                tokenId: viewAction.tokenId)
         case .revokeChannelToken: revokeChannelToken(channelId: viewAction.channelId,
                                                      tokenId: viewAction.tokenId)
+        case .disableAllNotifications: disableAllPushNotifications()
         }
     }
 
@@ -126,5 +127,13 @@ final class ChannelsInteractor: ChannelsInteractorType {
         spvChannelApi.revokeChannelToken(channelId: channelId, tokenId: tokenId) { [weak self] result in
             self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
+    }
+
+    private func disableAllPushNotifications() {
+        guard let spvChannelsSdk = spvChannelsSdk else { return }
+        spvChannelsSdk.disableAllNotifications { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
+        }
+
     }
 }

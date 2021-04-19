@@ -42,41 +42,59 @@ final class MessagingInteractor: MessagingInteractorType {
                             older: viewAction.markOlderMessages)
         case .deleteMessage:
             deleteMessage(sequenceId: viewAction.sequenceId)
+        case .registerForPushNotifications:
+            registerForPushNotifications()
+        case .deregisterNotifications:
+            deregisterPushNotifications()
         }
     }
 
     // MARK: - API calls
-    func getMaxSequence() {
+    private func getMaxSequence() {
         guard let spvMessagingApi = spvMessagingApi else { return }
         spvMessagingApi.getMaxSequence { [weak self] result in
             self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }
 
-    func getAllMessages(unread: Bool) {
+    private func getAllMessages(unread: Bool) {
         guard let spvMessagingApi = spvMessagingApi else { return }
         spvMessagingApi.getAllMessages(unread: unread) { [weak self] result in
             self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }
 
-    func markMessageRead(sequenceId: String, read: Bool, older: Bool) {
+    private func markMessageRead(sequenceId: String, read: Bool, older: Bool) {
         guard let spvMessagingApi = spvMessagingApi else { return }
         spvMessagingApi.markMessageRead(sequenceId: sequenceId, read: read, older: older) { [weak self] result in
             self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }
 
-    func deleteMessage(sequenceId: String) {
+    private func deleteMessage(sequenceId: String) {
         guard let spvMessagingApi = spvMessagingApi else { return }
         spvMessagingApi.deleteMessage(sequenceId: sequenceId) { [weak self] result in
             self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }
 
-    func sendMessage(contentType: String, payload: Data) {
+    private func sendMessage(contentType: String, payload: Data) {
         guard let spvMessagingApi = spvMessagingApi else { return }
         spvMessagingApi.sendMessage(contentType: contentType, payload: payload) { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
+        }
+    }
+
+    private func registerForPushNotifications() {
+        guard let spvMessagingApi = spvMessagingApi else { return }
+        spvMessagingApi.registerForNotifications { [weak self] result in
+            self?.presenter?.presentActionResults(actionResponse: .init(result: result))
+        }
+    }
+
+    private func deregisterPushNotifications() {
+        guard let spvMessagingApi = spvMessagingApi else { return }
+        spvMessagingApi.deregisterNotifications { [weak self] result in
             self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
     }

@@ -282,9 +282,9 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
      
      spvChannelApi.amendChannel(channelId: channelId,
                                 permissions: permissions) { result in
-         if case let .success(data) = result {
-             print(data.publicWrite)
-         }
+        if case let .success(data) = result {
+            print(data.publicWrite)
+        }
      }
      ```
      */

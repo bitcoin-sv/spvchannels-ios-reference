@@ -59,6 +59,21 @@ class SpvMessagingApi {
 
 extension SpvMessagingApi: SpvMessagingApiProtocol {
 
+    /**
+     Registers current FCM token to receive push notification for current channel
+     
+     - parameter completion: Code block to execute with result when response is received
+     - returns: A string with a value
+
+     # Example #
+     ```
+     spvMessagingApi.registerForNotifications { result in
+        if case let .success(data) = result {
+            print(data)
+        }
+     }
+     ```
+     */
     func registerForNotifications(completion: @escaping StringResult) {
         guard let currentToken = UserDefaults.standard.firebaseToken else {
             completion(.failure(APIError.badRequest("No Firebase token stored")))
@@ -67,12 +82,27 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
         notificationService?.registerFcmToken(fcmToken: currentToken, channelToken: token, completion: completion)
     }
 
+    /**
+     Deregisters current FCM token, stop receiving push notifications for current channel
+     
+     - parameter completion: Code block to execute with result when response is received
+     - returns: A string with a value
+
+     # Example #
+     ```
+     spvMessagingApi.deregisterNotifications { result in
+        if case let .success(data) = result {
+            print(data)
+        }
+     }
+     ```
+     */
     func deregisterNotifications(completion: @escaping StringResult) {
         guard let currentToken = UserDefaults.standard.firebaseToken else {
             completion(.failure(APIError.badRequest("No Firebase token stored")))
             return
         }
-        notificationService?.registerFcmToken(fcmToken: currentToken, channelToken: channelId, completion: completion)
+        notificationService?.deleteToken(oldToken: currentToken, channelId: channelId, completion: completion)
     }
 
     /**

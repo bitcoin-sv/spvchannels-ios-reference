@@ -18,12 +18,14 @@ class SpvChannelsSdk: NSObject {
     private var notificationService: SpvFirebaseTokenApi?
     private var openNotification: ((String, String) -> Void)?
 
+    /// Current Firebase Messaging token
     private var fcmToken: String? {
         didSet {
             updateFcmTokenIfNeeded(oldToken: oldValue, newToken: fcmToken)
         }
     }
 
+    /// last FCM token that was synchronized with server
     private var storedToken: String? {
         UserDefaults.standard.firebaseToken
     }
@@ -45,7 +47,6 @@ class SpvChannelsSdk: NSObject {
      let myChannelsSdk = SpvChannelsSdk("https://10.0.0.1:5010")
      ```
      */
-
     init?(firebaseConfig: String = "", baseUrl: String, openNotification: PushNotificationClosure? = nil) {
         self.baseUrl = baseUrl
         self.openNotification = openNotification
