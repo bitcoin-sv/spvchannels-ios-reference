@@ -6,6 +6,7 @@
 //  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
+/// push notification token API call parameter definitions
 enum FirebaseTokenEndpoint {
 
     case registerFcmToken(fcmToken: String, channelToken: String)
@@ -15,17 +16,19 @@ enum FirebaseTokenEndpoint {
 
 extension FirebaseTokenEndpoint: RequestProtocol {
 
+    /// URL path of each API call
     var path: String {
         switch self {
         case .registerFcmToken:
-            return "/pushnotifications"
+            return "/"
         case .updateToken(let oldToken, _):
-            return "/pushnotifications/\(oldToken)"
+            return "/\(oldToken)"
         case .deleteToken(let oldToken, _):
-            return "/pushnotifications/\(oldToken)"
+            return "/\(oldToken)"
         }
     }
 
+    /// HTTP method of each API call
     var method: RequestMethod {
         switch self {
         case .registerFcmToken:
@@ -37,6 +40,7 @@ extension FirebaseTokenEndpoint: RequestProtocol {
         }
     }
 
+    /// Additional HTTP headers of each API call
     var headers: RequestHeaders? {
         switch self {
         case .registerFcmToken(_, let channelToken):
@@ -46,10 +50,7 @@ extension FirebaseTokenEndpoint: RequestProtocol {
         }
     }
 
-    var rawBody: Data? {
-        nil
-    }
-
+    /// HTTP request URL parameters of each API call
     var urlParameters: RequestParameters? {
         switch self {
         case .registerFcmToken, .updateToken:
@@ -63,6 +64,7 @@ extension FirebaseTokenEndpoint: RequestProtocol {
         }
     }
 
+    /// HTTP JSON body parameters of each API call
     var bodyParameters: RequestParameters? {
         switch self {
         case .registerFcmToken(let fcmToken, _):
@@ -72,6 +74,11 @@ extension FirebaseTokenEndpoint: RequestProtocol {
         case .deleteToken:
             return nil
         }
+    }
+
+    /// HTTP raw data body of each specific API call
+    var rawBody: Data? {
+        nil
     }
 
 }
