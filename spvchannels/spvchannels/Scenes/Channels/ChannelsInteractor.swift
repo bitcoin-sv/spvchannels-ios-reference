@@ -134,6 +134,5 @@ final class ChannelsInteractor: ChannelsInteractorType {
         spvChannelsSdk.disableAllNotifications { [weak self] result in
             self?.presenter?.presentActionResults(actionResponse: .init(result: result))
         }
-
     }
 }

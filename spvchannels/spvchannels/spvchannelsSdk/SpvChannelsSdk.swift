@@ -113,6 +113,11 @@ class SpvChannelsSdk: NSObject {
 extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
     typealias StringResult = (Result<String, Error>) -> Void
 
+    /// Named Firebase instance
+    private var spvFirebaseInstance: FirebaseApp? {
+        FirebaseApp.app(name: "spvChannels")
+    }
+
     /// Initializes Firebase messaging, sets up push notification authorization and registers for receiving
     /// Also listens for app lifecycle events for refresh FCM token upon app becoming active
     private func setupFirebaseMessaging(configFile: String) -> Bool {
@@ -120,7 +125,7 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
         Messaging.messaging().delegate = nil
         UNUserNotificationCenter.current().delegate = nil
         application.unregisterForRemoteNotifications()
-        FirebaseApp.app()?.delete({_ in})
+        spvFirebaseInstance?.delete {_ in }
 
         guard let firebaseOptions = FirebaseOptions.init(contentsOfFile: configFile) else {
             return false
@@ -128,7 +133,7 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
         // Needed to use Objective-C catch in a wrapper class to handle NSException that Firebase throws
         guard (try? ObjC.catch { [weak self] in
             guard let self = self else { return }
-            FirebaseApp.configure(options: firebaseOptions)
+            FirebaseApp.configure(name: "spvChannels", options: firebaseOptions)
             UNUserNotificationCenter.current().delegate = self
             UNUserNotificationCenter.current().requestAuthorization(
                 options: [.alert, .badge, .sound],
