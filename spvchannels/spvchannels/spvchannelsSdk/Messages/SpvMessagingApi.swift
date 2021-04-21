@@ -130,7 +130,11 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
         operation.execute(in: requestDispatcher) { result in
             switch result {
             case .data(_, let urlResponse):
-                if let value = urlResponse?.value(forHTTPHeaderField: "ETag") {
+                let eTagKey = urlResponse?.allHeaderFields.keys
+                    .compactMap { $0 as? String }
+                    .first(where: { $0.lowercased() == "etag" })
+                if let eTagKey = eTagKey,
+                   let value = urlResponse?.allHeaderFields[eTagKey] as? String {
                     completion(.success(value))
                 } else {
                     completion(.failure(APIError.invalidResponse("No ETag header value")))
