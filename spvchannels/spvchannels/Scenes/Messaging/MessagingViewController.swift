@@ -142,7 +142,7 @@ final class MessagingViewController: UIViewController, CleanVIP, Coordinatable, 
     }
 
     // MARK: - Action selection
-    private var messagesAction = MessagingEndpoint.Actions.getAllMessages {
+    var messagesAction = MessagingApiAction.getAllMessages {
         didSet {
             setupMessagingUI()
         }
@@ -154,7 +154,7 @@ final class MessagingViewController: UIViewController, CleanVIP, Coordinatable, 
 
     private func presentActionSelection() {
         let sheet = UIAlertController()
-        MessagingEndpoint.Actions.allCases.forEach { action in
+        MessagingApiAction.allCases.forEach { action in
             sheet.addAction(.init(title: action.actionTitle, style: .default) { [weak self] _ in
                 self?.messagesAction = action
             })

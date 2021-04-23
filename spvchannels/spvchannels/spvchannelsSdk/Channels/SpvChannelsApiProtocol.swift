@@ -7,7 +7,7 @@
 //
 
 /// Types and methods of the Channels API facilitating network API calls
-protocol SpvChannelsApiProtocol {
+public protocol SpvChannelsApiProtocol {
 
     // MARK: Channels API
     typealias ChannelsInfoResult = (Result<ChannelsList, Error>) -> Void

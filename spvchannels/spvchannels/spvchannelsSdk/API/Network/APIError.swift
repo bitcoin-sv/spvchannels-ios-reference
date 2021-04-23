@@ -7,7 +7,7 @@
 //
 
 /// Definition of API errors
-enum APIError: Error, CustomStringConvertible {
+public enum APIError: Error, CustomStringConvertible {
     case noData
     case unauthorized
     case forbidden
@@ -22,7 +22,7 @@ enum APIError: Error, CustomStringConvertible {
     case unknown
     case encryptionError
 
-    static func getErrorDescription(from error: Error?) -> String {
+    public static func getErrorDescription(from error: Error?) -> String {
         var errorMessage: String
         if let error = error as? APIError {
             errorMessage = error.description
@@ -53,7 +53,7 @@ enum APIError: Error, CustomStringConvertible {
         (400...599).contains(statusCode)
     }
 
-    var description: String {
+    public var description: String {
         switch self {
         case .noData: return "No content"
         case .unauthorized: return "Unauthorized"

@@ -6,8 +6,6 @@
 //  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Foundation
-
 /// Messaging Scene use case value structs for methods as per Clean Swift architecture
 enum MessagingModels {
     enum GetChannelInfo {
@@ -24,7 +22,7 @@ enum MessagingModels {
 
     enum PerformApiAction {
         struct ViewAction {
-            let action: MessagingEndpoint.Actions
+            let action: MessagingApiAction
             let contentType: String
             let sequenceId: String
             let payload: String

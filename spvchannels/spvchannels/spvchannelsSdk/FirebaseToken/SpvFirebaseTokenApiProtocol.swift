@@ -6,7 +6,9 @@
 //  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-protocol SpvFirebaseTokenApiProtocol {
+public protocol SpvFirebaseTokenApiProtocol {
+
+    var fcmToken: String? { get }
 
     // MARK: FirebaseToken API
     typealias StringResult = (Result<String, Error>) -> Void
@@ -17,6 +19,8 @@ protocol SpvFirebaseTokenApiProtocol {
                      completion: @escaping StringResult)
     func deleteToken(oldToken: String, channelId: String?,
                      completion: @escaping StringResult)
+    func receivedNewToken(newToken: String)
+    func updateTokenIfStoredDifferent()
 }
 
 extension SpvFirebaseTokenApiProtocol {

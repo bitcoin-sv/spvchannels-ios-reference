@@ -7,7 +7,7 @@
 //
 
 /// Structure describing a single channel access token properties
-struct ChannelToken: Codable, Equatable {
+public struct ChannelToken: Codable, Equatable {
     let id: String
     let token: String
     let description: String

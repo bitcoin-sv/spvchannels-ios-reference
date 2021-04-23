@@ -7,14 +7,16 @@
 //
 
 /// Payload encryption service that does no encryption
-struct SpvNoOpEncryption: SpvEncryptionProtocol {
+public struct SpvNoOpEncryption: SpvEncryptionProtocol {
 
-    func encrypt(input: Data) -> Data? {
+    public func encrypt(input: Data) -> Data? {
         input
     }
 
-    func decrypt(input: Data) -> Data? {
+    public func decrypt(input: Data) -> Data? {
         input
     }
+
+    public init() {}
 
 }

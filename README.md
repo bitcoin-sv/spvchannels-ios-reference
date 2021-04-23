@@ -17,7 +17,7 @@ In order to connect to an SPV Channels server with a self-signed certificate dur
 [CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate SPV Channels SDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod 'SpvChannelsSdk'
+pod 'SpvChannelsSdk', :git => 'https://github.com/bitcoin-sv/spvchannels-ios-reference.git'
 ```
 
 ## Building
@@ -26,7 +26,7 @@ pod 'SpvChannelsSdk'
 
 When using Xcode IDE using the CocoaPod generated workspace, building of the app will also build SDK, with no extra actions required.
 
-### Building from terminal
+### Building from command line
 
 1. Use `Terminal` to navigate to the project directory
 2. run `xcodebuild -workspace yourworkspacefile -scheme yourappname` in Terminal
@@ -35,7 +35,7 @@ Replace `yourworkspacefile` with the filename of your project workspace, and `yo
 
 ##### Example:
 
-`xcodebuild -workspace spvchannels.xcworkspace -scheme spvchannels`
+`xcodebuild -workspace SpvChannelsSdk.xcworkspace -scheme SpvChannelsSdk`
 
 ## SDK usage
 

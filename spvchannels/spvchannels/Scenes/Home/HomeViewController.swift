@@ -134,6 +134,7 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
 
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
+        interactor?.getFirebaseToken(viewAction: .init())
     }
 
     // MARK: - ViewActions
@@ -194,7 +195,9 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
     func displayCreateSdk(responseDisplay: Models.CreateSdk.ResponseDisplay) {
         if responseDisplay.result {
             displayAlertMessage(message: "SPV Channels SDK initialized successfully")
-            interactor?.getFirebaseToken(viewAction: .init())
+            DispatchQueue.main.asyncAfter(deadline: .now()+3) { [weak self] in
+                self?.interactor?.getFirebaseToken(viewAction: .init())
+            }
         } else {
             displayErrorMessage(errorMessage: "SPV Channels SDK initialization failed")
         }
@@ -203,6 +206,7 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
     func displayFirebaseToken(responseDisplay: Models.GetFirebaseToken.ResponseDisplay) {
         firebaseToken.text = responseDisplay.token
     }
+
     func displayCreateChannelApi(responseDisplay: Models.CreateChannelApi.ResponseDisplay) {
         if responseDisplay.result {
             router?.routeToChannels()

@@ -148,7 +148,7 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
     }
 
     // MARK: - Action selection
-    private var channelsAction = ChannelsEndpoint.Actions.getAllChannels {
+    var channelsAction = ChannelApiAction.getAllChannels {
         didSet {
             setupChannelsUI()
         }
@@ -164,7 +164,7 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
 
     private func presentActionSelection() {
         let sheet = UIAlertController()
-        ChannelsEndpoint.Actions.allCases.forEach { action in
+        ChannelApiAction.allCases.forEach { action in
             sheet.addAction(.init(title: action.actionTitle, style: .default) { [weak self] _ in
                 self?.channelsAction = action
             })

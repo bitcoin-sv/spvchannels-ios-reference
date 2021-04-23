@@ -7,11 +7,11 @@
 //
 
 /// Class for executing Messaging API network calls
-class SpvMessagingApi {
+public class SpvMessagingApi {
     let requestDispatcher: RequestDispatcherProtocol
 
-    let channelId: String
-    let token: String
+    public let channelId: String
+    public let token: String
     let encryptionService: SpvEncryptionProtocol
 
     private let notificationService: SpvFirebaseTokenApiProtocol?
@@ -38,20 +38,21 @@ class SpvMessagingApi {
                                                      token: token)
      ```
      */
-    init(baseUrl: String, channelId: String, token: String, notificationService: SpvFirebaseTokenApiProtocol?,
-         encryption: SpvEncryptionProtocol, networkSession: NetworkSessionProtocol) {
+    public init(baseUrl: String, channelId: String, token: String,
+                notificationService: SpvFirebaseTokenApiProtocol?,
+                encryption: SpvEncryptionProtocol, networkSession: NetworkSessionProtocol) {
         self.channelId = channelId
         self.token = token
         self.notificationService = notificationService
         self.encryptionService = encryption
-        let baseUrlWithSuffix = baseUrl + "/api/v1/channel/\(channelId)"
+        let baseUrlWithSuffix = baseUrl + "api/v1/channel/\(channelId)"
         let env = SpvMessagingApiEnvironment(baseUrl: baseUrlWithSuffix,
                                             token: token)
         requestDispatcher = APIRequestDispatcher(environment: env, networkSession: networkSession)
     }
 
-    convenience init(baseUrl: String, channelId: String, token: String,
-                     notificationService: SpvFirebaseTokenApiProtocol? = nil, encryption: SpvEncryptionProtocol) {
+    public convenience init(baseUrl: String, channelId: String, token: String,
+                            notificationService: SpvFirebaseTokenApiProtocol?, encryption: SpvEncryptionProtocol) {
         self.init(baseUrl: baseUrl, channelId: channelId, token: token, notificationService: notificationService,
                   encryption: encryption, networkSession: APINetworkSession())
     }
@@ -74,9 +75,9 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
      }
      ```
      */
-    func registerForNotifications(completion: @escaping StringResult) {
-        guard let currentToken = UserDefaults.standard.firebaseToken else {
-            completion(.failure(APIError.badRequest("No Firebase token stored")))
+    public func registerForNotifications(completion: @escaping StringResult) {
+        guard let currentToken = notificationService?.fcmToken else {
+            completion(.failure(APIError.badRequest("No Firebase token found")))
             return
         }
         notificationService?.registerFcmToken(fcmToken: currentToken, channelToken: token, completion: completion)
@@ -97,9 +98,9 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
      }
      ```
      */
-    func deregisterNotifications(completion: @escaping StringResult) {
-        guard let currentToken = UserDefaults.standard.firebaseToken else {
-            completion(.failure(APIError.badRequest("No Firebase token stored")))
+    public func deregisterNotifications(completion: @escaping StringResult) {
+        guard let currentToken = notificationService?.fcmToken else {
+            completion(.failure(APIError.badRequest("No Firebase token found")))
             return
         }
         notificationService?.deleteToken(oldToken: currentToken, channelId: channelId, completion: completion)
@@ -123,7 +124,7 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
      }
      ```
      */
-    func getMaxSequence(completion: @escaping StringResult) {
+    public func getMaxSequence(completion: @escaping StringResult) {
         let messagingRequest = MessagingEndpoint.getMaxSequence
         let operation = APIOperation(messagingRequest)
 
@@ -166,7 +167,7 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
      }
      ```
      */
-    func getAllMessages(unread: Bool, completion: @escaping MessagesResult) {
+    public func getAllMessages(unread: Bool, completion: @escaping MessagesResult) {
         let messagingRequest = MessagingEndpoint.getAllMessages(unread: unread)
         let operation = APIOperation(messagingRequest)
         operation.execute(in: requestDispatcher) { result in
@@ -210,7 +211,7 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
      }
      ```
      */
-    func markMessageRead(sequenceId: String, read: Bool, older: Bool, completion: @escaping StringResult) {
+    public func markMessageRead(sequenceId: String, read: Bool, older: Bool, completion: @escaping StringResult) {
         let bodyParameters: [String: Any] = ["read": read]
         let urlParameters: [String: Any] = ["older": older]
         let messagingRequest = MessagingEndpoint.markMessageRead(sequenceId: sequenceId,
@@ -246,7 +247,7 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
      }
      ```
      */
-    func deleteMessage(sequenceId: String, completion: @escaping StringResult) {
+    public func deleteMessage(sequenceId: String, completion: @escaping StringResult) {
         let messagingRequest = MessagingEndpoint.deleteMessage(sequenceId: sequenceId)
         let operation = APIOperation(messagingRequest)
 
@@ -285,7 +286,7 @@ extension SpvMessagingApi: SpvMessagingApiProtocol {
      }
      ```
      */
-    func sendMessage(contentType: String, payload: Data, completion: @escaping MessageResult) {
+    public func sendMessage(contentType: String, payload: Data, completion: @escaping MessageResult) {
         guard let encrypted = encryptionService.encrypt(input: payload) else {
             completion(.failure(APIError.encryptionError))
             return

@@ -15,7 +15,7 @@
  # Notes: #
  If making your own class to use, in case encryption fails, do *not* pass unaltered input as output, return nil instead
 */
-protocol SpvEncryptionProtocol {
+public protocol SpvEncryptionProtocol {
     func encrypt(input: Data) -> Data?
     func decrypt(input: Data) -> Data?
 }
