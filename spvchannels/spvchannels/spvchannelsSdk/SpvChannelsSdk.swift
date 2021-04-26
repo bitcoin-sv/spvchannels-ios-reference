@@ -118,7 +118,7 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
         Messaging.messaging().delegate = nil
         UNUserNotificationCenter.current().delegate = nil
         application.unregisterForRemoteNotifications()
-        FirebaseApp.app()?.delete({_ in})
+        FirebaseApp.app()?.delete {_ in }
 
         guard let firebaseOptions = FirebaseOptions(contentsOfFile: configFile) else {
             return false

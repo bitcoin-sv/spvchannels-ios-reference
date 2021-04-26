@@ -195,7 +195,7 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
     func displayCreateSdk(responseDisplay: Models.CreateSdk.ResponseDisplay) {
         if responseDisplay.result {
             displayAlertMessage(message: "SPV Channels SDK initialized successfully")
-            DispatchQueue.main.asyncAfter(deadline: .now()+3) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
                 self?.interactor?.getFirebaseToken(viewAction: .init())
             }
         } else {
