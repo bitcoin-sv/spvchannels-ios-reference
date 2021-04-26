@@ -192,7 +192,9 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
             completionHandler([[.alert, .badge, .sound]])
             return
         }
-        handleReceivedNotification(with: notification.request.content.userInfo)
+        let title = notification.request.content.title
+        let body = notification.request.content.body
+        handleReceivedNotification(title: title, body: body, userInfo: notification.request.content.userInfo)
         completionHandler([])
     }
 
@@ -201,7 +203,9 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         Messaging.messaging().appDidReceiveMessage(userInfo)
-        handleReceivedNotification(with: userInfo)
+        let title: String = userInfo["message"] as? String ?? "n/a"
+        let body: String = userInfo["time"] as? String ?? "n/a"
+        handleReceivedNotification(title: title, body: body, userInfo: userInfo)
         completionHandler(.newData)
     }
 
@@ -209,12 +213,14 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
     public func userNotificationCenter(_ center: UNUserNotificationCenter,
                                        didReceive response: UNNotificationResponse,
                                        withCompletionHandler completionHandler: @escaping () -> Void) {
-        handleReceivedNotification(with: response.notification.request.content.userInfo)
+        let title = response.notification.request.content.title
+        let body = response.notification.request.content.body
+        handleReceivedNotification(title: title, body: body, userInfo: response.notification.request.content.userInfo)
         completionHandler()
     }
 
     /// Call closure to respond to push notification
-    private func handleReceivedNotification(with userInfo: [AnyHashable: Any]) {
+    private func handleReceivedNotification(title: String, body: String, userInfo: [AnyHashable: Any]) {
         guard let sender = userInfo["google.c.sender.id"] as? String,
               sender == gcmSenderId else { return }
         let message = userInfo["message"] as? String ?? "unknown"

@@ -36,9 +36,15 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
     func createSdk(viewAction: Models.CreateSdk.ViewAction) {
         spvChannelsSdk = nil
         let onOpenNotification = { [weak self] (message: String, messageTime: String, channelId: String) -> Void in
-            self?.presenter?.presentError(errorMessage: "\(message)\n\n" +
-                                            "Message time: \(messageTime)\n\n" +
-                                            "Channel ID: \(channelId)")
+
+            let displayMessage = """
+            \(message)
+
+            Message time: \(messageTime)
+
+            Channel ID: \(channelId)
+            """
+            self?.presenter?.presentError(errorMessage: displayMessage)
         }
         let firebaseConfigFile = Bundle.main.path(forResource: Constants.firebaseConfigFile.rawValue,
                                                   ofType: "plist") ?? ""
