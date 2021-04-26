@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'SpvChannelsSdk_Example' do
+  pod 'Firebase'
+  pod 'Firebase/Messaging'
+  pod 'Sodium'
+  pod 'SpvChannelsSdk', :path => '../'
+
+  target 'SpvChannelsSdk_Tests' do
+    inherit! :search_paths
+  end
+end
