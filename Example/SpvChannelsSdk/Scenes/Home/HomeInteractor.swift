@@ -92,7 +92,7 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
         }
         spvMessagingApi = nil
 
-        var encryptionService: SpvEncryptionProtocol? = nil
+        var encryptionService: SpvEncryptionProtocol?
         if viewAction.encryption {
             if let encryptionClass = SpvLibSodiumEncryption(publicKeyString: Constants.bobPublicKey.rawValue,
                                                             secretKeyString: Constants.bobSecretKey.rawValue),
