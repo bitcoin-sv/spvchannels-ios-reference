@@ -48,7 +48,7 @@ enum ChannelsModels {
 
     enum PerformApiAction {
         struct ViewAction {
-            let action: ChannelsEndpoint.Actions
+            let action: ChannelApiAction
             let publicRead: Bool
             let publicWrite: Bool
             let locked: Bool

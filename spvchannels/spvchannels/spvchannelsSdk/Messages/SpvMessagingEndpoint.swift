@@ -11,8 +11,7 @@ enum MessagingEndpoint {
 
     /// UI action selection strings
     enum Actions: CaseIterable {
-        case getMaxSequence, getAllMessages, markMessageRead, sendMessage, deleteMessage, registerForPushNotifications,
-             deregisterNotifications
+        case getMaxSequence, getAllMessages, markMessageRead, sendMessage, deleteMessage
 
         var actionTitle: String {
             switch self {
@@ -26,10 +25,6 @@ enum MessagingEndpoint {
                 return "Send Message"
             case .deleteMessage:
                 return "Delete Message"
-            case .registerForPushNotifications:
-                return "Register channel for push"
-            case .deregisterNotifications:
-                return "Deregister channel from push"
             }
         }
     }

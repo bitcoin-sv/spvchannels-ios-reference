@@ -7,8 +7,14 @@
 //
 
 /// Structure passed to Create Channel network API call describing new channel access and sequencing properties
-struct CreateChannelRequest: Codable {
+public struct CreateChannelRequest: Codable {
     let publicRead: Bool
     let publicWrite: Bool
     let sequenced: Bool
+
+    public init(publicRead: Bool, publicWrite: Bool, sequenced: Bool) {
+        self.publicRead = publicRead
+        self.publicWrite = publicWrite
+        self.sequenced = sequenced
+    }
 }

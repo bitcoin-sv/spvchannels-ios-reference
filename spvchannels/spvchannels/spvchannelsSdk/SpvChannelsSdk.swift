@@ -6,29 +6,23 @@
 //  Distributed under the Open BSV software license, see the accompanying file LICENSE
 //
 
-import Firebase
+import FirebaseCore
+import FirebaseMessaging
 import UIKit
 
 /// SPV Channels SDK main entry point
-class SpvChannelsSdk: NSObject {
+public class SpvChannelsSdk: NSObject {
     /// Closure that notifies your app when user interacts with a push notification
-    typealias PushNotificationClosure = (String, String) -> Void
+    public typealias PushNotificationClosure = (String, String, String) -> Void
     /// Base URL of SPV Channels server
-    let baseUrl: String
-    private var notificationService: SpvFirebaseTokenApi?
-    private var openNotification: ((String, String) -> Void)?
-
-    /// Current Firebase Messaging token
-    private var fcmToken: String? {
-        didSet {
-            updateFcmTokenIfNeeded(oldToken: oldValue, newToken: fcmToken)
-        }
+    public let baseUrl: String
+    public var firebaseToken: String? {
+        notificationService?.fcmToken
     }
 
-    /// last FCM token that was synchronized with server
-    private var storedToken: String? {
-        UserDefaults.standard.firebaseToken
-    }
+    private var notificationService: SpvFirebaseTokenApiProtocol?
+    private var openNotification: ((String, String, String) -> Void)?
+    private var gcmSenderId: String?
 
     /**
      - parameter firebaseConfig: a file url with FireBase configuration to use for messaging
@@ -47,13 +41,15 @@ class SpvChannelsSdk: NSObject {
      let myChannelsSdk = SpvChannelsSdk("https://10.0.0.1:5010")
      ```
      */
-    init?(firebaseConfig: String = "", baseUrl: String, openNotification: PushNotificationClosure? = nil) {
-        self.baseUrl = baseUrl
-        self.openNotification = openNotification
-        super.init()
-        if let stored = storedToken {
-            self.fcmToken = stored
+
+    public init?(firebaseConfig: String = "", baseUrl: String, openNotification: PushNotificationClosure? = nil) {
+        guard let url = URL(string: baseUrl) else {
+            return nil
         }
+        let absolutePath = url.absoluteString
+        self.baseUrl = absolutePath.hasSuffix("/") ? absolutePath : absolutePath + "/"
+        super.init()
+        self.openNotification = openNotification
         if !firebaseConfig.isEmpty {
             if setupFirebaseMessaging(configFile: firebaseConfig) {
                 notificationService = SpvFirebaseTokenApi(baseUrl: baseUrl)
@@ -79,7 +75,7 @@ class SpvChannelsSdk: NSObject {
                                                password: "secret")
      ```
      */
-    func channelWithCredentials(accountId: String, username: String, password: String) -> SpvChannelApi {
+    public func channelWithCredentials(accountId: String, username: String, password: String) -> SpvChannelApi {
         SpvChannelApi(baseUrl: baseUrl, accountId: accountId, username: username, password: password)
     }
 
@@ -94,7 +90,7 @@ class SpvChannelsSdk: NSObject {
      
      
      # Notes: #
-     If you do not provide encryption class it will default to no encryption by way of SpvNoOpEncryption class
+     If you do not provide encryption class (nil) it will default to no encryption by way of SpvNoOpEncryption class
      
      # Example #
      ```
@@ -102,38 +98,36 @@ class SpvChannelsSdk: NSObject {
                                              token: "ABC456DEF")
      ```
      */
-    func messagingWithToken(channelId: String, token: String,
-                            encryption: SpvEncryptionProtocol = SpvNoOpEncryption()) -> SpvMessagingApi {
-        SpvMessagingApi(baseUrl: baseUrl, channelId: channelId, token: token,
-                        notificationService: notificationService, encryption: encryption)
+    public func messagingWithToken(channelId: String, token: String,
+                                   encryption: SpvEncryptionProtocol?) -> SpvMessagingApi {
+        let encryptionService: SpvEncryptionProtocol = encryption ?? SpvNoOpEncryption()
+        return SpvMessagingApi(baseUrl: baseUrl, channelId: channelId, token: token,
+                               notificationService: notificationService, encryption: encryptionService)
     }
 
 }
 
 extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
-    typealias StringResult = (Result<String, Error>) -> Void
-
-    /// Named Firebase instance
-    private var spvFirebaseInstance: FirebaseApp? {
-        FirebaseApp.app(name: "spvChannels")
-    }
+    public typealias StringResult = (Result<String, Error>) -> Void
 
     /// Initializes Firebase messaging, sets up push notification authorization and registers for receiving
     /// Also listens for app lifecycle events for refresh FCM token upon app becoming active
     private func setupFirebaseMessaging(configFile: String) -> Bool {
         let application = UIApplication.shared
+        gcmSenderId = nil
         Messaging.messaging().delegate = nil
         UNUserNotificationCenter.current().delegate = nil
         application.unregisterForRemoteNotifications()
-        spvFirebaseInstance?.delete {_ in }
+        FirebaseApp.app()?.delete {_ in }
 
-        guard let firebaseOptions = FirebaseOptions.init(contentsOfFile: configFile) else {
+        guard let firebaseOptions = FirebaseOptions(contentsOfFile: configFile) else {
             return false
         }
         // Needed to use Objective-C catch in a wrapper class to handle NSException that Firebase throws
         guard (try? ObjC.catch { [weak self] in
             guard let self = self else { return }
-            FirebaseApp.configure(name: "spvChannels", options: firebaseOptions)
+            FirebaseApp.configure(options: firebaseOptions)
+            self.gcmSenderId = firebaseOptions.gcmSenderID
             UNUserNotificationCenter.current().delegate = self
             UNUserNotificationCenter.current().requestAuthorization(
                 options: [.alert, .badge, .sound],
@@ -160,77 +154,79 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
     /// When app becomes active, check for any FCM token change
     @objc func appWillEnterForeground() {
         guard let newToken = Messaging.messaging().fcmToken else { return }
-        if newToken != fcmToken {
-            fcmToken = newToken
-        } else {
-            updateTokenIfStoredDifferent()
-        }
+        notificationService?.receivedNewToken(newToken: newToken)
     }
 
     /// When app becomes goes to background, check for any FCM token change
     @objc func appWillResignActive() {
         guard let newToken = Messaging.messaging().fcmToken else { return }
-        if newToken != fcmToken {
-            fcmToken = newToken
-        } else {
-            updateTokenIfStoredDifferent()
-        }
+        notificationService?.receivedNewToken(newToken: newToken)
     }
 
     /// Received a FCM token, update it if needed
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+    public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         guard let fcmToken = fcmToken else { return }
-        self.fcmToken = fcmToken
+        notificationService?.receivedNewToken(newToken: fcmToken)
     }
 
     /// Disables notifications for all channels by deregistering an existing FCM token
-    func disableAllNotifications(completion: @escaping StringResult) {
-        guard let fcmToken = fcmToken else {
-            completion(.failure(APIError.badRequest("Firebase token cannot be nil")))
+    public func disableAllNotifications(completion: @escaping StringResult) {
+        guard let fcmToken = notificationService?.fcmToken else {
+            completion(.failure(APIError.badRequest("Firebase token has not been received yet")))
             return
         }
         notificationService?.deleteToken(oldToken: fcmToken, completion: completion)
     }
 
-    /// Update FCM token on back-end so if current FCM token differs from stored token
-    private func updateTokenIfStoredDifferent() {
-        updateFcmTokenIfNeeded(oldToken: storedToken, newToken: fcmToken)
-    }
-
-    /// Register new FCM token with back-end so messages will be able to be addressed to this device
-    private func updateFcmTokenIfNeeded(oldToken: String?, newToken: String?) {
-        guard let oldToken = oldToken, let newToken = newToken else { return }
-        if newToken != oldToken || storedToken != newToken {
-            notificationService?.updateToken(oldToken: oldToken, fcmToken: newToken) { result in
-                if case .success = result {
-                    UserDefaults.standard.firebaseToken = newToken
-                }
-            }
-        }
-    }
-
     /// Received the Apple push notification token, associate it with FCM messaging
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
-        updateTokenIfStoredDifferent()
+        notificationService?.updateTokenIfStoredDifferent()
     }
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping
-                                    (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([[.badge, .alert, .sound]])
-    }
-
-    /// User interacted with a received push notification, call any provided response code block
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        let message = response.notification.request.content.title
-        let channelId = response.notification.request.content.body
-        DispatchQueue.main.async { [weak self] in
-            self?.openNotification?(message, channelId)
+    public func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                       willPresent notification: UNNotification,
+                                       withCompletionHandler completionHandler: @escaping
+                                        (UNNotificationPresentationOptions) -> Void) {
+        guard UIApplication.shared.applicationState == .active else {
+            completionHandler([[.alert, .badge, .sound]])
+            return
         }
+        let title = notification.request.content.title
+        let body = notification.request.content.body
+        handleReceivedNotification(title: title, body: body, userInfo: notification.request.content.userInfo)
+        completionHandler([])
+    }
+
+    /// Handle received remote notification
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        let title: String = userInfo["message"] as? String ?? "n/a"
+        let body: String = userInfo["time"] as? String ?? "n/a"
+        handleReceivedNotification(title: title, body: body, userInfo: userInfo)
+        completionHandler(.newData)
+    }
+
+    /// User interacted with a received push notification
+    public func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                       didReceive response: UNNotificationResponse,
+                                       withCompletionHandler completionHandler: @escaping () -> Void) {
+        let title = response.notification.request.content.title
+        let body = response.notification.request.content.body
+        handleReceivedNotification(title: title, body: body, userInfo: response.notification.request.content.userInfo)
         completionHandler()
+    }
+
+    /// Call closure to respond to push notification
+    private func handleReceivedNotification(title: String, body: String, userInfo: [AnyHashable: Any]) {
+        guard let sender = userInfo["google.c.sender.id"] as? String,
+              sender == gcmSenderId else { return }
+        let channelId = userInfo["channelId"] as? String ?? "unknown channel"
+        DispatchQueue.main.async { [weak self] in
+            self?.openNotification?(title, body, channelId)
+        }
     }
 
 }

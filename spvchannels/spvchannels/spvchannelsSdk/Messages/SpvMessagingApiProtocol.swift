@@ -7,7 +7,7 @@
 //
 
 /// Types and methods of the Messaging API facilitating network API calls
-protocol SpvMessagingApiProtocol {
+public protocol SpvMessagingApiProtocol {
 
     // MARK: Messaging API
     typealias StringResult = (Result<String, Error>) -> Void

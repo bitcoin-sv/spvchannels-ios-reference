@@ -7,7 +7,7 @@
 //
 
 /// Class for executing Channel API network calls
-class SpvChannelApi {
+public class SpvChannelApi {
     let requestDispatcher: RequestDispatcherProtocol
 
     /**
@@ -33,7 +33,7 @@ class SpvChannelApi {
      */
     init(baseUrl: String, accountId: String, username: String, password: String,
          networkSession: NetworkSessionProtocol = APINetworkSession()) {
-        let baseUrlWithSuffix = baseUrl + "/api/v1/account/\(accountId)/channel"
+        let baseUrlWithSuffix = baseUrl + "api/v1/account/\(accountId)/channel"
         let env = SpvChannelsApiEnvironment(baseUrl: baseUrlWithSuffix,
                                             username: username,
                                             password: password)
@@ -59,7 +59,7 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
      }
      ```
      */
-    func getAllChannels(completion: @escaping ChannelsInfoResult) {
+    public func getAllChannels(completion: @escaping ChannelsInfoResult) {
         let channelsRequest = ChannelsEndpoint.getAllChannels
         let operation = APIOperation(channelsRequest)
 
@@ -95,7 +95,7 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
      }
      ```
      */
-    func getChannel(channelId: String, completion: @escaping ChannelInfoResult) {
+    public func getChannel(channelId: String, completion: @escaping ChannelInfoResult) {
         let channelsRequest = ChannelsEndpoint.getChannel(channelId: channelId)
         let operation = APIOperation(channelsRequest)
 
@@ -132,7 +132,7 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
      }
      ```
      */
-    func deleteChannel(channelId: String, completion: @escaping StringResult) {
+    public func deleteChannel(channelId: String, completion: @escaping StringResult) {
         let channelsRequest = ChannelsEndpoint.deleteChannel(channelId: channelId)
         let operation = APIOperation(channelsRequest)
 
@@ -164,8 +164,9 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
      }
      ```
      */
-    func createChannel(createRequest: CreateChannelRequest, retention: Retention,
-                       completion: @escaping ChannelInfoResult) {
+    public func createChannel(createRequest: CreateChannelRequest,
+                              retention: Retention,
+                              completion: @escaping ChannelInfoResult) {
         var parameters: [String: Any] = createRequest.asDictionary
         parameters["retention"] = retention.asDictionary
         let channelsRequest = ChannelsEndpoint.createChannel(parameters: parameters)
@@ -205,7 +206,7 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
      }
      ```
      */
-    func getAllChannelTokens(channelId: String, token: String, completion: @escaping TokensInfoResult) {
+    public func getAllChannelTokens(channelId: String, token: String, completion: @escaping TokensInfoResult) {
         let channelsRequest = ChannelsEndpoint.getAllChannelTokens(channelId: channelId, token: token)
         let operation = APIOperation(channelsRequest)
         operation.execute(in: requestDispatcher) { result in
@@ -242,7 +243,7 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
      }
      ```
      */
-    func getChannelToken(channelId: String, tokenId: String, completion: @escaping TokenInfoResult) {
+    public func getChannelToken(channelId: String, tokenId: String, completion: @escaping TokenInfoResult) {
         let channelsRequest = ChannelsEndpoint.getChannelToken(channelId: channelId, tokenId: tokenId)
         let operation = APIOperation(channelsRequest)
         operation.execute(in: requestDispatcher) { result in
@@ -282,14 +283,14 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
      
      spvChannelApi.amendChannel(channelId: channelId,
                                 permissions: permissions) { result in
-        if case let .success(data) = result {
-            print(data.publicWrite)
-        }
+         if case let .success(data) = result {
+             print(data.publicWrite)
+         }
      }
      ```
      */
-    func amendChannel(channelId: String, permissions: ChannelPermissions,
-                      completion: @escaping ChannelPermissionsResult) {
+    public func amendChannel(channelId: String, permissions: ChannelPermissions,
+                             completion: @escaping ChannelPermissionsResult) {
         let parameters: [String: Any] = permissions.asDictionary
         let channelsRequest = ChannelsEndpoint.amendChannel(channelId: channelId, parameters: parameters)
         let operation = APIOperation(channelsRequest)
@@ -332,8 +333,8 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
      }
      ```
      */
-    func createChannelToken(channelId: String, tokenRequest: CreateTokenRequest,
-                            completion: @escaping TokenInfoResult) {
+    public func createChannelToken(channelId: String, tokenRequest: CreateTokenRequest,
+                                   completion: @escaping TokenInfoResult) {
         let parameters: [String: Any] = tokenRequest.asDictionary
         let channelsRequest = ChannelsEndpoint.createChannelToken(channelId: channelId, parameters: parameters)
         let operation = APIOperation(channelsRequest)
@@ -372,7 +373,7 @@ extension SpvChannelApi: SpvChannelsApiProtocol {
      }
      ```
      */
-    func revokeChannelToken(channelId: String, tokenId: String, completion: @escaping StringResult) {
+    public func revokeChannelToken(channelId: String, tokenId: String, completion: @escaping StringResult) {
         let channelsRequest = ChannelsEndpoint.revokeChannelToken(channelId: channelId, tokenId: tokenId)
         let operation = APIOperation(channelsRequest)
         operation.execute(in: requestDispatcher) { result in

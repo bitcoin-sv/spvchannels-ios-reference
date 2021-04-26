@@ -7,7 +7,7 @@
 //
 
 /// Structure to hold single channel info
-struct ChannelInfo: Codable, Equatable {
+public struct ChannelInfo: Codable, Equatable {
     let id: String
     let href: String
     let publicRead: Bool
@@ -20,6 +20,6 @@ struct ChannelInfo: Codable, Equatable {
 }
 
 /// Structure to hold an array of channel info
-struct ChannelsList: Codable, Equatable {
+public struct ChannelsList: Codable, Equatable {
     let channels: [ChannelInfo]
 }

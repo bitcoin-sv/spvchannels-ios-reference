@@ -7,8 +7,14 @@
 //
 
 /// Structure containing channel metadata and permissions
-struct ChannelPermissions: Codable {
+public struct ChannelPermissions: Codable {
     let publicRead: Bool
     let publicWrite: Bool
     let locked: Bool
+
+    public init(publicRead: Bool, publicWrite: Bool, locked: Bool) {
+        self.publicRead = publicRead
+        self.publicWrite = publicWrite
+        self.locked = locked
+    }
 }

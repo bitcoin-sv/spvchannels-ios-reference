@@ -7,7 +7,7 @@
 //
 
 /// Network abstraction protocol for **dataTask** creation
-protocol NetworkSessionProtocol {
+public protocol NetworkSessionProtocol {
     typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
 
     func dataTask(with request: URLRequest,
@@ -15,7 +15,7 @@ protocol NetworkSessionProtocol {
 }
 
 /// Network abstraction protocol for **dataTask** operation
-protocol URLSessionDataTaskProtocol {
+public protocol URLSessionDataTaskProtocol {
     func resume()
     func cancel()
 }

@@ -35,8 +35,16 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
 
     func createSdk(viewAction: Models.CreateSdk.ViewAction) {
         spvChannelsSdk = nil
-        let onOpenNotification = { [weak self] (message: String, channelId: String) -> Void in
-            self?.presenter?.presentError(errorMessage: "\(message)\n\(channelId)")
+        let onOpenNotification = { [weak self] (message: String, messageTime: String, channelId: String) -> Void in
+
+            let displayMessage = """
+            \(message)
+
+            Message time: \(messageTime)
+
+            Channel ID: \(channelId)
+            """
+            self?.presenter?.presentError(errorMessage: displayMessage)
         }
         let firebaseConfigFile = Bundle.main.path(forResource: Constants.firebaseConfigFile.rawValue,
                                                   ofType: "plist") ?? ""
@@ -50,7 +58,11 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
     }
 
     func getFirebaseToken(viewAction: Models.GetFirebaseToken.ViewAction) {
-        let token = UserDefaults.standard.firebaseToken ?? "n/a"
+        guard spvChannelsSdk != nil else {
+            presenter?.getFirebaseToken(actionResponse: .init(token: "n/a"))
+            return
+        }
+        let token = spvChannelsSdk?.firebaseToken ?? "n/a"
         presenter?.getFirebaseToken(actionResponse: .init(token: token))
     }
 
@@ -78,7 +90,7 @@ final class HomeInteractor: HomeViewActions, HomeDataStore {
         }
         spvMessagingApi = nil
 
-        var encryptionService: SpvEncryptionProtocol
+        var encryptionService: SpvEncryptionProtocol?
         if viewAction.encryption {
             if let encryptionClass = SpvLibSodiumEncryption(publicKeyString: Constants.bobPublicKey.rawValue,
                                                             secretKeyString: Constants.bobSecretKey.rawValue),

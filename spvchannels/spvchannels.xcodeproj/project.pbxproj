@@ -53,7 +53,6 @@
 		A15E085626015BF2000AB996 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E085526015BF2000AB996 /* UIView+Extensions.swift */; };
 		A1AC72F02611FF6F00E0A190 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC72EF2611FF6F00E0A190 /* Constants.swift */; };
 		A1BDBE9126145B6700613B2B /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BDBE9026145B6700613B2B /* ObjC.m */; };
-		A1BDBFBC2614969800613B2B /* SPV-FCM-GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1BDBFBB2614969800613B2B /* SPV-FCM-GoogleService-Info.plist */; };
 		A1BDC0412614FE6100613B2B /* SpvFirebaseTokenEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BDC01C2614FB5500613B2B /* SpvFirebaseTokenEndpoint.swift */; };
 		A1BDC0422614FE6100613B2B /* SpvFirebaseTokenApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BDC01B2614FB5500613B2B /* SpvFirebaseTokenApiProtocol.swift */; };
 		A1BDC0432614FE6100613B2B /* SpvFirebaseTokenApiEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BDC01E2614FB5500613B2B /* SpvFirebaseTokenApiEnvironment.swift */; };
@@ -73,6 +72,9 @@
 		A1CBDB5B260E078C005C4091 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBDB5A260E078C005C4091 /* Message.swift */; };
 		A1CBDC92260E5A72005C4091 /* SpvLibSodiumEncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBDC91260E5A72005C4091 /* SpvLibSodiumEncryption.swift */; };
 		A1CBDCA5260FC034005C4091 /* SpvChannelsLibSodiumEncryptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CBDCA4260FC034005C4091 /* SpvChannelsLibSodiumEncryptionTests.swift */; };
+		A1DA62D72632D3DE0002CEBC /* ChannelApiAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DA62D62632D3DE0002CEBC /* ChannelApiAction.swift */; };
+		A1DA62DD2632D58A0002CEBC /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1DA62DC2632D58A0002CEBC /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist */; };
+		A1DA62E12632D6170002CEBC /* MessagingApiAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DA62E02632D6170002CEBC /* MessagingApiAction.swift */; };
 		A1F807F52601F8C900AAA5F7 /* Decodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F807F42601F8C900AAA5F7 /* Decodable+Extensions.swift */; };
 		A1F807FA2601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */; };
 		A1F808A22602125400AAA5F7 /* SpvChannelsApiMockValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */; };
@@ -149,7 +151,6 @@
 		A1BDBE8F26145B6700613B2B /* spvchannels-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "spvchannels-Bridging-Header.h"; sourceTree = "<group>"; };
 		A1BDBE9026145B6700613B2B /* ObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjC.m; sourceTree = "<group>"; };
 		A1BDBEA22614603300613B2B /* ObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjC.h; sourceTree = "<group>"; };
-		A1BDBFBB2614969800613B2B /* SPV-FCM-GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SPV-FCM-GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1BDC01B2614FB5500613B2B /* SpvFirebaseTokenApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvFirebaseTokenApiProtocol.swift; sourceTree = "<group>"; };
 		A1BDC01C2614FB5500613B2B /* SpvFirebaseTokenEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvFirebaseTokenEndpoint.swift; sourceTree = "<group>"; };
 		A1BDC01D2614FB5500613B2B /* SpvFirebaseTokenApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvFirebaseTokenApi.swift; sourceTree = "<group>"; };
@@ -169,6 +170,9 @@
 		A1CBDB5A260E078C005C4091 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		A1CBDC91260E5A72005C4091 /* SpvLibSodiumEncryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvLibSodiumEncryption.swift; sourceTree = "<group>"; };
 		A1CBDCA4260FC034005C4091 /* SpvChannelsLibSodiumEncryptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelsLibSodiumEncryptionTests.swift; sourceTree = "<group>"; };
+		A1DA62D62632D3DE0002CEBC /* ChannelApiAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelApiAction.swift; sourceTree = "<group>"; };
+		A1DA62DC2632D58A0002CEBC /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A1DA62E02632D6170002CEBC /* MessagingApiAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingApiAction.swift; sourceTree = "<group>"; };
 		A1F807F42601F8C900AAA5F7 /* Decodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Extensions.swift"; sourceTree = "<group>"; };
 		A1F807F92601F99F00AAA5F7 /* SpvChannelsApiMockValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpvChannelsApiMockValues.swift; sourceTree = "<group>"; };
 		AA2D584D3379CB4E86D67CEC /* Pods-spvchannels-spvchannelsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spvchannels-spvchannelsUITests.debug.xcconfig"; path = "Target Support Files/Pods-spvchannels-spvchannelsUITests/Pods-spvchannels-spvchannelsUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +235,7 @@
 				A135840E260907C000B9BA6C /* ChannelsInteractor.swift */,
 				A1358413260907CD00B9BA6C /* ChannelsPresenter.swift */,
 				A1358404260907A000B9BA6C /* ChannelsRouter.swift */,
+				A1DA62D62632D3DE0002CEBC /* ChannelApiAction.swift */,
 			);
 			path = Channels;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 				A135855F260A45BD00B9BA6C /* MessagingInteractor.swift */,
 				A1358564260A461200B9BA6C /* MessagingPresenter.swift */,
 				A1358569260A462200B9BA6C /* MessagingRouter.swift */,
+				A1DA62E02632D6170002CEBC /* MessagingApiAction.swift */,
 			);
 			path = Messaging;
 			sourceTree = "<group>";
@@ -439,7 +445,7 @@
 		A1BDBFBA2614968600613B2B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A1BDBFBB2614969800613B2B /* SPV-FCM-GoogleService-Info.plist */,
+				A1DA62DC2632D58A0002CEBC /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -553,9 +559,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1BDBFBC2614969800613B2B /* SPV-FCM-GoogleService-Info.plist in Resources */,
 				A15E065B25FA0B07000AB996 /* LaunchScreen.storyboard in Resources */,
 				A15E065825FA0B07000AB996 /* Assets.xcassets in Resources */,
+				A1DA62DD2632D58A0002CEBC /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,6 +688,7 @@
 				A135840F260907C000B9BA6C /* ChannelsInteractor.swift in Sources */,
 				A135835C2608A24E00B9BA6C /* HomeModels.swift in Sources */,
 				A15E071425FEBCC7000AB996 /* ChannelPermissions.swift in Sources */,
+				A1DA62E12632D6170002CEBC /* MessagingApiAction.swift in Sources */,
 				A1BDBE9126145B6700613B2B /* ObjC.m in Sources */,
 				A15E070F25FEBCB5000AB996 /* ChannelInfo.swift in Sources */,
 				A1BDC0432614FE6100613B2B /* SpvFirebaseTokenApiEnvironment.swift in Sources */,
@@ -705,6 +712,7 @@
 				A1CBD89E260C4A5D005C4091 /* SpvChannelEndpoint.swift in Sources */,
 				A1CBD865260BEF31005C4091 /* SpvChannelsApiEnvironment.swift in Sources */,
 				A13583952608A8FB00B9BA6C /* HomeRouter.swift in Sources */,
+				A1DA62D72632D3DE0002CEBC /* ChannelApiAction.swift in Sources */,
 				A13583ED2609048000B9BA6C /* SpvNoOpEncryption.swift in Sources */,
 				A1CBD818260BE5A6005C4091 /* APIError.swift in Sources */,
 				A1358551260A416D00B9BA6C /* MessagingViewController.swift in Sources */,
