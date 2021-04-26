@@ -223,11 +223,9 @@ extension SpvChannelsSdk: UNUserNotificationCenterDelegate, MessagingDelegate {
     private func handleReceivedNotification(title: String, body: String, userInfo: [AnyHashable: Any]) {
         guard let sender = userInfo["google.c.sender.id"] as? String,
               sender == gcmSenderId else { return }
-        let message = userInfo["message"] as? String ?? "unknown"
-        let messageTimeStr = userInfo["time"] as? String ?? "unknown time"
         let channelId = userInfo["channelId"] as? String ?? "unknown channel"
         DispatchQueue.main.async { [weak self] in
-            self?.openNotification?(message, messageTimeStr, channelId)
+            self?.openNotification?(title, body, channelId)
         }
     }
 
