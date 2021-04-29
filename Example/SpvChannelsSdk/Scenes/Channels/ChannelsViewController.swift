@@ -85,6 +85,7 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
                                                  sequencedSwitchStack,
                                                  minAgeStack,
                                                  maxAgeStack,
+                                                 autoPruneSwitchStack,
                                                  lockedSwitchStack,
                                                  resultsTextView,
                                                  bottomStack],
@@ -118,6 +119,7 @@ class ChannelsViewController: UIViewController, CleanVIP, Coordinatable, Channel
         case .createChannel:
             publicReadSwitchStack.isHidden = false
             publicWriteSwitchStack.isHidden = false
+            autoPruneSwitchStack.isHidden = false
             sequencedSwitchStack.isHidden = false
             minAgeStack.isHidden = false
             maxAgeStack.isHidden = false
