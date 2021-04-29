@@ -23,4 +23,11 @@ public struct Retention: Codable, Equatable {
         let maxAge = Int(maxAgeDays)
         self.init(minAgeDays: minAge, maxAgeDays: maxAge, autoPrune: autoPrune)
     }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeNullableOptional(minAgeDays, forKey: .minAgeDays)
+        try container.encodeNullableOptional(maxAgeDays, forKey: .maxAgeDays)
+        try container.encode(autoPrune, forKey: .autoPrune)
+    }
 }
