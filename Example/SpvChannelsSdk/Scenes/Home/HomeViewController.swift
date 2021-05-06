@@ -115,10 +115,22 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
                                                  firebaseTokenLabel,
                                                  firebaseToken],
                                          axis: .vertical)
-
+    
+    private lazy var mainScrollView: UIScrollView = {
+        var mainScrollView = UIScrollView()
+        mainScrollView.translatesAutoresizingMaskIntoConstraints = false
+        return mainScrollView
+    }()
+    
     private func setupUI() {
-        view.addSubview(stack)
-        stack.pin(to: view, insets: .init(top: 40, left: 10.0, bottom: 40, right: 10.0))
+        view.addSubview(mainScrollView)
+        mainScrollView.pin(to: view, insets: .init(top: 40, left: 10, bottom: 40, right: 10))
+        
+        mainScrollView.addSubview(stack)
+        stack.pin(to: mainScrollView, insets: .zero)
+        stack.widthAnchor.constraint(equalTo: mainScrollView.widthAnchor).isActive = true
+        stack.heightAnchor.constraint(equalTo: mainScrollView.heightAnchor).isActive = true
+        
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
