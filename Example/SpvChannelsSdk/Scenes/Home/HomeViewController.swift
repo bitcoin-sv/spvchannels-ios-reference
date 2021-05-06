@@ -94,6 +94,7 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
         textView.layer.borderWidth = 2
         textView.layer.borderColor = UIColor.darkGray.cgColor
         textView.isEditable = false
+        textView.sizeToFit()
         return textView
     }()
 
@@ -127,10 +128,9 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
         mainScrollView.pin(to: view, insets: .init(top: 40, left: 10, bottom: 40, right: 10))
         
         mainScrollView.addSubview(stack)
-        stack.pin(to: mainScrollView, insets: .zero)
+        stack.pin(to: mainScrollView)
         stack.widthAnchor.constraint(equalTo: mainScrollView.widthAnchor).isActive = true
-        stack.heightAnchor.constraint(equalTo: mainScrollView.heightAnchor).isActive = true
-        
+                
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
@@ -217,6 +217,12 @@ final class HomeViewController: UIViewController, Coordinatable, CleanVIP, HomeR
 
     func displayFirebaseToken(responseDisplay: Models.GetFirebaseToken.ResponseDisplay) {
         firebaseToken.text = responseDisplay.token
+        
+        firebaseToken.constraints.forEach({ $0.isActive = false })
+        firebaseToken.heightAnchor.constraint(equalToConstant: firebaseToken.contentSize.height).isActive = true
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.firebaseToken.layoutIfNeeded()
+        }
     }
 
     func displayCreateChannelApi(responseDisplay: Models.CreateChannelApi.ResponseDisplay) {
