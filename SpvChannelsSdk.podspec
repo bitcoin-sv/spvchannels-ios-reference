@@ -7,18 +7,15 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'SpvChannelsSdk'
-  s.version          = '0.1.0'
+  s.name             = 'SPV Channels iOS SDK Reference Implementation'
+  s.version          = '1.0.0-beta'
   s.summary          = 'SDK to use with SPV channels service.'
   s.swift_version    = '5.3'
-
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      = 'A mobile SDK to facilitate Simplified Payment Verification (SPV) development on the iOS platform.'
 
   s.homepage         = 'https://github.com/bitcoin-sv/spvchannels-ios-reference'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Boris Herman' => 'boris@equaleyes.com' }
+  s.author           = { 'Kenan Mamedoff' => 'k.mamedoff@nchain.com' }
   s.source           = { :git => 'https://github.com/bitcoin-sv/spvchannels-ios-reference.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '12.3'

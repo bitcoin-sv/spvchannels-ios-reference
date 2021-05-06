@@ -10,6 +10,7 @@
 		5B0E3C2E2B08628312B0C11A /* Pods_SpvChannelsSdk_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D3534536B5A3EA45B4CE16 /* Pods_SpvChannelsSdk_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
+		7B224E0826443B8C00429F11 /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B224E0726443B8C00429F11 /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist */; };
 		A15806B52626FC680013267A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A15806B42626FC680013267A /* LaunchScreen.storyboard */; };
 		A15806DD2626FD950013267A /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15806DC2626FD950013267A /* SceneCoordinator.swift */; };
 		A15806F02626FDA00013267A /* Coordinator+Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15806EF2626FDA00013267A /* Coordinator+Coordinatable.swift */; };
@@ -42,7 +43,6 @@
 		A1580D792628387A0013267A /* ChannelsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1580D732628387A0013267A /* ChannelsRouter.swift */; };
 		A158199B2628519D0013267A /* ChannelApiAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158199A2628519D0013267A /* ChannelApiAction.swift */; };
 		A15819B1262855C20013267A /* MessagingApiAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15819B0262855C20013267A /* MessagingApiAction.swift */; };
-		A1756EE126302FC000405DF8 /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1756EE026302FC000405DF8 /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist */; };
 		A180D831262968040018D817 /* SpvChannelsApiMockValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180D82E262968040018D817 /* SpvChannelsApiMockValues.swift */; };
 		A180D832262968040018D817 /* SpvChannelsLibSodiumEncryptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180D82F262968040018D817 /* SpvChannelsLibSodiumEncryptionTests.swift */; };
 		A180D833262968040018D817 /* SpvChannelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A180D830262968040018D817 /* SpvChannelsTests.swift */; };
@@ -70,6 +70,7 @@
 		607FACE51AFB9204008FA782 /* SpvChannelsSdk_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpvChannelsSdk_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7499D3BD38E0078A366532EF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		7B224E0726443B8C00429F11 /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist"; path = "../../../../io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist"; sourceTree = "<group>"; };
 		879FE69A80B7C5FFE3A98156 /* Pods-SpvChannelsSdk_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpvChannelsSdk_Example.release.xcconfig"; path = "Target Support Files/Pods-SpvChannelsSdk_Example/Pods-SpvChannelsSdk_Example.release.xcconfig"; sourceTree = "<group>"; };
 		8A2B06469AB39A7EF229890F /* Pods-SpvChannelsSdk_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpvChannelsSdk_Example.debug.xcconfig"; path = "Target Support Files/Pods-SpvChannelsSdk_Example/Pods-SpvChannelsSdk_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		97FC1BD4D1970AA7B71DF85A /* Pods-SpvChannelsSdk_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpvChannelsSdk_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SpvChannelsSdk_Tests/Pods-SpvChannelsSdk_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -106,7 +107,6 @@
 		A1580D732628387A0013267A /* ChannelsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelsRouter.swift; sourceTree = "<group>"; };
 		A158199A2628519D0013267A /* ChannelApiAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelApiAction.swift; sourceTree = "<group>"; };
 		A15819B0262855C20013267A /* MessagingApiAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingApiAction.swift; sourceTree = "<group>"; };
-		A1756EE026302FC000405DF8 /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1756EF42630361600405DF8 /* SpvChannelsSdk_ExampleDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpvChannelsSdk_ExampleDebug.entitlements; sourceTree = "<group>"; };
 		A180D82E262968040018D817 /* SpvChannelsApiMockValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpvChannelsApiMockValues.swift; sourceTree = "<group>"; };
 		A180D82F262968040018D817 /* SpvChannelsLibSodiumEncryptionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpvChannelsLibSodiumEncryptionTests.swift; sourceTree = "<group>"; };
@@ -294,7 +294,7 @@
 		A1580746262705690013267A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A1756EE026302FC000405DF8 /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist */,
+				7B224E0726443B8C00429F11 /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -403,7 +403,7 @@
 			files = (
 				A15806B52626FC680013267A /* LaunchScreen.storyboard in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
-				A1756EE126302FC000405DF8 /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist in Resources */,
+				7B224E0826443B8C00429F11 /* io.bitcoin-sv.SpvChannelsSdk-Example_GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +677,7 @@
 				INFOPLIST_FILE = SpvChannelsSdk/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = "1.0.0-beta";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.bitcoin-sv.SpvChannelsSdk-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -694,6 +695,7 @@
 				INFOPLIST_FILE = SpvChannelsSdk/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = "1.0.0-beta";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.bitcoin-sv.SpvChannelsSdk-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
